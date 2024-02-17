@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import {Layout, theme } from 'antd';
+import {Layout, Menu, theme } from 'antd';
 import Sidebar from './common/Sidebar';
 import MyFooter from './common/MyFooter';
 import MyHeader from './common/MyHeader';
@@ -20,35 +20,30 @@ const LoggedInMain: React.FC = () => {
 
   return (
     <BrowserRouter>
-
     <Layout style={{ minHeight: '100vh' }}>
-              <Sidebar></Sidebar>
-      <Layout>
-      <MyHeader></MyHeader>
+      <Sidebar/>
+          <Layout>
+      <MyHeader/>
+      <Content style={{ margin: '0 16px' }}>
 
+        <div
+          style={{
+            padding: 24,
+            minHeight: 360,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          {CurrentPage()}
+        </div>
+      </Content>
 
-
-        <Content style={{ margin: '0 16px' }}>
-
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-
-            {CurrentPage()}
-
-          </div>
-        </Content>
-        <MyFooter></MyFooter>
-      </Layout>
+      <MyFooter/>
     </Layout>
-    </BrowserRouter>
-
+  </Layout>
+  </BrowserRouter>
   );
+
 };
 
 export default LoggedInMain;

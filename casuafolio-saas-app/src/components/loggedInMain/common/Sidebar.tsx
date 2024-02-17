@@ -38,18 +38,20 @@ const Sidebar: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
     const navigate =  useNavigate();
   return (
-    <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}        
-     style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0 }} 
-        >
+    <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+
     <Menu onClick={({key}) =>{
       if(key === "signOut") {
-
+        console.log("pressed sign out")
+        navigate(key)
       } else {
         navigate(key);
       }
     }}
     theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
     </Sider>
+
+
   );
 };
 

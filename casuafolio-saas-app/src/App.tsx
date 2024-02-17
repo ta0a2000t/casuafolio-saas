@@ -9,9 +9,6 @@ function App() {
     <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' } }}>
 
     <div className="App">
-      <header>
-
-      </header>
       <LoggedInMain></LoggedInMain>
     </div>
     </ConfigProvider>
