@@ -1,9 +1,8 @@
 import { Button } from 'antd';
 import { ConfigProvider } from 'antd';
-
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import LoggedInMain from './components/loggedInMain/LoggedInMain';
 
 function App() {
   return (
@@ -11,11 +10,9 @@ function App() {
 
     <div className="App">
       <header>
-        <img src={logo} className="App-logo" alt="logo" />
 
       </header>
-      <Button type="dashed">Button</Button>
-
+      <LoggedInMain></LoggedInMain>
     </div>
     </ConfigProvider>
 
