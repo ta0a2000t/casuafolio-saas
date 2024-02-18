@@ -13,6 +13,7 @@ import {Button,
 import AboutSection from './aboutSection/AboutSection';
 import SocialLinksInput from './aboutSection/SocialLinksInput';
 import PersonalInfoInput from './aboutSection/PersonalInfoInput';
+import GalleryInput from './shared/GalleryInput';
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
@@ -40,10 +41,14 @@ const ProfileForm: React.FC = () => {
           <Radio.Button value="large">Large</Radio.Button>
         </Radio.Group>
       </Form.Item>
-      
+
       <PersonalInfoInput/>
       <AboutSection/>
       <SocialLinksInput/>
+
+
+    <GalleryInput/>
+
 
       <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
         <Button type="primary" htmlType="submit">
