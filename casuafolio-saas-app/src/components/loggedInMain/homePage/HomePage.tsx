@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {theme } from 'antd';
+import {Button, theme } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import Link from 'antd/es/typography/Link';
 
@@ -13,7 +13,8 @@ const Home: React.FC = () => {
 
   return (
     <div>
-        home page
+      <Button>home page</Button>
+        
     </div>
   );
 };

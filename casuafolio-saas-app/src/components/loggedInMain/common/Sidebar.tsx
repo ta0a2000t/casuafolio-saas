@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import {
     HomeOutlined,
-  BarChartOutlined,
   CloudOutlined,
   UserOutlined,
   EditOutlined,
   PoweroffOutlined
 } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Layout, Menu } from 'antd';
+import type { MenuProps } from 'antd/es';
+import { Layout, Menu } from 'antd/es';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -38,9 +37,11 @@ const Sidebar: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
     const navigate =  useNavigate();
   return (
-    <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+    <Sider theme='dark' collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}
+    >
+    
 
-    <Menu onClick={({key}) =>{
+    <Menu theme='dark' onClick={({key}) =>{
       if(key === "signOut") {
         console.log("pressed sign out")
         navigate(key)
@@ -48,7 +49,7 @@ const Sidebar: React.FC = () => {
         navigate(key);
       }
     }}
-    theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+     defaultSelectedKeys={['1']} mode="inline" items={items} />
     </Sider>
 
 
