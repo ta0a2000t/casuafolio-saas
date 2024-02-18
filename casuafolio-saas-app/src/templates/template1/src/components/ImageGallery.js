@@ -16,7 +16,7 @@ const ImageGallery = ({ folder_name, gallery }) => {
         <div className="timeline-gallery">
         {gallery.map((img, index) => (
             <div key={index} className="image-wrapper">
-            <img src={`./events_images/${folder_name}/${img}`} alt={`Gallery ${img}`} loading="lazy" />
+            <img src={`${img}`} alt={`Gallery ${img}`} loading="lazy" />
             </div>
         ))}
         </div>

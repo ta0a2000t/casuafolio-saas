@@ -1,11 +1,11 @@
-.App {
+.Template1 {
   font-family: Arial, Helvetica, sans-serif;
   background-color: black;
   min-height: 100vh;
   min-width: 100vw;
 }
 
-.App-header {
+.Template1-header {
   color: white;
   position: fixed;
   top: 0;

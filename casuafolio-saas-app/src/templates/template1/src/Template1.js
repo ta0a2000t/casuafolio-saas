@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Template1.css';
 import TimelineEvent from './components/TimelineEvent';
-import 'font-awesome/css/font-awesome.min.css';
+import './font-awesome/css/font-awesome.min.css';
 import About from './components/About'
 import SocialIcons from './components/SocialIcons'; // adjust the import path as needed
 

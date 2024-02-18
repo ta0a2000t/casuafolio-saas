@@ -20,15 +20,19 @@ function App() {
 
   function mainAppPage(content: React.ReactNode) {
     return (
-      <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
-        {loggedIn && (<LoggedInMain isDarkMode={isDarkMode}>{content}</LoggedInMain>)}
-        {!loggedIn && <Login isDarkMode={isDarkMode} />}
+      <div className="App">
 
-        <FloatButton
-          icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          tooltip={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'} />
-      </ConfigProvider>
+        <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
+          {loggedIn && (<LoggedInMain isDarkMode={isDarkMode}>{content}</LoggedInMain>)}
+          {!loggedIn && <Login isDarkMode={isDarkMode} />}
+
+          <FloatButton
+            icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            tooltip={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'} />
+        </ConfigProvider>
+      </div>
+
     );
   }
 
@@ -36,25 +40,23 @@ function App() {
 
 
 
-    <div className="App">
 
-      <Routes>
-        <Route path='/sites/:username' element={<ValidateUserSite />}></Route>
+    <Routes>
+      <Route path='/sites/:username' element={<ValidateUserSite />}></Route>
 
 
-        <Route path='/homePage' element={mainAppPage(<HomePage />)}></Route>
-        <Route path='/profilePage' element={mainAppPage(<ProfilePage />)}></Route>
-        <Route path='/editJourney' element={mainAppPage(<EditJourney />)}></Route>
-        <Route path='/myWebsites' element={mainAppPage(<MyWebsites />)}></Route>
+      <Route path='/homePage' element={mainAppPage(<HomePage />)}></Route>
+      <Route path='/profilePage' element={mainAppPage(<ProfilePage />)}></Route>
+      <Route path='/editJourney' element={mainAppPage(<EditJourney />)}></Route>
+      <Route path='/myWebsites' element={mainAppPage(<MyWebsites />)}></Route>
 
-        <Route path='signOut' element={<div>Sign Out pressed</div>}></Route>
+      <Route path='signOut' element={<div>Sign Out pressed</div>}></Route>
 
-        <Route path='/' element={mainAppPage(<HomePage />)}></Route>
-        <Route path='/:something' element={mainAppPage(<HomePage />)}></Route>
+      <Route path='/' element={mainAppPage(<HomePage />)}></Route>
+      <Route path='/:something' element={mainAppPage(<HomePage />)}></Route>
 
-      </Routes>
+    </Routes>
 
-    </div>
   );
 }
 
