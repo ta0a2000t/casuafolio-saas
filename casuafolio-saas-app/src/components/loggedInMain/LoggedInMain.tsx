@@ -20,18 +20,18 @@ const LoggedInMain: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
 
   return (
     <BrowserRouter>
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout>
         <Sidebar />
         <Layout>
         <MyHeader isDarkMode={isDarkMode}  />
-          <Content style={{ margin: '16px' }}>
+        <Content style={{ margin: "16px", overflow: "initial" }}>
 
             <div
               style={{
                 padding: 24,
                 minHeight: 360,
                 background: colorBgContainer,
-                borderRadius: borderRadiusLG,
+                borderRadius: borderRadiusLG
               }}
             >
               {CurrentPage()}

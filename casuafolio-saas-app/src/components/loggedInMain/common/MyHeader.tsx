@@ -18,7 +18,7 @@ const MyHeader: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
 
   return (
 
-    <Header style={{ padding: 10, background: colorBgLayout }}>
+    <Header style={{ margin: '20px', background: colorBgLayout }}>
       <MyLogo isDarkMode={isDarkMode} />
 
     </Header>
