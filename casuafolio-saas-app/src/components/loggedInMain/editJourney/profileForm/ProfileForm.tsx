@@ -10,6 +10,7 @@ import {Button,
   Switch,
   TreeSelect,
 } from 'antd';
+import AboutSection from './aboutSection/AboutSection';
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
@@ -28,7 +29,7 @@ const ProfileForm: React.FC = () => {
       initialValues={{ size: componentSize }}
       onValuesChange={onFormLayoutChange}
       size={componentSize as SizeType}
-      style={{ maxWidth: 600 }}
+      style={{ maxWidth: 700 }}
     >
       <Form.Item label="Form Size" name="size">
         <Radio.Group>
@@ -37,9 +38,7 @@ const ProfileForm: React.FC = () => {
           <Radio.Button value="large">Large</Radio.Button>
         </Radio.Group>
       </Form.Item>
-      <Form.Item label="Input">
-        <Input />
-      </Form.Item>
+      <AboutSection/>
       <Form.Item label="Select">
         <Select>
           <Select.Option value="demo">Demo</Select.Option>

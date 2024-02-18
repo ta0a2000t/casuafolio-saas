@@ -27,7 +27,7 @@ const LoggedInMain: React.FC<LoggedInMainProps> = ({ isDarkMode, children }) => 
   return (
       <Layout hasSider>
         <Sidebar />
-        <Layout style={{ marginLeft: 100 , minHeight: '100vh'}}>
+        <Layout style={{ marginLeft: 80 + 20, minHeight: '100vh', marginRight:20}}>
         <MyHeader isDarkMode={isDarkMode}  />
         <Content style={{ margin: "16px", overflow: "initial" }}>
 
@@ -36,7 +36,7 @@ const LoggedInMain: React.FC<LoggedInMainProps> = ({ isDarkMode, children }) => 
                 padding: 24,
                 minHeight: 360,
                 background: colorBgContainer,
-                borderRadius: borderRadiusLG
+                borderRadius: borderRadiusLG,
               }}
             >
               {children}
