@@ -9,17 +9,22 @@ import HomePage from './homePage/HomePage';
 import ProfilePage from './accountPage/AccountPage';
 import EditJourney from './editJourney/EditJourney';
 import MyWebsites from './myWebsites/MyWebsites';
+import ProfileForm from './editJourney/profileForm/ProfileForm';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 
-const LoggedInMain: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
+interface LoggedInMainProps {
+  isDarkMode: boolean;
+  children: React.ReactNode; // This prop will be used to pass down the button or any React node
+}
+
+const LoggedInMain: React.FC<LoggedInMainProps> = ({ isDarkMode, children }) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   return (
-    <BrowserRouter>
       <Layout hasSider>
         <Sidebar />
         <Layout style={{ marginLeft: 100 , minHeight: '100vh'}}>
@@ -34,14 +39,13 @@ const LoggedInMain: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
                 borderRadius: borderRadiusLG
               }}
             >
-              {CurrentPage()}
+              {children}
             </div>
           </Content>
 
           <MyFooter />
         </Layout>
       </Layout>
-    </BrowserRouter>
   );
 
 };
@@ -49,18 +53,3 @@ const LoggedInMain: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
 export default LoggedInMain;
 
 
-function CurrentPage() {
-  return (
-    <div>
-      <Routes>
-        <Route path='/homePage' element={<HomePage />}></Route>
-        <Route path='/profilePage' element={<ProfilePage />}></Route>
-        <Route path='/editJourney' element={<EditJourney />}></Route>
-        <Route path='/myWebsites' element={<MyWebsites />}></Route>
-
-        <Route path='signOut' element={<div>Sign Out pressed</div>}></Route>
-
-      </Routes>
-    </div>
-  );
-}
