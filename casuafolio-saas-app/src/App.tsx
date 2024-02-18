@@ -17,12 +17,14 @@ function App() {
 
     <div className="App">  
     
-    <FloatButton
-          icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          tooltip={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}  />      
+ 
       
       <LoggedInMain isDarkMode={isDarkMode} />
+
+      <FloatButton
+          icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          tooltip={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}  />     
     </div>
     </ConfigProvider>
 

@@ -13,8 +13,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Sider } = Layout;
 
-const sidebarTabs = ["Home", "Profile",  "Edit Journey", "My Websites", "Sign Out"]
-const sidebarKeys = ["/homePage", "/profilePage", "/editJourney", "/myWebsites", "signOut"]
+const sidebarTabs = ["Home", "Account",  "Edit Journey", "My Websites", "Sign Out"]
+const sidebarKeys = ["/homePage", "/accountPage", "/editJourney", "/myWebsites", "signOut"]
 const items: MenuProps['items'] = [
     HomeOutlined,
     UserOutlined,
@@ -42,9 +42,13 @@ const items: MenuProps['items'] = [
     const currentKey = sidebarKeys.find(key => location.pathname.includes(key)) || sidebarKeys[0];
   
     return (
-      <Sider theme="dark" collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+      <Sider theme="light" collapsed={true}
+
+      style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0 }}>
+
+
         <Menu
-          theme="dark"
+          theme="light"
           onClick={({ key }) => {
             if (key === "signOut") {
               console.log("pressed sign out");
@@ -56,13 +60,7 @@ const items: MenuProps['items'] = [
           defaultSelectedKeys={[currentKey]} // Set the defaultSelectedKeys based on the current location
           mode="inline"
           items={items}
-          style={{
-            overflow: "auto",
-            height: "100vh",
-            position: "sticky",
-            top: 0,
-            left: 0,
-          }}
+
         />
       </Sider>
     );

@@ -20,9 +20,9 @@ const LoggedInMain: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
 
   return (
     <BrowserRouter>
-      <Layout>
+      <Layout hasSider>
         <Sidebar />
-        <Layout>
+        <Layout style={{ marginLeft: 100 , minHeight: '100vh'}}>
         <MyHeader isDarkMode={isDarkMode}  />
         <Content style={{ margin: "16px", overflow: "initial" }}>
 
