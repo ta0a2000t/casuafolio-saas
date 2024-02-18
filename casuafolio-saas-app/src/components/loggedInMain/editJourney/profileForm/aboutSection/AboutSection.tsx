@@ -5,6 +5,7 @@ import { Footer } from 'antd/es/layout/layout';
 import Link from 'antd/es/typography/Link';
 import PersonalInfoInput from './PersonalInfoInput';
 import SocialLinksInput from './SocialLinksInput';
+import GalleryInput from '../shared/GalleryInput';
 
 
 
@@ -23,6 +24,7 @@ const AboutSection: React.FC = () => {
         rules={[{ required: true }]}>
         <Input.TextArea showCount maxLength={1000} minLength={20} placeholder='Talk about yourself, your passions, and what makes you tick.'/>
       </Form.Item>
+      <GalleryInput galleryLabel={'Your Photos'}/>
 
 
 

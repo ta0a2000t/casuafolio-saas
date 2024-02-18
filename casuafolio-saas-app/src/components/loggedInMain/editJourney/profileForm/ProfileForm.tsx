@@ -47,8 +47,6 @@ const ProfileForm: React.FC = () => {
       <SocialLinksInput/>
 
 
-    <GalleryInput/>
-
 
       <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
         <Button type="primary" htmlType="submit">
