@@ -7,7 +7,7 @@ import { inherits } from 'util';
 
 
 
-const GalleryInput: React.FC = () => {
+const ImageInput: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -20,4 +20,4 @@ const GalleryInput: React.FC = () => {
   );
 };
 
-export default GalleryInput;
+export default ImageInput;

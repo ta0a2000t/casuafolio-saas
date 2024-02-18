@@ -20,7 +20,7 @@ const EditJourney: React.FC = () => {
     setTimeout(() => {
       setLoading(false);
       setActivateForm(true); // Update the state to show ProfileForm
-    }, 2000);
+    }, 1000);
   };
 
   return (

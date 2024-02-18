@@ -15,18 +15,16 @@ const AboutSection: React.FC = () => {
 
   return (
     <div>
-    <PersonalInfoInput/>
 
     <Divider>About Section</Divider>
     <Form.Item
         name="intro"
         label="Intro"
         rules={[{ required: true }]}>
-        <Input.TextArea showCount maxLength={1000} minLength={50} placeholder='Talk about yourself, your passions, and what makes you tick.'/>
+        <Input.TextArea showCount maxLength={1000} minLength={20} placeholder='Talk about yourself, your passions, and what makes you tick.'/>
       </Form.Item>
 
 
-      <SocialLinksInput/>
 
     </div>
 

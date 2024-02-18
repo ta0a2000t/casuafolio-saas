@@ -4,6 +4,7 @@ import {Divider, Form, Input, theme } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import Link from 'antd/es/typography/Link';
 import { inherits } from 'util';
+import ResumeInput from './ResumeInput';
 
 
 
@@ -30,6 +31,8 @@ const PersonalInfoInput: React.FC = () => {
         }}/>
     </Form.Item>
 
+
+        <ResumeInput/>
 
     </div>
 

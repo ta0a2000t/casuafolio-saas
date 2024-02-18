@@ -11,6 +11,8 @@ import {Button,
   TreeSelect,
 } from 'antd';
 import AboutSection from './aboutSection/AboutSection';
+import SocialLinksInput from './aboutSection/SocialLinksInput';
+import PersonalInfoInput from './aboutSection/PersonalInfoInput';
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
@@ -38,41 +40,15 @@ const ProfileForm: React.FC = () => {
           <Radio.Button value="large">Large</Radio.Button>
         </Radio.Group>
       </Form.Item>
+      
+      <PersonalInfoInput/>
       <AboutSection/>
-      <Form.Item label="Select">
-        <Select>
-          <Select.Option value="demo">Demo</Select.Option>
-        </Select>
-      </Form.Item>
-      <Form.Item label="TreeSelect">
-        <TreeSelect
-          treeData={[
-            { title: 'Light', value: 'light', children: [{ title: 'Bamboo', value: 'bamboo' }] },
-          ]}
-        />
-      </Form.Item>
-      <Form.Item label="Cascader">
-        <Cascader
-          options={[
-            {
-              value: 'zhejiang',
-              label: 'Zhejiang',
-              children: [{ value: 'hangzhou', label: 'Hangzhou' }],
-            },
-          ]}
-        />
-      </Form.Item>
-      <Form.Item label="DatePicker">
-        <DatePicker />
-      </Form.Item>
-      <Form.Item label="InputNumber">
-        <InputNumber />
-      </Form.Item>
-      <Form.Item label="Switch" valuePropName="checked">
-        <Switch />
-      </Form.Item>
-      <Form.Item label="Button">
-        <Button>Button</Button>
+      <SocialLinksInput/>
+
+      <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
       </Form.Item>
     </Form>
   );
