@@ -49,6 +49,7 @@ function App() {
 
         <Route path='signOut' element={<div>Sign Out pressed</div>}></Route>
 
+        <Route path='/' element={mainAppPage(<HomePage />)}></Route>
         <Route path='/:something' element={mainAppPage(<HomePage />)}></Route>
 
       </Routes>
