@@ -24,7 +24,7 @@ const AboutSection: React.FC = () => {
         rules={[{ required: true }]}>
         <Input.TextArea showCount maxLength={1000} minLength={20} placeholder='Talk about yourself, your passions, and what makes you tick.'/>
       </Form.Item>
-      <GalleryInput galleryLabel={'Your Photos'}/>
+      <GalleryInput galleryLabel={'Your Photos'} maxImages={7}/>
 
 
 

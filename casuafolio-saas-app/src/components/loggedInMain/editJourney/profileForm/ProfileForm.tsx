@@ -7,6 +7,7 @@ import {Button,
   InputNumber,
   Radio,
   Select,
+  Space,
   Switch,
   TreeSelect,
 } from 'antd';
@@ -14,6 +15,7 @@ import AboutSection from './aboutSection/AboutSection';
 import SocialLinksInput from './aboutSection/SocialLinksInput';
 import PersonalInfoInput from './aboutSection/PersonalInfoInput';
 import GalleryInput from './shared/GalleryInput';
+import EventsSections from './eventsSections/EventsSections';
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
@@ -45,14 +47,16 @@ const ProfileForm: React.FC = () => {
       <PersonalInfoInput/>
       <AboutSection/>
       <SocialLinksInput/>
+<EventsSections/>
 
-
-
-      <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+      <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+      <Space>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
-      </Form.Item>
+        <Button htmlType="reset">reset</Button>
+      </Space>
+    </Form.Item>
     </Form>
   );
 };

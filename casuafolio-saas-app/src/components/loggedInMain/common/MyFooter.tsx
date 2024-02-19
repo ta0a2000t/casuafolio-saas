@@ -13,7 +13,7 @@ const MyFooter: React.FC = () => {
 
   return (
     <Footer style={{ textAlign: 'center' }}>
-    CasuaFolio ©{new Date().getFullYear()} Created with 🌴 by <Link href='https://twitter.com/ta0a2000t' target='_blank'>@ta0a2000t</Link>
+    InsanFolio ©{new Date().getFullYear()} Made with ❤️ by <Link href='https://twitter.com/ta0a2000t' target='_blank'>@ta0a2000t</Link>
   </Footer>
   );
 };

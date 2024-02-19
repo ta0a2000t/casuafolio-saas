@@ -49,7 +49,7 @@ interface DraggableUploadListItemProps {
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
-const GalleryInput: React.FC<{ galleryLabel: string }> = ({ galleryLabel }) => {
+const GalleryInput: React.FC<{ galleryLabel: string, maxImages: number }> = ({ galleryLabel, maxImages }) => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
@@ -83,6 +83,8 @@ const GalleryInput: React.FC<{ galleryLabel: string }> = ({ galleryLabel }) => {
 
   const onChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
     setFileList(newFileList);
+
+    
   };
 
 
@@ -123,7 +125,7 @@ const getBase64 = (file: FileType): Promise<string> =>
             <DraggableUploadListItem originNode={originNode} file={file} />
           )}
       >
-        {fileList.length < 7 && '+ Upload'}
+        {fileList.length < maxImages && '+ Upload'}
       </Upload>
 
       
