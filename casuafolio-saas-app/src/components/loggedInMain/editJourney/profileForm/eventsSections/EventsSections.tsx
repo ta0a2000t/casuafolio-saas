@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Form, Popconfirm, Space, theme } from 'antd';
-import { DeleteOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { v4 as uuidv4 } from 'uuid';
+import { Button, Card, Form, Popconfirm, message, theme } from 'antd';
+import { DeleteOutlined, QuestionCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import EventsSection from './eventsSection/EventsSection';
 
 const EventsSections: React.FC = () => {
@@ -12,17 +11,21 @@ const EventsSections: React.FC = () => {
   return (
     <Form.List name="eventsSections">
       {(fields, { add, remove }) => {
-        // Handle adding a new section
-        const handleAdd = () => {
-          add();
-        };
-
         return (
           <>
             {fields.map((field, index) => (
-              <Space key={field.key} direction="vertical" style={{ position: "relative" }}>
-                {/* Pass the base name for the events list in each EventsSection */}
+              <Card title={`# ${index + 1}`}
+                key={field.key}
+                style={{
+                  marginBottom: 24, // Adjust as needed for spacing between sections
+                  backgroundColor: colorBgLayout, // Use theme color
+                }}
+
+              >
+                {/* Render each EventsSection inside the Card */}
                 <EventsSection name={field.name} />
+
+                {/* Place the delete button at the bottom of the Card */}
                 <Popconfirm
                   title="Delete the section"
                   description="Are you sure to delete this section?"
@@ -31,17 +34,30 @@ const EventsSections: React.FC = () => {
                 >
                   <Button
                     danger
-                    style={{ marginTop: "5px" }}
                     icon={<DeleteOutlined />}
+                    style={{ marginTop: '10px', width: '100%' }} // Ensures button is full-width
                   >
                     Delete Section
                   </Button>
                 </Popconfirm>
-              </Space>
+              </Card>
             ))}
+
+            {/* Add section button outside and below all sections */}
             <Form.Item>
-              <Button type="dashed" block onClick={handleAdd} style={{ minWidth: "200px" }}>
-                Create a Section
+              <Button
+                type="dashed"
+                onClick={() => {
+                  if (fields.length >= 3) {
+                    message.error('You can have 3 sections at most.');
+                  } else {
+                    add();
+                  }
+                }}
+                block
+                icon={<PlusOutlined />}
+              >
+                New Section
               </Button>
             </Form.Item>
           </>

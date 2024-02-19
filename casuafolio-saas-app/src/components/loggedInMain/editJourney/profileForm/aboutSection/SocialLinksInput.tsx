@@ -1,10 +1,17 @@
 import React from 'react';
 import { Divider, Form, Input } from 'antd';
+import { LinkOutlined} from '@ant-design/icons';
 
 const SocialLinksInput: React.FC = () => {
     const form = Form.useFormInstance();
 
-
+    const handleOpenLink = (name: PrefixKey) => {
+      // Get the current value from the form
+      const value = form.getFieldValue(name);
+      const fullUrl = prefixes[name] + value;
+      // Open the full URL in a new tab
+      window.open(fullUrl, '_blank');
+  };
 
 
     type PrefixKey = 'github-url' | 'linkedin-url' | 'twitter-url' | 'instagram-url' | 'youtube-url';
@@ -34,14 +41,19 @@ const SocialLinksInput: React.FC = () => {
         'youtube-url': 'channel-name'
     };
     
-    const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        const prefix = prefixes[name];
-        if (value.startsWith(prefix)) {
-            // Correct way to use variable as key in setFieldsValue
-            form.setFieldsValue({ [name]: value.substring(prefix.length) });
-        }
-    };
+const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const prefix = prefixes[name];
+    let newValue = value;
+    if (value.startsWith(prefix)) {
+        newValue = value.substring(prefix.length);
+    }
+    form.setFieldsValue({ [name]: newValue });
+
+    // No need for additional action here since Form.Item's `name` prop binds the input value to the form state,
+    // which is then used to dynamically generate the suffix link.
+};
+
 
 
       
@@ -80,11 +92,14 @@ const SocialLinksInput: React.FC = () => {
 
           },]}
         >
-          <Input
-            addonBefore={prefixes[key as PrefixKey]}
-            placeholder={placeholders[key as PrefixKey]}
-            onChange={handleRemovePrefix(key as PrefixKey)}
-          />
+                    <Input
+                        addonBefore={prefixes[key as PrefixKey]}
+                        placeholder={placeholders[key as PrefixKey]}
+                        onChange={handleRemovePrefix(key as PrefixKey)}
+                        suffix={
+                            <LinkOutlined onClick={() => handleOpenLink(key as PrefixKey)} style={{ color: 'rgba(0, 0, 0, 0.45)' }} />
+                        }
+                    />
         </Form.Item>
       ))}
     </div>

@@ -28,13 +28,12 @@ const ProfileForm: React.FC = () => {
 
   return (
     <Form
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 14 }}
+      labelCol={{ }}
       layout="horizontal"
       initialValues={{ size: componentSize }}
       onValuesChange={onFormLayoutChange}
       size={componentSize as SizeType}
-      style={{ maxWidth: 700 }}
+      style={{ maxWidth: 600 }}
     >
       <Form.Item label="Form Size" name="size">
         <Radio.Group>
