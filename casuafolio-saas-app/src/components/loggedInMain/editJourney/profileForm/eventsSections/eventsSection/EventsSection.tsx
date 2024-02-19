@@ -40,6 +40,8 @@ const EventsSection: React.FC<{ name: number }> = ({ name }) => {
                             backgroundColor: colorBgLayout, // Use color from theme tokens
                         }}
                     >
+                          <Card>
+
 
 
                         <Form.List name={[name, 'events']}>
@@ -102,6 +104,8 @@ const EventsSection: React.FC<{ name: number }> = ({ name }) => {
                                 );
                             }}
                         </Form.List>
+                        </Card>
+
                 </Panel>
             </Collapse>
         </>

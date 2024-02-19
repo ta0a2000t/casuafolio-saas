@@ -7,7 +7,10 @@ const SocialLinksInput: React.FC = () => {
 
     const handleOpenLink = (name: PrefixKey) => {
       // Get the current value from the form
-      const value = form.getFieldValue(name);
+      let value = form.getFieldValue(name);
+      if (!value) {
+        value = '';
+      }
       const fullUrl = prefixes[name] + value;
       // Open the full URL in a new tab
       window.open(fullUrl, '_blank');
@@ -97,7 +100,7 @@ const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputE
                         placeholder={placeholders[key as PrefixKey]}
                         onChange={handleRemovePrefix(key as PrefixKey)}
                         suffix={
-                            <LinkOutlined onClick={() => handleOpenLink(key as PrefixKey)} style={{ color: 'rgba(0, 0, 0, 0.45)' }} />
+                            <LinkOutlined onClick={() => handleOpenLink(key as PrefixKey)}  />
                         }
                     />
         </Form.Item>
