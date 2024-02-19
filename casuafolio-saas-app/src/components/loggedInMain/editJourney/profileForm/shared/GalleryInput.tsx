@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Upload } from 'antd';
 import type { GetProp, UploadFile, UploadProps } from 'antd';
 import ImgCrop from 'antd-img-crop';
-import Paragraph from 'antd/es/typography/Paragraph';
+import Text from 'antd/es/typography/Text';
 
 import type { DragEndEvent } from '@dnd-kit/core';
 import { DndContext, PointerSensor, useSensor } from '@dnd-kit/core';
@@ -110,7 +110,7 @@ const getBase64 = (file: FileType): Promise<string> =>
 
   return (
     <div>
-        <Paragraph>{galleryLabel}</Paragraph>
+        <Text>{galleryLabel}</Text>
 
     <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
     <SortableContext items={fileList.map((i) => i.uid)} strategy={verticalListSortingStrategy}>

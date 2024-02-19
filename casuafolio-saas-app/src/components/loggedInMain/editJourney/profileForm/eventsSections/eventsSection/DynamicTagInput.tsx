@@ -5,7 +5,7 @@ import { Input, Space, Tag, theme, Tooltip, message } from 'antd';
 
 const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
   const { token } = theme.useToken();
-  const [tags, setTags] = useState([`${tagName} 1`, `${tagName} 2`]);
+  const [tags, setTags] = useState([`Double Click Me`, `Double Click Me`]);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [editInputIndex, setEditInputIndex] = useState(-1);
@@ -118,7 +118,7 @@ const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
         const tagElem = (
           <Tag
             key={tag}
-            closable={index !== 0}
+            closable={index > 1} // first two are not deletable
             style={{ userSelect: 'none' }}
             onClose={() => handleClose(tag)}
           >

@@ -13,19 +13,22 @@ const AboutSection: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
+  const name = 'about';
   return (
     <div>
 
     <Divider>About Section</Divider>
     <Form.Item
-        name="intro"
+        name={[name, "intro"]}
         label="Intro"
         rules={[{ required: true }]}>
-        <Input.TextArea showCount maxLength={1000} minLength={20} placeholder='Talk about yourself, your passions, and what makes you tick.'/>
+        <Input.TextArea  autoSize={{ minRows: 2, maxRows: 6 }} showCount maxLength={1000} minLength={20} placeholder='Talk about yourself, your passions, and what makes you tick.'/>
       </Form.Item>
-      <GalleryInput galleryLabel={'Your Photos'} maxImages={7}/>
 
+      <Form.Item label="Your Photos"  name={[name, "yourPhotos"]}>
+
+        <GalleryInput galleryLabel={''} maxImages={9} />
+      </Form.Item>
 
 
     </div>

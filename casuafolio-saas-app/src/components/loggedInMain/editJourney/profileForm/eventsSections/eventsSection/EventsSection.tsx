@@ -31,16 +31,14 @@ const EventsSection: React.FC<{ name: number }> = ({ name }) => {
             <Form.Item label="Section Title" name={[name, 'sectionTitle']} rules={[{ required: true }]}>
                 <Input placeholder="Example: 'My Humble Experiences 🛶'" maxLength={80} showCount />
             </Form.Item>
-            <Collapse defaultActiveKey={['1']} accordion>
+            <Collapse defaultActiveKey={['1']} accordion bordered={false}>
                 <Panel key='0' header="Events"
                         style={{
                             marginBottom: 20, // Adjust the card margin as needed
                             borderWidth: 2, // Optional: if you want to show a border
-                            borderColor: colorBorder, // Optional: border color
-                            backgroundColor: colorBgLayout, // Use color from theme tokens
                         }}
                     >
-                          <Card>
+                          <Card hoverable>
 
 
 
@@ -66,7 +64,7 @@ const EventsSection: React.FC<{ name: number }> = ({ name }) => {
                                                             title="Delete the event"
                                                             description="Are you sure to delete this event?"
                                                             onConfirm={(e) => remove(index)}
-                                                            icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+                                                            icon={<QuestionCircleOutlined style={{ color: 'red'}} />}
                                                         >
                                                             <Button
                                                                 danger
