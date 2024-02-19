@@ -10,6 +10,7 @@ import {Button,
   Space,
   Switch,
   TreeSelect,
+  message,
 } from 'antd';
 import AboutSection from './aboutSection/AboutSection';
 import SocialLinksInput from './aboutSection/SocialLinksInput';
@@ -21,13 +22,30 @@ type SizeType = Parameters<typeof Form>[0]['size'];
 
 const ProfileForm: React.FC = () => {
   const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
-
+  const [form] = Form.useForm();
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
   };
 
+  const onFinishFailed = () => {
+    message.error('Submit failed!');
+  };
+
+
+  const onFinish = () => {
+    message.success('Submit success!');
+  };
+
+  const onFill = () => {
+    form.setFieldsValue({
+      url: 'https://taobao.com/',
+    });
+  };
+
   return (
     <Form
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
       labelCol={{ }}
       layout="horizontal"
       initialValues={{ size: componentSize }}
