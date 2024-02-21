@@ -1,62 +1,43 @@
-import { Button, FloatButton, theme } from 'antd';
-import { ConfigProvider } from 'antd';
 import React, { useState } from 'react';
-import './App.css';
-import LoggedInMain from './components/loggedInMain/LoggedInMain';
-import { SunOutlined, MoonOutlined } from '@ant-design/icons';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
-import Login from './components/auth/Login';
+import { Route, Routes } from 'react-router-dom';
 import ValidateUserSite from './templates/ValidateUserSite';
 import ProfilePage from './components/loggedInMain/accountPage/AccountPage';
 import EditJourney from './components/loggedInMain/editJourney/EditJourney';
 import HomePage from './components/loggedInMain/homePage/HomePage';
 import MyWebsites from './components/loggedInMain/myWebsites/MyWebsites';
 
+
+// auth //////////////////////////////////////////////////////////////////////////////////////////////////
+import MainAppPage from './components/MainAppPage';
+
+
+
+
+
+
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const { defaultAlgorithm, darkAlgorithm } = theme;
 
-  let loggedIn = true;
 
-  function mainAppPage(content: React.ReactNode) {
-    return (
-      <div className="App">
-
-        <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
-          {loggedIn && (<LoggedInMain isDarkMode={isDarkMode}>{content}</LoggedInMain>)}
-          {!loggedIn && <Login isDarkMode={isDarkMode} />}
-
-          <FloatButton
-            icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            tooltip={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'} />
-        </ConfigProvider>
-      </div>
-
-    );
-  }
 
   return (
-
-
-
 
     <Routes>
       <Route path='/sites/:username' element={<ValidateUserSite />}></Route>
 
 
-      <Route path='/homePage' element={mainAppPage(<HomePage />)}></Route>
-      <Route path='/profilePage' element={mainAppPage(<ProfilePage />)}></Route>
-      <Route path='/editJourney' element={mainAppPage(<EditJourney />)}></Route>
-      <Route path='/myWebsites' element={mainAppPage(<MyWebsites />)}></Route>
+      <Route path='/homePage' element={MainAppPage({content:<HomePage />})}></Route>
+      
+      <Route path='/profilePage' element={MainAppPage({content:<ProfilePage />})}></Route>
+      <Route path='/editJourney' element={MainAppPage({content:<EditJourney />})}></Route>
+      <Route path='/myWebsites' element={MainAppPage({content:<MyWebsites />})}></Route>
 
       <Route path='signOut' element={<div>Sign Out pressed</div>}></Route>
 
-      <Route path='/' element={mainAppPage(<HomePage />)}></Route>
-      <Route path='/:something' element={mainAppPage(<HomePage />)}></Route>
+      <Route path='/' element={MainAppPage({content:<HomePage />})}></Route>
+      <Route path='/:something' element={MainAppPage({content:<HomePage />})}></Route>
 
     </Routes>
-
+    
   );
 }
 

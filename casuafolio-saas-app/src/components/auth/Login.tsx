@@ -1,20 +1,34 @@
-import React from 'react';
+export {};
 
-import {theme } from 'antd';
-import { Footer } from 'antd/es/layout/layout';
-import Link from 'antd/es/typography/Link';
-import { Button } from 'antd/es/radio';
+/*
+
+works:
+
+import { withAuthenticator, Button, Heading } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
+import { type AuthUser } from "aws-amplify/auth";
+import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
+
+
+type AppProps = {
+  signOut?: UseAuthenticator["signOut"]; //() => void;
+  user?: AuthUser;
+};
 
 
 
-const Login: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
+const MainAppPage: React.FC<AppProps> = ({ signOut, user }) => {
   return (
-    <Button> Login Page here </Button>
+    <div>
+      <Heading level={1}>Hello {user?.username}</Heading>
+      <Button onClick={signOut}>Sign out</Button>
+      <h2>Amplify Todos</h2>
+      ...
+    </div>
   );
 };
 
-export default Login;
+export default withAuthenticator(MainAppPage);
+
+*/

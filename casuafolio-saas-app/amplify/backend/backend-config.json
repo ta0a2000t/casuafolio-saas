@@ -1,0 +1,45 @@
+{
+  "auth": {
+    "insanfoliosaasappe9cb7419": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_insanfoliosaasappe9cb7419_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasappe9cb7419"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasappe9cb7419_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasappe9cb7419"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasappe9cb7419_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasappe9cb7419"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasappe9cb7419_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasappe9cb7419"
+        }
+      ]
+    }
+  }
+}
