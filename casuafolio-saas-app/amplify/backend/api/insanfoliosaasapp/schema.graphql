@@ -1,0 +1,207 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+#input AMPLIFY { globalAuthRule: AuthRule = { allow: private } } # Adjust for production
+
+type User @model {
+  id: ID! @primaryKey
+  firstName: String!
+  username: String!
+  portfolio: Portfolio @hasOne
+  research: Research @hasOne
+  charity: Charity @hasOne
+  restaurant: Restaurant @hasOne
+}
+
+type SocialLinks @model {
+  id: ID! @primaryKey
+
+  github: String
+  linkedin: String
+  twitter: String
+  instagram: String
+  youtube: String
+  tiktok: String
+  facebook: String
+}
+
+
+interface TemplateInterface {
+  id: ID!
+  userID: ID!
+  user: User
+  isPublished: Boolean
+  socialLinks: SocialLinks
+  intro: String
+  photos: [String]
+  # Define other common fields here
+}
+
+
+
+### portfolio belew ###
+type Portfolio implements TemplateInterface @model {
+
+  id: ID! @primaryKey
+  userID: ID! @index(name: "byUser")
+  user: User @belongsTo(fields: ["userID"])
+  isPublished: Boolean
+  socialLinks: SocialLinks @hasOne
+  intro: String
+  photos: [String]
+
+
+  lastName: String
+  resumeLink: String
+
+
+  sections: [Section] @hasMany(indexName: "byPortfolio", fields: ["id"])
+  # Additional fields specific to the portfolio template can be added here
+}
+
+type Section @model {
+  id: ID! @primaryKey
+  name: String
+  title: String
+  events: [Event] @hasMany(indexName: "bySection", fields: ["id"])
+  portfolioID: ID! @index(name: "byPortfolio")
+  portfolio: Portfolio @belongsTo(fields: ["portfolioID"])
+}
+
+type Event @model {
+  id: ID! @primaryKey
+  name: String
+  logo: String
+  role: String
+  dates: DateRange @hasOne
+  bullets: [String]
+  skills: [String]
+  photos: [String]
+  link: String
+  sectionID: ID! @index(name: "bySection")
+  section: Section @belongsTo(fields: ["sectionID"])
+}
+
+type DateRange @model {
+  id: ID! @primaryKey
+  start: AWSDate!
+  end: AWSDate
+  eventID: ID! @index(name: "byEvent")
+  event: Event @belongsTo(fields: ["eventID"])
+}
+
+
+type Mutation {  
+      # publishing and not publishing (toggling)
+  togglePublishPortfolio(id: ID!, isPublished: Boolean!): Portfolio @auth(rules: [{allow: owner}])
+  togglePublishResearch(id: ID!, isPublished: Boolean!): Research @auth(rules: [{allow: owner}])
+  togglePublishCharity(id: ID!, isPublished: Boolean!): Charity @auth(rules: [{allow: owner}])
+  togglePublishRestaurant(id: ID!, isPublished: Boolean!): Restaurant @auth(rules: [{allow: owner}])
+
+}
+input UserInput {
+  id: ID!
+  firstName: String
+  username: String
+}
+
+input PortfolioInput {
+  id: ID
+  isPublished: Boolean
+  socialLinks: SocialLinksInput
+  intro: String
+  photos: [String]
+  lastName: String
+  resumeLink: String
+  sections: [SectionInput]
+  # Add other fields specific to the portfolio template
+}
+
+input SocialLinksInput {
+  id: ID
+  github: String
+  linkedin: String
+  twitter: String
+  instagram: String
+  youtube: String
+  tiktok: String
+  facebook: String
+}
+
+input SectionInput {
+  id: ID
+  name: String
+  title: String
+  events: [EventInput]
+}
+
+input EventInput {
+  id: ID
+  name: String
+  logo: String
+  role: String
+  dates: DateRangeInput
+  bullets: [String]
+  skills: [String]
+  photos: [String]
+  link: String
+}
+
+input DateRangeInput {
+  start: AWSDate
+  end: AWSDate
+}
+
+
+### portfolio up ###
+
+
+
+
+
+### not integrated yet below ###
+type Research implements TemplateInterface @model {
+  id: ID! @primaryKey
+  userID: ID! @index(name: "byUser")
+  user: User @belongsTo(fields: ["userID"])
+  isPublished: Boolean
+  socialLinks: SocialLinks @hasOne
+  intro: String
+  photos: [String]
+  # Placeholder fields
+}
+
+type Charity implements TemplateInterface @model {
+  id: ID! @primaryKey
+  userID: ID! @index(name: "byUser")
+  user: User @belongsTo(fields: ["userID"])
+  isPublished: Boolean
+  socialLinks: SocialLinks @hasOne
+  intro: String
+  photos: [String]
+
+  # Placeholder fields
+}
+
+type Restaurant implements TemplateInterface @model {
+  id: ID! @primaryKey
+  userID: ID! @index(name: "byUser")
+  user: User @belongsTo(fields: ["userID"])
+  isPublished: Boolean
+  socialLinks: SocialLinks @hasOne
+  intro: String
+  photos: [String]
+
+  # Placeholder fields
+}
+
+
+### not integrated yet below ###
+
+
+
+
+
+
+
+### common types below ###

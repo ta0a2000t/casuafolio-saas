@@ -17,13 +17,16 @@ const SocialLinksInput: React.FC = () => {
   };
 
 
-    type PrefixKey = 'github-url' | 'linkedin-url' | 'twitter-url' | 'instagram-url' | 'youtube-url';
+    type PrefixKey = 'github-url' | 'linkedin-url' | 'twitter-url' | 'instagram-url' | 'youtube-url' | 'tiktok-url' | 'facebook-url';
     let prefixes: Record<PrefixKey, string> = {
       'github-url': 'https://github.com/',
       'linkedin-url': 'https://www.linkedin.com/in/',
       'twitter-url': 'https://twitter.com/',
       'instagram-url': 'https://www.instagram.com/',
-      'youtube-url': 'https://www.youtube.com/'
+      'youtube-url': 'https://www.youtube.com/',
+      'tiktok-url': 'https://www.tiktok.com/@',
+      'facebook-url': 'https://www.facebook.com/',
+
     };
 
     let Labels: Record<PrefixKey, string> = {
@@ -31,7 +34,9 @@ const SocialLinksInput: React.FC = () => {
         'linkedin-url': 'LinkedIn URL',
         'twitter-url': 'X(Twitter) URL',
         'instagram-url': 'Instagram URL',
-        'youtube-url': 'Youtube URL'
+        'youtube-url': 'Youtube URL',
+        'tiktok-url': 'TikTok URL',
+        'facebook-url': 'Facebook URL',
       };
 
 
@@ -41,7 +46,9 @@ const SocialLinksInput: React.FC = () => {
         'linkedin-url': 'your-profile',
         'twitter-url': 'username',
         'instagram-url': 'username',
-        'youtube-url': 'channel-name'
+        'youtube-url': 'channel-name',
+        'tiktok-url': 'username',
+        'facebook-url': 'username',
     };
     
 const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputElement>) => {

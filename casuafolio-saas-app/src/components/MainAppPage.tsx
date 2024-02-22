@@ -7,7 +7,7 @@ import './MainAppPage.css';
 
 // auth //////////////////////////////////////////////////////////////////////////////////////////////////
 import { withAuthenticator, useAuthenticator, useTheme, View, Image, Text, Button, Heading, Authenticator } from '@aws-amplify/ui-react';
-//import '@aws-amplify/ui-react/styles.css';
+import '@aws-amplify/ui-react/styles.css';
 
 import { type AuthUser } from "aws-amplify/auth";
 import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
@@ -271,7 +271,9 @@ const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => 
     
     return (
       <div id="MainAppPage"> 
-      {/*<Authenticator formFields={formFields} components={components}>*/}
+      {
+      //<Authenticator formFields={formFields} components={components}>
+      }
         <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
 
           (<LoggedInMain isDarkMode={isDarkMode}>{content}</LoggedInMain>)
@@ -281,7 +283,8 @@ const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => 
             tooltip={isDarkMode ? 'Switch to Light' : 'Switch to Dark'} />
 
         </ConfigProvider>
-      {/*</Authenticator> */}
+      {//</Authenticator> 
+      }
       </div>
     );
   }
