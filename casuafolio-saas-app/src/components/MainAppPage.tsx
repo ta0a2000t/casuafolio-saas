@@ -3,10 +3,11 @@ import LoggedInMain from "./loggedInMain/LoggedInMain";
 import { SunOutlined, MoonOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 
+import './MainAppPage.css';
 
 // auth //////////////////////////////////////////////////////////////////////////////////////////////////
 import { withAuthenticator, useAuthenticator, useTheme, View, Image, Text, Button, Heading, Authenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+//import '@aws-amplify/ui-react/styles.css';
 
 import { type AuthUser } from "aws-amplify/auth";
 import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
@@ -22,7 +23,7 @@ const components = {
         <View textAlign="center" padding={tokens.space.large}>
           <Image
             alt="InsanFolio logo"
-            src="logo192.png"
+            src="logo.svg"
           />
         </View>
       );
@@ -269,7 +270,8 @@ const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => 
     const { defaultAlgorithm, darkAlgorithm } = theme;
     
     return (
-      //<Authenticator formFields={formFields} components={components}>
+      <div id="MainAppPage"> 
+      {/*<Authenticator formFields={formFields} components={components}>*/}
         <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
 
           (<LoggedInMain isDarkMode={isDarkMode}>{content}</LoggedInMain>)
@@ -279,8 +281,8 @@ const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => 
             tooltip={isDarkMode ? 'Switch to Light' : 'Switch to Dark'} />
 
         </ConfigProvider>
-      //</Authenticator>
-
+      {/*</Authenticator> */}
+      </div>
     );
   }
 export default MainAppPage;
