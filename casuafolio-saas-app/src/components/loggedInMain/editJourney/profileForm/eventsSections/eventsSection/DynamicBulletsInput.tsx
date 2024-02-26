@@ -49,7 +49,7 @@ const DynamicBulletsInput: React.FC<{ name: number }> = ({ name }) => {
                                 type="dashed"
                                 onClick={() => {
                                     if (fields.length >= 15) {
-                                        message.error('You can have 15 bullets at most.');
+                                        message.error('You can have 15 bullet points at most.');
                                     } else {
                                         add();
                                     }
@@ -57,7 +57,7 @@ const DynamicBulletsInput: React.FC<{ name: number }> = ({ name }) => {
                                 block
                                 icon={<PlusOutlined />}
                             >
-                                New Bullet
+                                New Line (Bullet Point)
                             </Button>
                         </Form.Item>
                     </>
