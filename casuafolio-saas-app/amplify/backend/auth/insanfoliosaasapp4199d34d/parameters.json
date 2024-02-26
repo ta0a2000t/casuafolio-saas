@@ -1,6 +1,6 @@
 {
-  "authSelections": "userPoolOnly",
-  "resourceName": "insanfoliosaasappe9cb7419",
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "insanfoliosaasapp4199d34d",
   "serviceType": "imported",
   "region": "us-east-2",
   "aliasAttributes": [

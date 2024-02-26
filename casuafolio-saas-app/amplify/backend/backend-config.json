@@ -1,7 +1,15 @@
 {
   "api": {
     "insanfoliosaasapp": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
@@ -10,6 +18,9 @@
               "userPoolConfig": {
                 "userPoolId": "authinsanfoliosaasappe9cb7419"
               }
+            },
+            {
+              "authenticationType": "AWS_IAM"
             }
           ],
           "defaultAuthentication": {
@@ -25,7 +36,7 @@
     }
   },
   "auth": {
-    "insanfoliosaasappe9cb7419": {
+    "insanfoliosaasapp4199d34d": {
       "customAuth": false,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -34,35 +45,139 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_insanfoliosaasappe9cb7419_nativeClientId": {
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_allowUnauthenticatedIdentities": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "insanfoliosaasappe9cb7419"
+          "resourceName": "insanfoliosaasapp4199d34d"
         }
       ]
     },
-    "AMPLIFY_auth_insanfoliosaasappe9cb7419_userPoolId": {
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_authRoleArn": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "insanfoliosaasappe9cb7419"
+          "resourceName": "insanfoliosaasapp4199d34d"
         }
       ]
     },
-    "AMPLIFY_auth_insanfoliosaasappe9cb7419_userPoolName": {
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_authRoleName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "insanfoliosaasappe9cb7419"
+          "resourceName": "insanfoliosaasapp4199d34d"
         }
       ]
     },
-    "AMPLIFY_auth_insanfoliosaasappe9cb7419_webClientId": {
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_identityPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "insanfoliosaasappe9cb7419"
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp4199d34d_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp4199d34d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp95c2dfc0_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp95c2dfc0"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp95c2dfc0_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp95c2dfc0"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp95c2dfc0_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp95c2dfc0"
+        }
+      ]
+    },
+    "AMPLIFY_auth_insanfoliosaasapp95c2dfc0_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "insanfoliosaasapp95c2dfc0"
+        }
+      ]
+    },
+    "AMPLIFY_storage_insanfoliosaasapp1eefdbd6_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "insanfoliosaasapp1eefdbd6"
+        }
+      ]
+    },
+    "AMPLIFY_storage_insanfoliosaasapp1eefdbd6_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "insanfoliosaasapp1eefdbd6"
         }
       ]
     }

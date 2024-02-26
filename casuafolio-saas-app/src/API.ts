@@ -2,82 +2,8 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type Portfolio = {
-  __typename: "Portfolio",
-  id: string,
-  userID: string,
-  user?: User | null,
-  isPublished?: boolean | null,
-  socialLinks?: SocialLinks | null,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  lastName?: string | null,
-  resumeLink?: string | null,
-  sections?: ModelSectionConnection | null,
-  createdAt: string,
-  updatedAt: string,
-  portfolioSocialLinksId?: string | null,
-};
-
-export type TemplateInterface = {
-  __typename: "TemplateInterface",
-  id: string,
-  userID: string,
-  user?: User | null,
-  isPublished?: boolean | null,
-  socialLinks?: SocialLinks | null,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-};
-
-export type Research = {
-  __typename: "Research",
-  id: string,
-  userID: string,
-  user?: User | null,
-  isPublished?: boolean | null,
-  socialLinks?: SocialLinks | null,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  createdAt: string,
-  updatedAt: string,
-  researchSocialLinksId?: string | null,
-};
-
-export type User = {
-  __typename: "User",
-  id: string,
-  firstName: string,
-  username: string,
-  portfolio?: Portfolio | null,
-  research?: Research | null,
-  charity?: Charity | null,
-  restaurant?: Restaurant | null,
-  createdAt: string,
-  updatedAt: string,
-  userPortfolioId?: string | null,
-  userResearchId?: string | null,
-  userCharityId?: string | null,
-  userRestaurantId?: string | null,
-};
-
-export type Charity = {
-  __typename: "Charity",
-  id: string,
-  userID: string,
-  user?: User | null,
-  isPublished?: boolean | null,
-  socialLinks?: SocialLinks | null,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  createdAt: string,
-  updatedAt: string,
-  charitySocialLinksId?: string | null,
-};
-
-export type SocialLinks = {
-  __typename: "SocialLinks",
-  id: string,
+export type CreateSocialLinksInput = {
+  id?: string | null,
   github?: string | null,
   linkedin?: string | null,
   twitter?: string | null,
@@ -85,97 +11,19 @@ export type SocialLinks = {
   youtube?: string | null,
   tiktok?: string | null,
   facebook?: string | null,
-  createdAt: string,
-  updatedAt: string,
 };
 
-export type Restaurant = {
-  __typename: "Restaurant",
-  id: string,
-  userID: string,
-  user?: User | null,
-  isPublished?: boolean | null,
-  socialLinks?: SocialLinks | null,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  createdAt: string,
-  updatedAt: string,
-  restaurantSocialLinksId?: string | null,
-};
-
-export type ModelSectionConnection = {
-  __typename: "ModelSectionConnection",
-  items:  Array<Section | null >,
-  nextToken?: string | null,
-};
-
-export type Section = {
-  __typename: "Section",
-  id: string,
-  name?: string | null,
-  title?: string | null,
-  events?: ModelEventConnection | null,
-  portfolioID: string,
-  portfolio?: Portfolio | null,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type ModelEventConnection = {
-  __typename: "ModelEventConnection",
-  items:  Array<Event | null >,
-  nextToken?: string | null,
-};
-
-export type Event = {
-  __typename: "Event",
-  id: string,
-  name?: string | null,
-  logo?: string | null,
-  role?: string | null,
-  dates?: DateRange | null,
-  bullets?: Array< string | null > | null,
-  skills?: Array< string | null > | null,
-  photos?: Array< string | null > | null,
-  link?: string | null,
-  sectionID: string,
-  section?: Section | null,
-  createdAt: string,
-  updatedAt: string,
-  eventDatesId?: string | null,
-};
-
-export type DateRange = {
-  __typename: "DateRange",
-  id: string,
-  start: string,
-  end?: string | null,
-  eventID: string,
-  event?: Event | null,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type CreateUserInput = {
-  id?: string | null,
-  firstName: string,
-  username: string,
-  userPortfolioId?: string | null,
-  userResearchId?: string | null,
-  userCharityId?: string | null,
-  userRestaurantId?: string | null,
-};
-
-export type ModelUserConditionInput = {
-  firstName?: ModelStringInput | null,
-  username?: ModelStringInput | null,
-  and?: Array< ModelUserConditionInput | null > | null,
-  or?: Array< ModelUserConditionInput | null > | null,
-  not?: ModelUserConditionInput | null,
-  userPortfolioId?: ModelIDInput | null,
-  userResearchId?: ModelIDInput | null,
-  userCharityId?: ModelIDInput | null,
-  userRestaurantId?: ModelIDInput | null,
+export type ModelSocialLinksConditionInput = {
+  github?: ModelStringInput | null,
+  linkedin?: ModelStringInput | null,
+  twitter?: ModelStringInput | null,
+  instagram?: ModelStringInput | null,
+  youtube?: ModelStringInput | null,
+  tiktok?: ModelStringInput | null,
+  facebook?: ModelStringInput | null,
+  and?: Array< ModelSocialLinksConditionInput | null > | null,
+  or?: Array< ModelSocialLinksConditionInput | null > | null,
+  not?: ModelSocialLinksConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -218,38 +66,9 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type UpdateUserInput = {
+export type SocialLinks = {
+  __typename: "SocialLinks",
   id: string,
-  firstName?: string | null,
-  username?: string | null,
-  userPortfolioId?: string | null,
-  userResearchId?: string | null,
-  userCharityId?: string | null,
-  userRestaurantId?: string | null,
-};
-
-export type DeleteUserInput = {
-  id: string,
-};
-
-export type CreateSocialLinksInput = {
-  id?: string | null,
   github?: string | null,
   linkedin?: string | null,
   twitter?: string | null,
@@ -257,19 +76,8 @@ export type CreateSocialLinksInput = {
   youtube?: string | null,
   tiktok?: string | null,
   facebook?: string | null,
-};
-
-export type ModelSocialLinksConditionInput = {
-  github?: ModelStringInput | null,
-  linkedin?: ModelStringInput | null,
-  twitter?: ModelStringInput | null,
-  instagram?: ModelStringInput | null,
-  youtube?: ModelStringInput | null,
-  tiktok?: ModelStringInput | null,
-  facebook?: ModelStringInput | null,
-  and?: Array< ModelSocialLinksConditionInput | null > | null,
-  or?: Array< ModelSocialLinksConditionInput | null > | null,
-  not?: ModelSocialLinksConditionInput | null,
+  createdAt: string,
+  updatedAt: string,
 };
 
 export type UpdateSocialLinksInput = {
@@ -287,57 +95,12 @@ export type DeleteSocialLinksInput = {
   id: string,
 };
 
-export type CreatePortfolioInput = {
-  id?: string | null,
-  userID: string,
-  isPublished?: boolean | null,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  lastName?: string | null,
-  resumeLink?: string | null,
-  portfolioSocialLinksId?: string | null,
-};
-
-export type ModelPortfolioConditionInput = {
-  userID?: ModelIDInput | null,
-  isPublished?: ModelBooleanInput | null,
-  intro?: ModelStringInput | null,
-  photos?: ModelStringInput | null,
-  lastName?: ModelStringInput | null,
-  resumeLink?: ModelStringInput | null,
-  and?: Array< ModelPortfolioConditionInput | null > | null,
-  or?: Array< ModelPortfolioConditionInput | null > | null,
-  not?: ModelPortfolioConditionInput | null,
-  portfolioSocialLinksId?: ModelIDInput | null,
-};
-
-export type ModelBooleanInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export type UpdatePortfolioInput = {
-  id: string,
-  userID?: string | null,
-  isPublished?: boolean | null,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  lastName?: string | null,
-  resumeLink?: string | null,
-  portfolioSocialLinksId?: string | null,
-};
-
-export type DeletePortfolioInput = {
-  id: string,
-};
-
 export type CreateSectionInput = {
   id?: string | null,
   name?: string | null,
   title?: string | null,
   portfolioID: string,
+  portfolioSectionsId?: string | null,
 };
 
 export type ModelSectionConditionInput = {
@@ -347,6 +110,193 @@ export type ModelSectionConditionInput = {
   and?: Array< ModelSectionConditionInput | null > | null,
   or?: Array< ModelSectionConditionInput | null > | null,
   not?: ModelSectionConditionInput | null,
+  portfolioSectionsId?: ModelIDInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type Section = {
+  __typename: "Section",
+  id: string,
+  name?: string | null,
+  title?: string | null,
+  events?: ModelEventConnection | null,
+  portfolioID: string,
+  portfolio?: Portfolio | null,
+  createdAt: string,
+  updatedAt: string,
+  portfolioSectionsId?: string | null,
+};
+
+export type ModelEventConnection = {
+  __typename: "ModelEventConnection",
+  items:  Array<Event | null >,
+  nextToken?: string | null,
+};
+
+export type Event = {
+  __typename: "Event",
+  id: string,
+  name?: string | null,
+  logo?: string | null,
+  role?: string | null,
+  dates?: DateRange | null,
+  bullets?: Array< string | null > | null,
+  skills?: Array< string | null > | null,
+  photos?: Array< string | null > | null,
+  link?: string | null,
+  sectionID: string,
+  section?: Section | null,
+  createdAt: string,
+  updatedAt: string,
+  sectionEventsId?: string | null,
+  eventDatesId?: string | null,
+};
+
+export type DateRange = {
+  __typename: "DateRange",
+  id: string,
+  start: string,
+  end?: string | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type Portfolio = {
+  __typename: "Portfolio",
+  id: string,
+  userID: string,
+  user?: User | null,
+  isPublished: boolean,
+  socialLinks?: SocialLinks | null,
+  intro?: string | null,
+  photos?: Array< string | null > | null,
+  firstName: string,
+  lastName?: string | null,
+  resumeLink?: string | null,
+  sections?: ModelSectionConnection | null,
+  owner?: string | null,
+  createdAt: string,
+  updatedAt: string,
+  userPortfolioId?: string | null,
+  portfolioSocialLinksId?: string | null,
+};
+
+export type TemplateInterface = {
+  __typename: "TemplateInterface",
+  id: string,
+  userID: string,
+  user?: User | null,
+  isPublished?: boolean | null,
+  socialLinks?: SocialLinks | null,
+  intro?: string | null,
+  photos?: Array< string | null > | null,
+};
+
+export type Research = {
+  __typename: "Research",
+  id: string,
+  userID: string,
+  user?: User | null,
+  isPublished?: boolean | null,
+  socialLinks?: SocialLinks | null,
+  intro?: string | null,
+  photos?: Array< string | null > | null,
+  owner?: string | null,
+  createdAt: string,
+  updatedAt: string,
+  userResearchId?: string | null,
+  researchSocialLinksId?: string | null,
+};
+
+export type User = {
+  __typename: "User",
+  id: string,
+  firstName: string,
+  username: string,
+  portfolio?: ModelPortfolioConnection | null,
+  research?: ModelResearchConnection | null,
+  charity?: ModelCharityConnection | null,
+  restaurant?: ModelRestaurantConnection | null,
+  owner?: string | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type ModelPortfolioConnection = {
+  __typename: "ModelPortfolioConnection",
+  items:  Array<Portfolio | null >,
+  nextToken?: string | null,
+};
+
+export type ModelResearchConnection = {
+  __typename: "ModelResearchConnection",
+  items:  Array<Research | null >,
+  nextToken?: string | null,
+};
+
+export type ModelCharityConnection = {
+  __typename: "ModelCharityConnection",
+  items:  Array<Charity | null >,
+  nextToken?: string | null,
+};
+
+export type Charity = {
+  __typename: "Charity",
+  id: string,
+  userID: string,
+  user?: User | null,
+  isPublished?: boolean | null,
+  socialLinks?: SocialLinks | null,
+  intro?: string | null,
+  photos?: Array< string | null > | null,
+  owner?: string | null,
+  createdAt: string,
+  updatedAt: string,
+  userCharityId?: string | null,
+  charitySocialLinksId?: string | null,
+};
+
+export type ModelRestaurantConnection = {
+  __typename: "ModelRestaurantConnection",
+  items:  Array<Restaurant | null >,
+  nextToken?: string | null,
+};
+
+export type Restaurant = {
+  __typename: "Restaurant",
+  id: string,
+  userID: string,
+  user?: User | null,
+  isPublished?: boolean | null,
+  socialLinks?: SocialLinks | null,
+  intro?: string | null,
+  photos?: Array< string | null > | null,
+  owner?: string | null,
+  createdAt: string,
+  updatedAt: string,
+  userRestaurantId?: string | null,
+  restaurantSocialLinksId?: string | null,
+};
+
+export type ModelSectionConnection = {
+  __typename: "ModelSectionConnection",
+  items:  Array<Section | null >,
+  nextToken?: string | null,
 };
 
 export type UpdateSectionInput = {
@@ -354,6 +304,7 @@ export type UpdateSectionInput = {
   name?: string | null,
   title?: string | null,
   portfolioID?: string | null,
+  portfolioSectionsId?: string | null,
 };
 
 export type DeleteSectionInput = {
@@ -370,6 +321,7 @@ export type CreateEventInput = {
   photos?: Array< string | null > | null,
   link?: string | null,
   sectionID: string,
+  sectionEventsId?: string | null,
   eventDatesId?: string | null,
 };
 
@@ -385,6 +337,7 @@ export type ModelEventConditionInput = {
   and?: Array< ModelEventConditionInput | null > | null,
   or?: Array< ModelEventConditionInput | null > | null,
   not?: ModelEventConditionInput | null,
+  sectionEventsId?: ModelIDInput | null,
   eventDatesId?: ModelIDInput | null,
 };
 
@@ -398,6 +351,7 @@ export type UpdateEventInput = {
   photos?: Array< string | null > | null,
   link?: string | null,
   sectionID?: string | null,
+  sectionEventsId?: string | null,
   eventDatesId?: string | null,
 };
 
@@ -409,13 +363,11 @@ export type CreateDateRangeInput = {
   id?: string | null,
   start: string,
   end?: string | null,
-  eventID: string,
 };
 
 export type ModelDateRangeConditionInput = {
   start?: ModelStringInput | null,
   end?: ModelStringInput | null,
-  eventID?: ModelIDInput | null,
   and?: Array< ModelDateRangeConditionInput | null > | null,
   or?: Array< ModelDateRangeConditionInput | null > | null,
   not?: ModelDateRangeConditionInput | null,
@@ -425,10 +377,91 @@ export type UpdateDateRangeInput = {
   id: string,
   start?: string | null,
   end?: string | null,
-  eventID?: string | null,
 };
 
 export type DeleteDateRangeInput = {
+  id: string,
+};
+
+export type CreateUserInput = {
+  id?: string | null,
+  firstName: string,
+  username: string,
+  owner?: string | null,
+};
+
+export type ModelUserConditionInput = {
+  firstName?: ModelStringInput | null,
+  username?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelUserConditionInput | null > | null,
+  or?: Array< ModelUserConditionInput | null > | null,
+  not?: ModelUserConditionInput | null,
+};
+
+export type UpdateUserInput = {
+  id: string,
+  firstName?: string | null,
+  username?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteUserInput = {
+  id: string,
+};
+
+export type CreatePortfolioInput = {
+  id?: string | null,
+  userID: string,
+  isPublished: boolean,
+  intro?: string | null,
+  photos?: Array< string | null > | null,
+  firstName: string,
+  lastName?: string | null,
+  resumeLink?: string | null,
+  owner?: string | null,
+  userPortfolioId?: string | null,
+  portfolioSocialLinksId?: string | null,
+};
+
+export type ModelPortfolioConditionInput = {
+  userID?: ModelIDInput | null,
+  isPublished?: ModelBooleanInput | null,
+  intro?: ModelStringInput | null,
+  photos?: ModelStringInput | null,
+  firstName?: ModelStringInput | null,
+  lastName?: ModelStringInput | null,
+  resumeLink?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelPortfolioConditionInput | null > | null,
+  or?: Array< ModelPortfolioConditionInput | null > | null,
+  not?: ModelPortfolioConditionInput | null,
+  userPortfolioId?: ModelIDInput | null,
+  portfolioSocialLinksId?: ModelIDInput | null,
+};
+
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type UpdatePortfolioInput = {
+  id: string,
+  userID?: string | null,
+  isPublished?: boolean | null,
+  intro?: string | null,
+  photos?: Array< string | null > | null,
+  firstName?: string | null,
+  lastName?: string | null,
+  resumeLink?: string | null,
+  owner?: string | null,
+  userPortfolioId?: string | null,
+  portfolioSocialLinksId?: string | null,
+};
+
+export type DeletePortfolioInput = {
   id: string,
 };
 
@@ -438,6 +471,8 @@ export type CreateResearchInput = {
   isPublished?: boolean | null,
   intro?: string | null,
   photos?: Array< string | null > | null,
+  owner?: string | null,
+  userResearchId?: string | null,
   researchSocialLinksId?: string | null,
 };
 
@@ -446,9 +481,11 @@ export type ModelResearchConditionInput = {
   isPublished?: ModelBooleanInput | null,
   intro?: ModelStringInput | null,
   photos?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelResearchConditionInput | null > | null,
   or?: Array< ModelResearchConditionInput | null > | null,
   not?: ModelResearchConditionInput | null,
+  userResearchId?: ModelIDInput | null,
   researchSocialLinksId?: ModelIDInput | null,
 };
 
@@ -458,6 +495,8 @@ export type UpdateResearchInput = {
   isPublished?: boolean | null,
   intro?: string | null,
   photos?: Array< string | null > | null,
+  owner?: string | null,
+  userResearchId?: string | null,
   researchSocialLinksId?: string | null,
 };
 
@@ -471,6 +510,8 @@ export type CreateCharityInput = {
   isPublished?: boolean | null,
   intro?: string | null,
   photos?: Array< string | null > | null,
+  owner?: string | null,
+  userCharityId?: string | null,
   charitySocialLinksId?: string | null,
 };
 
@@ -479,9 +520,11 @@ export type ModelCharityConditionInput = {
   isPublished?: ModelBooleanInput | null,
   intro?: ModelStringInput | null,
   photos?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelCharityConditionInput | null > | null,
   or?: Array< ModelCharityConditionInput | null > | null,
   not?: ModelCharityConditionInput | null,
+  userCharityId?: ModelIDInput | null,
   charitySocialLinksId?: ModelIDInput | null,
 };
 
@@ -491,6 +534,8 @@ export type UpdateCharityInput = {
   isPublished?: boolean | null,
   intro?: string | null,
   photos?: Array< string | null > | null,
+  owner?: string | null,
+  userCharityId?: string | null,
   charitySocialLinksId?: string | null,
 };
 
@@ -504,6 +549,8 @@ export type CreateRestaurantInput = {
   isPublished?: boolean | null,
   intro?: string | null,
   photos?: Array< string | null > | null,
+  owner?: string | null,
+  userRestaurantId?: string | null,
   restaurantSocialLinksId?: string | null,
 };
 
@@ -512,9 +559,11 @@ export type ModelRestaurantConditionInput = {
   isPublished?: ModelBooleanInput | null,
   intro?: ModelStringInput | null,
   photos?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelRestaurantConditionInput | null > | null,
   or?: Array< ModelRestaurantConditionInput | null > | null,
   not?: ModelRestaurantConditionInput | null,
+  userRestaurantId?: ModelIDInput | null,
   restaurantSocialLinksId?: ModelIDInput | null,
 };
 
@@ -524,36 +573,13 @@ export type UpdateRestaurantInput = {
   isPublished?: boolean | null,
   intro?: string | null,
   photos?: Array< string | null > | null,
+  owner?: string | null,
+  userRestaurantId?: string | null,
   restaurantSocialLinksId?: string | null,
 };
 
 export type DeleteRestaurantInput = {
   id: string,
-};
-
-export type ModelUserFilterInput = {
-  id?: ModelIDInput | null,
-  firstName?: ModelStringInput | null,
-  username?: ModelStringInput | null,
-  and?: Array< ModelUserFilterInput | null > | null,
-  or?: Array< ModelUserFilterInput | null > | null,
-  not?: ModelUserFilterInput | null,
-  userPortfolioId?: ModelIDInput | null,
-  userResearchId?: ModelIDInput | null,
-  userCharityId?: ModelIDInput | null,
-  userRestaurantId?: ModelIDInput | null,
-};
-
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
-
-export type ModelUserConnection = {
-  __typename: "ModelUserConnection",
-  items:  Array<User | null >,
-  nextToken?: string | null,
 };
 
 export type ModelSocialLinksFilterInput = {
@@ -576,26 +602,6 @@ export type ModelSocialLinksConnection = {
   nextToken?: string | null,
 };
 
-export type ModelPortfolioFilterInput = {
-  id?: ModelIDInput | null,
-  userID?: ModelIDInput | null,
-  isPublished?: ModelBooleanInput | null,
-  intro?: ModelStringInput | null,
-  photos?: ModelStringInput | null,
-  lastName?: ModelStringInput | null,
-  resumeLink?: ModelStringInput | null,
-  and?: Array< ModelPortfolioFilterInput | null > | null,
-  or?: Array< ModelPortfolioFilterInput | null > | null,
-  not?: ModelPortfolioFilterInput | null,
-  portfolioSocialLinksId?: ModelIDInput | null,
-};
-
-export type ModelPortfolioConnection = {
-  __typename: "ModelPortfolioConnection",
-  items:  Array<Portfolio | null >,
-  nextToken?: string | null,
-};
-
 export type ModelSectionFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
@@ -604,6 +610,7 @@ export type ModelSectionFilterInput = {
   and?: Array< ModelSectionFilterInput | null > | null,
   or?: Array< ModelSectionFilterInput | null > | null,
   not?: ModelSectionFilterInput | null,
+  portfolioSectionsId?: ModelIDInput | null,
 };
 
 export type ModelEventFilterInput = {
@@ -619,6 +626,7 @@ export type ModelEventFilterInput = {
   and?: Array< ModelEventFilterInput | null > | null,
   or?: Array< ModelEventFilterInput | null > | null,
   not?: ModelEventFilterInput | null,
+  sectionEventsId?: ModelIDInput | null,
   eventDatesId?: ModelIDInput | null,
 };
 
@@ -626,7 +634,6 @@ export type ModelDateRangeFilterInput = {
   id?: ModelIDInput | null,
   start?: ModelStringInput | null,
   end?: ModelStringInput | null,
-  eventID?: ModelIDInput | null,
   and?: Array< ModelDateRangeFilterInput | null > | null,
   or?: Array< ModelDateRangeFilterInput | null > | null,
   not?: ModelDateRangeFilterInput | null,
@@ -638,22 +645,51 @@ export type ModelDateRangeConnection = {
   nextToken?: string | null,
 };
 
+export type ModelUserFilterInput = {
+  id?: ModelIDInput | null,
+  firstName?: ModelStringInput | null,
+  username?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelUserFilterInput | null > | null,
+  or?: Array< ModelUserFilterInput | null > | null,
+  not?: ModelUserFilterInput | null,
+};
+
+export type ModelUserConnection = {
+  __typename: "ModelUserConnection",
+  items:  Array<User | null >,
+  nextToken?: string | null,
+};
+
+export type ModelPortfolioFilterInput = {
+  id?: ModelIDInput | null,
+  userID?: ModelIDInput | null,
+  isPublished?: ModelBooleanInput | null,
+  intro?: ModelStringInput | null,
+  photos?: ModelStringInput | null,
+  firstName?: ModelStringInput | null,
+  lastName?: ModelStringInput | null,
+  resumeLink?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelPortfolioFilterInput | null > | null,
+  or?: Array< ModelPortfolioFilterInput | null > | null,
+  not?: ModelPortfolioFilterInput | null,
+  userPortfolioId?: ModelIDInput | null,
+  portfolioSocialLinksId?: ModelIDInput | null,
+};
+
 export type ModelResearchFilterInput = {
   id?: ModelIDInput | null,
   userID?: ModelIDInput | null,
   isPublished?: ModelBooleanInput | null,
   intro?: ModelStringInput | null,
   photos?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelResearchFilterInput | null > | null,
   or?: Array< ModelResearchFilterInput | null > | null,
   not?: ModelResearchFilterInput | null,
+  userResearchId?: ModelIDInput | null,
   researchSocialLinksId?: ModelIDInput | null,
-};
-
-export type ModelResearchConnection = {
-  __typename: "ModelResearchConnection",
-  items:  Array<Research | null >,
-  nextToken?: string | null,
 };
 
 export type ModelCharityFilterInput = {
@@ -662,16 +698,12 @@ export type ModelCharityFilterInput = {
   isPublished?: ModelBooleanInput | null,
   intro?: ModelStringInput | null,
   photos?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelCharityFilterInput | null > | null,
   or?: Array< ModelCharityFilterInput | null > | null,
   not?: ModelCharityFilterInput | null,
+  userCharityId?: ModelIDInput | null,
   charitySocialLinksId?: ModelIDInput | null,
-};
-
-export type ModelCharityConnection = {
-  __typename: "ModelCharityConnection",
-  items:  Array<Charity | null >,
-  nextToken?: string | null,
 };
 
 export type ModelRestaurantFilterInput = {
@@ -680,24 +712,25 @@ export type ModelRestaurantFilterInput = {
   isPublished?: ModelBooleanInput | null,
   intro?: ModelStringInput | null,
   photos?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
   and?: Array< ModelRestaurantFilterInput | null > | null,
   or?: Array< ModelRestaurantFilterInput | null > | null,
   not?: ModelRestaurantFilterInput | null,
+  userRestaurantId?: ModelIDInput | null,
   restaurantSocialLinksId?: ModelIDInput | null,
 };
 
-export type ModelRestaurantConnection = {
-  __typename: "ModelRestaurantConnection",
-  items:  Array<Restaurant | null >,
-  nextToken?: string | null,
-};
-
-export type ModelSubscriptionUserFilterInput = {
+export type ModelSubscriptionSocialLinksFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  firstName?: ModelSubscriptionStringInput | null,
-  username?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionUserFilterInput | null > | null,
-  or?: Array< ModelSubscriptionUserFilterInput | null > | null,
+  github?: ModelSubscriptionStringInput | null,
+  linkedin?: ModelSubscriptionStringInput | null,
+  twitter?: ModelSubscriptionStringInput | null,
+  instagram?: ModelSubscriptionStringInput | null,
+  youtube?: ModelSubscriptionStringInput | null,
+  tiktok?: ModelSubscriptionStringInput | null,
+  facebook?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionSocialLinksFilterInput | null > | null,
+  or?: Array< ModelSubscriptionSocialLinksFilterInput | null > | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -730,36 +763,6 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
-export type ModelSubscriptionSocialLinksFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  github?: ModelSubscriptionStringInput | null,
-  linkedin?: ModelSubscriptionStringInput | null,
-  twitter?: ModelSubscriptionStringInput | null,
-  instagram?: ModelSubscriptionStringInput | null,
-  youtube?: ModelSubscriptionStringInput | null,
-  tiktok?: ModelSubscriptionStringInput | null,
-  facebook?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionSocialLinksFilterInput | null > | null,
-  or?: Array< ModelSubscriptionSocialLinksFilterInput | null > | null,
-};
-
-export type ModelSubscriptionPortfolioFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  userID?: ModelSubscriptionIDInput | null,
-  isPublished?: ModelSubscriptionBooleanInput | null,
-  intro?: ModelSubscriptionStringInput | null,
-  photos?: ModelSubscriptionStringInput | null,
-  lastName?: ModelSubscriptionStringInput | null,
-  resumeLink?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionPortfolioFilterInput | null > | null,
-  or?: Array< ModelSubscriptionPortfolioFilterInput | null > | null,
-};
-
-export type ModelSubscriptionBooleanInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
-};
-
 export type ModelSubscriptionSectionFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   name?: ModelSubscriptionStringInput | null,
@@ -787,9 +790,34 @@ export type ModelSubscriptionDateRangeFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   start?: ModelSubscriptionStringInput | null,
   end?: ModelSubscriptionStringInput | null,
-  eventID?: ModelSubscriptionIDInput | null,
   and?: Array< ModelSubscriptionDateRangeFilterInput | null > | null,
   or?: Array< ModelSubscriptionDateRangeFilterInput | null > | null,
+};
+
+export type ModelSubscriptionUserFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  firstName?: ModelSubscriptionStringInput | null,
+  username?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionUserFilterInput | null > | null,
+  or?: Array< ModelSubscriptionUserFilterInput | null > | null,
+};
+
+export type ModelSubscriptionPortfolioFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  userID?: ModelSubscriptionIDInput | null,
+  isPublished?: ModelSubscriptionBooleanInput | null,
+  intro?: ModelSubscriptionStringInput | null,
+  photos?: ModelSubscriptionStringInput | null,
+  firstName?: ModelSubscriptionStringInput | null,
+  lastName?: ModelSubscriptionStringInput | null,
+  resumeLink?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionPortfolioFilterInput | null > | null,
+  or?: Array< ModelSubscriptionPortfolioFilterInput | null > | null,
+};
+
+export type ModelSubscriptionBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
 };
 
 export type ModelSubscriptionResearchFilterInput = {
@@ -820,386 +848,6 @@ export type ModelSubscriptionRestaurantFilterInput = {
   photos?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionRestaurantFilterInput | null > | null,
   or?: Array< ModelSubscriptionRestaurantFilterInput | null > | null,
-};
-
-export type TogglePublishPortfolioMutationVariables = {
-  id: string,
-  isPublished: boolean,
-};
-
-export type TogglePublishPortfolioMutation = {
-  togglePublishPortfolio?:  {
-    __typename: "Portfolio",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    lastName?: string | null,
-    resumeLink?: string | null,
-    sections?:  {
-      __typename: "ModelSectionConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    portfolioSocialLinksId?: string | null,
-  } | null,
-};
-
-export type TogglePublishResearchMutationVariables = {
-  id: string,
-  isPublished: boolean,
-};
-
-export type TogglePublishResearchMutation = {
-  togglePublishResearch?:  {
-    __typename: "Research",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    createdAt: string,
-    updatedAt: string,
-    researchSocialLinksId?: string | null,
-  } | null,
-};
-
-export type TogglePublishCharityMutationVariables = {
-  id: string,
-  isPublished: boolean,
-};
-
-export type TogglePublishCharityMutation = {
-  togglePublishCharity?:  {
-    __typename: "Charity",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    createdAt: string,
-    updatedAt: string,
-    charitySocialLinksId?: string | null,
-  } | null,
-};
-
-export type TogglePublishRestaurantMutationVariables = {
-  id: string,
-  isPublished: boolean,
-};
-
-export type TogglePublishRestaurantMutation = {
-  togglePublishRestaurant?:  {
-    __typename: "Restaurant",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    createdAt: string,
-    updatedAt: string,
-    restaurantSocialLinksId?: string | null,
-  } | null,
-};
-
-export type CreateUserMutationVariables = {
-  input: CreateUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type CreateUserMutation = {
-  createUser?:  {
-    __typename: "User",
-    id: string,
-    firstName: string,
-    username: string,
-    portfolio?:  {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
-    } | null,
-    research?:  {
-      __typename: "Research",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      researchSocialLinksId?: string | null,
-    } | null,
-    charity?:  {
-      __typename: "Charity",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      charitySocialLinksId?: string | null,
-    } | null,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      restaurantSocialLinksId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    userPortfolioId?: string | null,
-    userResearchId?: string | null,
-    userCharityId?: string | null,
-    userRestaurantId?: string | null,
-  } | null,
-};
-
-export type UpdateUserMutationVariables = {
-  input: UpdateUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type UpdateUserMutation = {
-  updateUser?:  {
-    __typename: "User",
-    id: string,
-    firstName: string,
-    username: string,
-    portfolio?:  {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
-    } | null,
-    research?:  {
-      __typename: "Research",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      researchSocialLinksId?: string | null,
-    } | null,
-    charity?:  {
-      __typename: "Charity",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      charitySocialLinksId?: string | null,
-    } | null,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      restaurantSocialLinksId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    userPortfolioId?: string | null,
-    userResearchId?: string | null,
-    userCharityId?: string | null,
-    userRestaurantId?: string | null,
-  } | null,
-};
-
-export type DeleteUserMutationVariables = {
-  input: DeleteUserInput,
-  condition?: ModelUserConditionInput | null,
-};
-
-export type DeleteUserMutation = {
-  deleteUser?:  {
-    __typename: "User",
-    id: string,
-    firstName: string,
-    username: string,
-    portfolio?:  {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
-    } | null,
-    research?:  {
-      __typename: "Research",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      researchSocialLinksId?: string | null,
-    } | null,
-    charity?:  {
-      __typename: "Charity",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      charitySocialLinksId?: string | null,
-    } | null,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      restaurantSocialLinksId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    userPortfolioId?: string | null,
-    userResearchId?: string | null,
-    userCharityId?: string | null,
-    userRestaurantId?: string | null,
-  } | null,
 };
 
 export type CreateSocialLinksMutationVariables = {
@@ -1265,156 +913,6 @@ export type DeleteSocialLinksMutation = {
   } | null,
 };
 
-export type CreatePortfolioMutationVariables = {
-  input: CreatePortfolioInput,
-  condition?: ModelPortfolioConditionInput | null,
-};
-
-export type CreatePortfolioMutation = {
-  createPortfolio?:  {
-    __typename: "Portfolio",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    lastName?: string | null,
-    resumeLink?: string | null,
-    sections?:  {
-      __typename: "ModelSectionConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    portfolioSocialLinksId?: string | null,
-  } | null,
-};
-
-export type UpdatePortfolioMutationVariables = {
-  input: UpdatePortfolioInput,
-  condition?: ModelPortfolioConditionInput | null,
-};
-
-export type UpdatePortfolioMutation = {
-  updatePortfolio?:  {
-    __typename: "Portfolio",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    lastName?: string | null,
-    resumeLink?: string | null,
-    sections?:  {
-      __typename: "ModelSectionConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    portfolioSocialLinksId?: string | null,
-  } | null,
-};
-
-export type DeletePortfolioMutationVariables = {
-  input: DeletePortfolioInput,
-  condition?: ModelPortfolioConditionInput | null,
-};
-
-export type DeletePortfolioMutation = {
-  deletePortfolio?:  {
-    __typename: "Portfolio",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    lastName?: string | null,
-    resumeLink?: string | null,
-    sections?:  {
-      __typename: "ModelSectionConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    portfolioSocialLinksId?: string | null,
-  } | null,
-};
-
 export type CreateSectionMutationVariables = {
   input: CreateSectionInput,
   condition?: ModelSectionConditionInput | null,
@@ -1435,17 +933,21 @@ export type CreateSectionMutation = {
       __typename: "Portfolio",
       id: string,
       userID: string,
-      isPublished?: boolean | null,
+      isPublished: boolean,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      firstName: string,
       lastName?: string | null,
       resumeLink?: string | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userPortfolioId?: string | null,
       portfolioSocialLinksId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    portfolioSectionsId?: string | null,
   } | null,
 };
 
@@ -1469,17 +971,21 @@ export type UpdateSectionMutation = {
       __typename: "Portfolio",
       id: string,
       userID: string,
-      isPublished?: boolean | null,
+      isPublished: boolean,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      firstName: string,
       lastName?: string | null,
       resumeLink?: string | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userPortfolioId?: string | null,
       portfolioSocialLinksId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    portfolioSectionsId?: string | null,
   } | null,
 };
 
@@ -1503,17 +1009,21 @@ export type DeleteSectionMutation = {
       __typename: "Portfolio",
       id: string,
       userID: string,
-      isPublished?: boolean | null,
+      isPublished: boolean,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      firstName: string,
       lastName?: string | null,
       resumeLink?: string | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userPortfolioId?: string | null,
       portfolioSocialLinksId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    portfolioSectionsId?: string | null,
   } | null,
 };
 
@@ -1534,7 +1044,6 @@ export type CreateEventMutation = {
       id: string,
       start: string,
       end?: string | null,
-      eventID: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1551,9 +1060,11 @@ export type CreateEventMutation = {
       portfolioID: string,
       createdAt: string,
       updatedAt: string,
+      portfolioSectionsId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    sectionEventsId?: string | null,
     eventDatesId?: string | null,
   } | null,
 };
@@ -1575,7 +1086,6 @@ export type UpdateEventMutation = {
       id: string,
       start: string,
       end?: string | null,
-      eventID: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1592,9 +1102,11 @@ export type UpdateEventMutation = {
       portfolioID: string,
       createdAt: string,
       updatedAt: string,
+      portfolioSectionsId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    sectionEventsId?: string | null,
     eventDatesId?: string | null,
   } | null,
 };
@@ -1616,7 +1128,6 @@ export type DeleteEventMutation = {
       id: string,
       start: string,
       end?: string | null,
-      eventID: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -1633,9 +1144,11 @@ export type DeleteEventMutation = {
       portfolioID: string,
       createdAt: string,
       updatedAt: string,
+      portfolioSectionsId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    sectionEventsId?: string | null,
     eventDatesId?: string | null,
   } | null,
 };
@@ -1651,22 +1164,6 @@ export type CreateDateRangeMutation = {
     id: string,
     start: string,
     end?: string | null,
-    eventID: string,
-    event?:  {
-      __typename: "Event",
-      id: string,
-      name?: string | null,
-      logo?: string | null,
-      role?: string | null,
-      bullets?: Array< string | null > | null,
-      skills?: Array< string | null > | null,
-      photos?: Array< string | null > | null,
-      link?: string | null,
-      sectionID: string,
-      createdAt: string,
-      updatedAt: string,
-      eventDatesId?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1683,22 +1180,6 @@ export type UpdateDateRangeMutation = {
     id: string,
     start: string,
     end?: string | null,
-    eventID: string,
-    event?:  {
-      __typename: "Event",
-      id: string,
-      name?: string | null,
-      logo?: string | null,
-      role?: string | null,
-      bullets?: Array< string | null > | null,
-      skills?: Array< string | null > | null,
-      photos?: Array< string | null > | null,
-      link?: string | null,
-      sectionID: string,
-      createdAt: string,
-      updatedAt: string,
-      eventDatesId?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -1715,24 +1196,257 @@ export type DeleteDateRangeMutation = {
     id: string,
     start: string,
     end?: string | null,
-    eventID: string,
-    event?:  {
-      __typename: "Event",
-      id: string,
-      name?: string | null,
-      logo?: string | null,
-      role?: string | null,
-      bullets?: Array< string | null > | null,
-      skills?: Array< string | null > | null,
-      photos?: Array< string | null > | null,
-      link?: string | null,
-      sectionID: string,
-      createdAt: string,
-      updatedAt: string,
-      eventDatesId?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type CreateUserMutationVariables = {
+  input: CreateUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type CreateUserMutation = {
+  createUser?:  {
+    __typename: "User",
+    id: string,
+    firstName: string,
+    username: string,
+    portfolio?:  {
+      __typename: "ModelPortfolioConnection",
+      nextToken?: string | null,
+    } | null,
+    research?:  {
+      __typename: "ModelResearchConnection",
+      nextToken?: string | null,
+    } | null,
+    charity?:  {
+      __typename: "ModelCharityConnection",
+      nextToken?: string | null,
+    } | null,
+    restaurant?:  {
+      __typename: "ModelRestaurantConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateUserMutationVariables = {
+  input: UpdateUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type UpdateUserMutation = {
+  updateUser?:  {
+    __typename: "User",
+    id: string,
+    firstName: string,
+    username: string,
+    portfolio?:  {
+      __typename: "ModelPortfolioConnection",
+      nextToken?: string | null,
+    } | null,
+    research?:  {
+      __typename: "ModelResearchConnection",
+      nextToken?: string | null,
+    } | null,
+    charity?:  {
+      __typename: "ModelCharityConnection",
+      nextToken?: string | null,
+    } | null,
+    restaurant?:  {
+      __typename: "ModelRestaurantConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteUserMutationVariables = {
+  input: DeleteUserInput,
+  condition?: ModelUserConditionInput | null,
+};
+
+export type DeleteUserMutation = {
+  deleteUser?:  {
+    __typename: "User",
+    id: string,
+    firstName: string,
+    username: string,
+    portfolio?:  {
+      __typename: "ModelPortfolioConnection",
+      nextToken?: string | null,
+    } | null,
+    research?:  {
+      __typename: "ModelResearchConnection",
+      nextToken?: string | null,
+    } | null,
+    charity?:  {
+      __typename: "ModelCharityConnection",
+      nextToken?: string | null,
+    } | null,
+    restaurant?:  {
+      __typename: "ModelRestaurantConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreatePortfolioMutationVariables = {
+  input: CreatePortfolioInput,
+  condition?: ModelPortfolioConditionInput | null,
+};
+
+export type CreatePortfolioMutation = {
+  createPortfolio?:  {
+    __typename: "Portfolio",
+    id: string,
+    userID: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      firstName: string,
+      username: string,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    isPublished: boolean,
+    socialLinks?:  {
+      __typename: "SocialLinks",
+      id: string,
+      github?: string | null,
+      linkedin?: string | null,
+      twitter?: string | null,
+      instagram?: string | null,
+      youtube?: string | null,
+      tiktok?: string | null,
+      facebook?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    intro?: string | null,
+    photos?: Array< string | null > | null,
+    firstName: string,
+    lastName?: string | null,
+    resumeLink?: string | null,
+    sections?:  {
+      __typename: "ModelSectionConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    userPortfolioId?: string | null,
+    portfolioSocialLinksId?: string | null,
+  } | null,
+};
+
+export type UpdatePortfolioMutationVariables = {
+  input: UpdatePortfolioInput,
+  condition?: ModelPortfolioConditionInput | null,
+};
+
+export type UpdatePortfolioMutation = {
+  updatePortfolio?:  {
+    __typename: "Portfolio",
+    id: string,
+    userID: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      firstName: string,
+      username: string,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    isPublished: boolean,
+    socialLinks?:  {
+      __typename: "SocialLinks",
+      id: string,
+      github?: string | null,
+      linkedin?: string | null,
+      twitter?: string | null,
+      instagram?: string | null,
+      youtube?: string | null,
+      tiktok?: string | null,
+      facebook?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    intro?: string | null,
+    photos?: Array< string | null > | null,
+    firstName: string,
+    lastName?: string | null,
+    resumeLink?: string | null,
+    sections?:  {
+      __typename: "ModelSectionConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    userPortfolioId?: string | null,
+    portfolioSocialLinksId?: string | null,
+  } | null,
+};
+
+export type DeletePortfolioMutationVariables = {
+  input: DeletePortfolioInput,
+  condition?: ModelPortfolioConditionInput | null,
+};
+
+export type DeletePortfolioMutation = {
+  deletePortfolio?:  {
+    __typename: "Portfolio",
+    id: string,
+    userID: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      firstName: string,
+      username: string,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    isPublished: boolean,
+    socialLinks?:  {
+      __typename: "SocialLinks",
+      id: string,
+      github?: string | null,
+      linkedin?: string | null,
+      twitter?: string | null,
+      instagram?: string | null,
+      youtube?: string | null,
+      tiktok?: string | null,
+      facebook?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    intro?: string | null,
+    photos?: Array< string | null > | null,
+    firstName: string,
+    lastName?: string | null,
+    resumeLink?: string | null,
+    sections?:  {
+      __typename: "ModelSectionConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    userPortfolioId?: string | null,
+    portfolioSocialLinksId?: string | null,
   } | null,
 };
 
@@ -1751,12 +1465,9 @@ export type CreateResearchMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -1774,8 +1485,10 @@ export type CreateResearchMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userResearchId?: string | null,
     researchSocialLinksId?: string | null,
   } | null,
 };
@@ -1795,12 +1508,9 @@ export type UpdateResearchMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -1818,8 +1528,10 @@ export type UpdateResearchMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userResearchId?: string | null,
     researchSocialLinksId?: string | null,
   } | null,
 };
@@ -1839,12 +1551,9 @@ export type DeleteResearchMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -1862,8 +1571,10 @@ export type DeleteResearchMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userResearchId?: string | null,
     researchSocialLinksId?: string | null,
   } | null,
 };
@@ -1883,12 +1594,9 @@ export type CreateCharityMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -1906,8 +1614,10 @@ export type CreateCharityMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userCharityId?: string | null,
     charitySocialLinksId?: string | null,
   } | null,
 };
@@ -1927,12 +1637,9 @@ export type UpdateCharityMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -1950,8 +1657,10 @@ export type UpdateCharityMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userCharityId?: string | null,
     charitySocialLinksId?: string | null,
   } | null,
 };
@@ -1971,12 +1680,9 @@ export type DeleteCharityMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -1994,8 +1700,10 @@ export type DeleteCharityMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userCharityId?: string | null,
     charitySocialLinksId?: string | null,
   } | null,
 };
@@ -2015,12 +1723,9 @@ export type CreateRestaurantMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -2038,8 +1743,10 @@ export type CreateRestaurantMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userRestaurantId?: string | null,
     restaurantSocialLinksId?: string | null,
   } | null,
 };
@@ -2059,12 +1766,9 @@ export type UpdateRestaurantMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -2082,8 +1786,10 @@ export type UpdateRestaurantMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userRestaurantId?: string | null,
     restaurantSocialLinksId?: string | null,
   } | null,
 };
@@ -2103,12 +1809,9 @@ export type DeleteRestaurantMutation = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -2126,101 +1829,11 @@ export type DeleteRestaurantMutation = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
-    restaurantSocialLinksId?: string | null,
-  } | null,
-};
-
-export type GetUserQueryVariables = {
-  id: string,
-};
-
-export type GetUserQuery = {
-  getUser?:  {
-    __typename: "User",
-    id: string,
-    firstName: string,
-    username: string,
-    portfolio?:  {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
-    } | null,
-    research?:  {
-      __typename: "Research",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      researchSocialLinksId?: string | null,
-    } | null,
-    charity?:  {
-      __typename: "Charity",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      charitySocialLinksId?: string | null,
-    } | null,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      restaurantSocialLinksId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    userPortfolioId?: string | null,
-    userResearchId?: string | null,
-    userCharityId?: string | null,
     userRestaurantId?: string | null,
-  } | null,
-};
-
-export type ListUsersQueryVariables = {
-  id?: string | null,
-  filter?: ModelUserFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
-};
-
-export type ListUsersQuery = {
-  listUsers?:  {
-    __typename: "ModelUserConnection",
-    items:  Array< {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null >,
-    nextToken?: string | null,
+    restaurantSocialLinksId?: string | null,
   } | null,
 };
 
@@ -2245,11 +1858,9 @@ export type GetSocialLinksQuery = {
 };
 
 export type ListSocialLinksQueryVariables = {
-  id?: string | null,
   filter?: ModelSocialLinksFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListSocialLinksQuery = {
@@ -2267,83 +1878,6 @@ export type ListSocialLinksQuery = {
       facebook?: string | null,
       createdAt: string,
       updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetPortfolioQueryVariables = {
-  id: string,
-};
-
-export type GetPortfolioQuery = {
-  getPortfolio?:  {
-    __typename: "Portfolio",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    lastName?: string | null,
-    resumeLink?: string | null,
-    sections?:  {
-      __typename: "ModelSectionConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    portfolioSocialLinksId?: string | null,
-  } | null,
-};
-
-export type ListPortfoliosQueryVariables = {
-  id?: string | null,
-  filter?: ModelPortfolioFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
-};
-
-export type ListPortfoliosQuery = {
-  listPortfolios?:  {
-    __typename: "ModelPortfolioConnection",
-    items:  Array< {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2368,26 +1902,28 @@ export type GetSectionQuery = {
       __typename: "Portfolio",
       id: string,
       userID: string,
-      isPublished?: boolean | null,
+      isPublished: boolean,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      firstName: string,
       lastName?: string | null,
       resumeLink?: string | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userPortfolioId?: string | null,
       portfolioSocialLinksId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    portfolioSectionsId?: string | null,
   } | null,
 };
 
 export type ListSectionsQueryVariables = {
-  id?: string | null,
   filter?: ModelSectionFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListSectionsQuery = {
@@ -2401,6 +1937,7 @@ export type ListSectionsQuery = {
       portfolioID: string,
       createdAt: string,
       updatedAt: string,
+      portfolioSectionsId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2422,7 +1959,6 @@ export type GetEventQuery = {
       id: string,
       start: string,
       end?: string | null,
-      eventID: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -2439,19 +1975,19 @@ export type GetEventQuery = {
       portfolioID: string,
       createdAt: string,
       updatedAt: string,
+      portfolioSectionsId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    sectionEventsId?: string | null,
     eventDatesId?: string | null,
   } | null,
 };
 
 export type ListEventsQueryVariables = {
-  id?: string | null,
   filter?: ModelEventFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListEventsQuery = {
@@ -2470,6 +2006,7 @@ export type ListEventsQuery = {
       sectionID: string,
       createdAt: string,
       updatedAt: string,
+      sectionEventsId?: string | null,
       eventDatesId?: string | null,
     } | null >,
     nextToken?: string | null,
@@ -2486,33 +2023,15 @@ export type GetDateRangeQuery = {
     id: string,
     start: string,
     end?: string | null,
-    eventID: string,
-    event?:  {
-      __typename: "Event",
-      id: string,
-      name?: string | null,
-      logo?: string | null,
-      role?: string | null,
-      bullets?: Array< string | null > | null,
-      skills?: Array< string | null > | null,
-      photos?: Array< string | null > | null,
-      link?: string | null,
-      sectionID: string,
-      createdAt: string,
-      updatedAt: string,
-      eventDatesId?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
 export type ListDateRangesQueryVariables = {
-  id?: string | null,
   filter?: ModelDateRangeFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListDateRangesQuery = {
@@ -2523,9 +2042,140 @@ export type ListDateRangesQuery = {
       id: string,
       start: string,
       end?: string | null,
-      eventID: string,
       createdAt: string,
       updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetUserQueryVariables = {
+  id: string,
+};
+
+export type GetUserQuery = {
+  getUser?:  {
+    __typename: "User",
+    id: string,
+    firstName: string,
+    username: string,
+    portfolio?:  {
+      __typename: "ModelPortfolioConnection",
+      nextToken?: string | null,
+    } | null,
+    research?:  {
+      __typename: "ModelResearchConnection",
+      nextToken?: string | null,
+    } | null,
+    charity?:  {
+      __typename: "ModelCharityConnection",
+      nextToken?: string | null,
+    } | null,
+    restaurant?:  {
+      __typename: "ModelRestaurantConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListUsersQueryVariables = {
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListUsersQuery = {
+  listUsers?:  {
+    __typename: "ModelUserConnection",
+    items:  Array< {
+      __typename: "User",
+      id: string,
+      firstName: string,
+      username: string,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetPortfolioQueryVariables = {
+  id: string,
+};
+
+export type GetPortfolioQuery = {
+  getPortfolio?:  {
+    __typename: "Portfolio",
+    id: string,
+    userID: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      firstName: string,
+      username: string,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    isPublished: boolean,
+    socialLinks?:  {
+      __typename: "SocialLinks",
+      id: string,
+      github?: string | null,
+      linkedin?: string | null,
+      twitter?: string | null,
+      instagram?: string | null,
+      youtube?: string | null,
+      tiktok?: string | null,
+      facebook?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    intro?: string | null,
+    photos?: Array< string | null > | null,
+    firstName: string,
+    lastName?: string | null,
+    resumeLink?: string | null,
+    sections?:  {
+      __typename: "ModelSectionConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    userPortfolioId?: string | null,
+    portfolioSocialLinksId?: string | null,
+  } | null,
+};
+
+export type ListPortfoliosQueryVariables = {
+  filter?: ModelPortfolioFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPortfoliosQuery = {
+  listPortfolios?:  {
+    __typename: "ModelPortfolioConnection",
+    items:  Array< {
+      __typename: "Portfolio",
+      id: string,
+      userID: string,
+      isPublished: boolean,
+      intro?: string | null,
+      photos?: Array< string | null > | null,
+      firstName: string,
+      lastName?: string | null,
+      resumeLink?: string | null,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      userPortfolioId?: string | null,
+      portfolioSocialLinksId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2545,12 +2195,9 @@ export type GetResearchQuery = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -2568,18 +2215,18 @@ export type GetResearchQuery = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userResearchId?: string | null,
     researchSocialLinksId?: string | null,
   } | null,
 };
 
 export type ListResearchQueryVariables = {
-  id?: string | null,
   filter?: ModelResearchFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListResearchQuery = {
@@ -2592,8 +2239,10 @@ export type ListResearchQuery = {
       isPublished?: boolean | null,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userResearchId?: string | null,
       researchSocialLinksId?: string | null,
     } | null >,
     nextToken?: string | null,
@@ -2614,12 +2263,9 @@ export type GetCharityQuery = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -2637,18 +2283,18 @@ export type GetCharityQuery = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userCharityId?: string | null,
     charitySocialLinksId?: string | null,
   } | null,
 };
 
 export type ListCharitiesQueryVariables = {
-  id?: string | null,
   filter?: ModelCharityFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListCharitiesQuery = {
@@ -2661,8 +2307,10 @@ export type ListCharitiesQuery = {
       isPublished?: boolean | null,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userCharityId?: string | null,
       charitySocialLinksId?: string | null,
     } | null >,
     nextToken?: string | null,
@@ -2683,12 +2331,9 @@ export type GetRestaurantQuery = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -2706,18 +2351,18 @@ export type GetRestaurantQuery = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userRestaurantId?: string | null,
     restaurantSocialLinksId?: string | null,
   } | null,
 };
 
 export type ListRestaurantsQueryVariables = {
-  id?: string | null,
   filter?: ModelRestaurantFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListRestaurantsQuery = {
@@ -2730,390 +2375,13 @@ export type ListRestaurantsQuery = {
       isPublished?: boolean | null,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userRestaurantId?: string | null,
       restaurantSocialLinksId?: string | null,
     } | null >,
     nextToken?: string | null,
-  } | null,
-};
-
-export type PortfoliosByUserIDQueryVariables = {
-  userID: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelPortfolioFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type PortfoliosByUserIDQuery = {
-  portfoliosByUserID?:  {
-    __typename: "ModelPortfolioConnection",
-    items:  Array< {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type SectionsByPortfolioIDQueryVariables = {
-  portfolioID: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelSectionFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type SectionsByPortfolioIDQuery = {
-  sectionsByPortfolioID?:  {
-    __typename: "ModelSectionConnection",
-    items:  Array< {
-      __typename: "Section",
-      id: string,
-      name?: string | null,
-      title?: string | null,
-      portfolioID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type EventsBySectionIDQueryVariables = {
-  sectionID: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelEventFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type EventsBySectionIDQuery = {
-  eventsBySectionID?:  {
-    __typename: "ModelEventConnection",
-    items:  Array< {
-      __typename: "Event",
-      id: string,
-      name?: string | null,
-      logo?: string | null,
-      role?: string | null,
-      bullets?: Array< string | null > | null,
-      skills?: Array< string | null > | null,
-      photos?: Array< string | null > | null,
-      link?: string | null,
-      sectionID: string,
-      createdAt: string,
-      updatedAt: string,
-      eventDatesId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type DateRangesByEventIDQueryVariables = {
-  eventID: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelDateRangeFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type DateRangesByEventIDQuery = {
-  dateRangesByEventID?:  {
-    __typename: "ModelDateRangeConnection",
-    items:  Array< {
-      __typename: "DateRange",
-      id: string,
-      start: string,
-      end?: string | null,
-      eventID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ResearchByUserIDQueryVariables = {
-  userID: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelResearchFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ResearchByUserIDQuery = {
-  researchByUserID?:  {
-    __typename: "ModelResearchConnection",
-    items:  Array< {
-      __typename: "Research",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      researchSocialLinksId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type CharitiesByUserIDQueryVariables = {
-  userID: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelCharityFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type CharitiesByUserIDQuery = {
-  charitiesByUserID?:  {
-    __typename: "ModelCharityConnection",
-    items:  Array< {
-      __typename: "Charity",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      charitySocialLinksId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type RestaurantsByUserIDQueryVariables = {
-  userID: string,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelRestaurantFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type RestaurantsByUserIDQuery = {
-  restaurantsByUserID?:  {
-    __typename: "ModelRestaurantConnection",
-    items:  Array< {
-      __typename: "Restaurant",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      restaurantSocialLinksId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type OnCreateUserSubscriptionVariables = {
-  filter?: ModelSubscriptionUserFilterInput | null,
-};
-
-export type OnCreateUserSubscription = {
-  onCreateUser?:  {
-    __typename: "User",
-    id: string,
-    firstName: string,
-    username: string,
-    portfolio?:  {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
-    } | null,
-    research?:  {
-      __typename: "Research",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      researchSocialLinksId?: string | null,
-    } | null,
-    charity?:  {
-      __typename: "Charity",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      charitySocialLinksId?: string | null,
-    } | null,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      restaurantSocialLinksId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    userPortfolioId?: string | null,
-    userResearchId?: string | null,
-    userCharityId?: string | null,
-    userRestaurantId?: string | null,
-  } | null,
-};
-
-export type OnUpdateUserSubscriptionVariables = {
-  filter?: ModelSubscriptionUserFilterInput | null,
-};
-
-export type OnUpdateUserSubscription = {
-  onUpdateUser?:  {
-    __typename: "User",
-    id: string,
-    firstName: string,
-    username: string,
-    portfolio?:  {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
-    } | null,
-    research?:  {
-      __typename: "Research",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      researchSocialLinksId?: string | null,
-    } | null,
-    charity?:  {
-      __typename: "Charity",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      charitySocialLinksId?: string | null,
-    } | null,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      restaurantSocialLinksId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    userPortfolioId?: string | null,
-    userResearchId?: string | null,
-    userCharityId?: string | null,
-    userRestaurantId?: string | null,
-  } | null,
-};
-
-export type OnDeleteUserSubscriptionVariables = {
-  filter?: ModelSubscriptionUserFilterInput | null,
-};
-
-export type OnDeleteUserSubscription = {
-  onDeleteUser?:  {
-    __typename: "User",
-    id: string,
-    firstName: string,
-    username: string,
-    portfolio?:  {
-      __typename: "Portfolio",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      lastName?: string | null,
-      resumeLink?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      portfolioSocialLinksId?: string | null,
-    } | null,
-    research?:  {
-      __typename: "Research",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      researchSocialLinksId?: string | null,
-    } | null,
-    charity?:  {
-      __typename: "Charity",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      charitySocialLinksId?: string | null,
-    } | null,
-    restaurant?:  {
-      __typename: "Restaurant",
-      id: string,
-      userID: string,
-      isPublished?: boolean | null,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      createdAt: string,
-      updatedAt: string,
-      restaurantSocialLinksId?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    userPortfolioId?: string | null,
-    userResearchId?: string | null,
-    userCharityId?: string | null,
-    userRestaurantId?: string | null,
   } | null,
 };
 
@@ -3177,153 +2445,6 @@ export type OnDeleteSocialLinksSubscription = {
   } | null,
 };
 
-export type OnCreatePortfolioSubscriptionVariables = {
-  filter?: ModelSubscriptionPortfolioFilterInput | null,
-};
-
-export type OnCreatePortfolioSubscription = {
-  onCreatePortfolio?:  {
-    __typename: "Portfolio",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    lastName?: string | null,
-    resumeLink?: string | null,
-    sections?:  {
-      __typename: "ModelSectionConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    portfolioSocialLinksId?: string | null,
-  } | null,
-};
-
-export type OnUpdatePortfolioSubscriptionVariables = {
-  filter?: ModelSubscriptionPortfolioFilterInput | null,
-};
-
-export type OnUpdatePortfolioSubscription = {
-  onUpdatePortfolio?:  {
-    __typename: "Portfolio",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    lastName?: string | null,
-    resumeLink?: string | null,
-    sections?:  {
-      __typename: "ModelSectionConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    portfolioSocialLinksId?: string | null,
-  } | null,
-};
-
-export type OnDeletePortfolioSubscriptionVariables = {
-  filter?: ModelSubscriptionPortfolioFilterInput | null,
-};
-
-export type OnDeletePortfolioSubscription = {
-  onDeletePortfolio?:  {
-    __typename: "Portfolio",
-    id: string,
-    userID: string,
-    user?:  {
-      __typename: "User",
-      id: string,
-      firstName: string,
-      username: string,
-      createdAt: string,
-      updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
-    } | null,
-    isPublished?: boolean | null,
-    socialLinks?:  {
-      __typename: "SocialLinks",
-      id: string,
-      github?: string | null,
-      linkedin?: string | null,
-      twitter?: string | null,
-      instagram?: string | null,
-      youtube?: string | null,
-      tiktok?: string | null,
-      facebook?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    lastName?: string | null,
-    resumeLink?: string | null,
-    sections?:  {
-      __typename: "ModelSectionConnection",
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    portfolioSocialLinksId?: string | null,
-  } | null,
-};
-
 export type OnCreateSectionSubscriptionVariables = {
   filter?: ModelSubscriptionSectionFilterInput | null,
 };
@@ -3343,17 +2464,21 @@ export type OnCreateSectionSubscription = {
       __typename: "Portfolio",
       id: string,
       userID: string,
-      isPublished?: boolean | null,
+      isPublished: boolean,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      firstName: string,
       lastName?: string | null,
       resumeLink?: string | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userPortfolioId?: string | null,
       portfolioSocialLinksId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    portfolioSectionsId?: string | null,
   } | null,
 };
 
@@ -3376,17 +2501,21 @@ export type OnUpdateSectionSubscription = {
       __typename: "Portfolio",
       id: string,
       userID: string,
-      isPublished?: boolean | null,
+      isPublished: boolean,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      firstName: string,
       lastName?: string | null,
       resumeLink?: string | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userPortfolioId?: string | null,
       portfolioSocialLinksId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    portfolioSectionsId?: string | null,
   } | null,
 };
 
@@ -3409,17 +2538,21 @@ export type OnDeleteSectionSubscription = {
       __typename: "Portfolio",
       id: string,
       userID: string,
-      isPublished?: boolean | null,
+      isPublished: boolean,
       intro?: string | null,
       photos?: Array< string | null > | null,
+      firstName: string,
       lastName?: string | null,
       resumeLink?: string | null,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
+      userPortfolioId?: string | null,
       portfolioSocialLinksId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    portfolioSectionsId?: string | null,
   } | null,
 };
 
@@ -3439,7 +2572,6 @@ export type OnCreateEventSubscription = {
       id: string,
       start: string,
       end?: string | null,
-      eventID: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -3456,9 +2588,11 @@ export type OnCreateEventSubscription = {
       portfolioID: string,
       createdAt: string,
       updatedAt: string,
+      portfolioSectionsId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    sectionEventsId?: string | null,
     eventDatesId?: string | null,
   } | null,
 };
@@ -3479,7 +2613,6 @@ export type OnUpdateEventSubscription = {
       id: string,
       start: string,
       end?: string | null,
-      eventID: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -3496,9 +2629,11 @@ export type OnUpdateEventSubscription = {
       portfolioID: string,
       createdAt: string,
       updatedAt: string,
+      portfolioSectionsId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    sectionEventsId?: string | null,
     eventDatesId?: string | null,
   } | null,
 };
@@ -3519,7 +2654,6 @@ export type OnDeleteEventSubscription = {
       id: string,
       start: string,
       end?: string | null,
-      eventID: string,
       createdAt: string,
       updatedAt: string,
     } | null,
@@ -3536,9 +2670,11 @@ export type OnDeleteEventSubscription = {
       portfolioID: string,
       createdAt: string,
       updatedAt: string,
+      portfolioSectionsId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    sectionEventsId?: string | null,
     eventDatesId?: string | null,
   } | null,
 };
@@ -3553,22 +2689,6 @@ export type OnCreateDateRangeSubscription = {
     id: string,
     start: string,
     end?: string | null,
-    eventID: string,
-    event?:  {
-      __typename: "Event",
-      id: string,
-      name?: string | null,
-      logo?: string | null,
-      role?: string | null,
-      bullets?: Array< string | null > | null,
-      skills?: Array< string | null > | null,
-      photos?: Array< string | null > | null,
-      link?: string | null,
-      sectionID: string,
-      createdAt: string,
-      updatedAt: string,
-      eventDatesId?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -3584,22 +2704,6 @@ export type OnUpdateDateRangeSubscription = {
     id: string,
     start: string,
     end?: string | null,
-    eventID: string,
-    event?:  {
-      __typename: "Event",
-      id: string,
-      name?: string | null,
-      logo?: string | null,
-      role?: string | null,
-      bullets?: Array< string | null > | null,
-      skills?: Array< string | null > | null,
-      photos?: Array< string | null > | null,
-      link?: string | null,
-      sectionID: string,
-      createdAt: string,
-      updatedAt: string,
-      eventDatesId?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -3615,29 +2719,263 @@ export type OnDeleteDateRangeSubscription = {
     id: string,
     start: string,
     end?: string | null,
-    eventID: string,
-    event?:  {
-      __typename: "Event",
-      id: string,
-      name?: string | null,
-      logo?: string | null,
-      role?: string | null,
-      bullets?: Array< string | null > | null,
-      skills?: Array< string | null > | null,
-      photos?: Array< string | null > | null,
-      link?: string | null,
-      sectionID: string,
-      createdAt: string,
-      updatedAt: string,
-      eventDatesId?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
+export type OnCreateUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnCreateUserSubscription = {
+  onCreateUser?:  {
+    __typename: "User",
+    id: string,
+    firstName: string,
+    username: string,
+    portfolio?:  {
+      __typename: "ModelPortfolioConnection",
+      nextToken?: string | null,
+    } | null,
+    research?:  {
+      __typename: "ModelResearchConnection",
+      nextToken?: string | null,
+    } | null,
+    charity?:  {
+      __typename: "ModelCharityConnection",
+      nextToken?: string | null,
+    } | null,
+    restaurant?:  {
+      __typename: "ModelRestaurantConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnUpdateUserSubscription = {
+  onUpdateUser?:  {
+    __typename: "User",
+    id: string,
+    firstName: string,
+    username: string,
+    portfolio?:  {
+      __typename: "ModelPortfolioConnection",
+      nextToken?: string | null,
+    } | null,
+    research?:  {
+      __typename: "ModelResearchConnection",
+      nextToken?: string | null,
+    } | null,
+    charity?:  {
+      __typename: "ModelCharityConnection",
+      nextToken?: string | null,
+    } | null,
+    restaurant?:  {
+      __typename: "ModelRestaurantConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnDeleteUserSubscription = {
+  onDeleteUser?:  {
+    __typename: "User",
+    id: string,
+    firstName: string,
+    username: string,
+    portfolio?:  {
+      __typename: "ModelPortfolioConnection",
+      nextToken?: string | null,
+    } | null,
+    research?:  {
+      __typename: "ModelResearchConnection",
+      nextToken?: string | null,
+    } | null,
+    charity?:  {
+      __typename: "ModelCharityConnection",
+      nextToken?: string | null,
+    } | null,
+    restaurant?:  {
+      __typename: "ModelRestaurantConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreatePortfolioSubscriptionVariables = {
+  filter?: ModelSubscriptionPortfolioFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnCreatePortfolioSubscription = {
+  onCreatePortfolio?:  {
+    __typename: "Portfolio",
+    id: string,
+    userID: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      firstName: string,
+      username: string,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    isPublished: boolean,
+    socialLinks?:  {
+      __typename: "SocialLinks",
+      id: string,
+      github?: string | null,
+      linkedin?: string | null,
+      twitter?: string | null,
+      instagram?: string | null,
+      youtube?: string | null,
+      tiktok?: string | null,
+      facebook?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    intro?: string | null,
+    photos?: Array< string | null > | null,
+    firstName: string,
+    lastName?: string | null,
+    resumeLink?: string | null,
+    sections?:  {
+      __typename: "ModelSectionConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    userPortfolioId?: string | null,
+    portfolioSocialLinksId?: string | null,
+  } | null,
+};
+
+export type OnUpdatePortfolioSubscriptionVariables = {
+  filter?: ModelSubscriptionPortfolioFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnUpdatePortfolioSubscription = {
+  onUpdatePortfolio?:  {
+    __typename: "Portfolio",
+    id: string,
+    userID: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      firstName: string,
+      username: string,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    isPublished: boolean,
+    socialLinks?:  {
+      __typename: "SocialLinks",
+      id: string,
+      github?: string | null,
+      linkedin?: string | null,
+      twitter?: string | null,
+      instagram?: string | null,
+      youtube?: string | null,
+      tiktok?: string | null,
+      facebook?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    intro?: string | null,
+    photos?: Array< string | null > | null,
+    firstName: string,
+    lastName?: string | null,
+    resumeLink?: string | null,
+    sections?:  {
+      __typename: "ModelSectionConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    userPortfolioId?: string | null,
+    portfolioSocialLinksId?: string | null,
+  } | null,
+};
+
+export type OnDeletePortfolioSubscriptionVariables = {
+  filter?: ModelSubscriptionPortfolioFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnDeletePortfolioSubscription = {
+  onDeletePortfolio?:  {
+    __typename: "Portfolio",
+    id: string,
+    userID: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      firstName: string,
+      username: string,
+      owner?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    isPublished: boolean,
+    socialLinks?:  {
+      __typename: "SocialLinks",
+      id: string,
+      github?: string | null,
+      linkedin?: string | null,
+      twitter?: string | null,
+      instagram?: string | null,
+      youtube?: string | null,
+      tiktok?: string | null,
+      facebook?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    intro?: string | null,
+    photos?: Array< string | null > | null,
+    firstName: string,
+    lastName?: string | null,
+    resumeLink?: string | null,
+    sections?:  {
+      __typename: "ModelSectionConnection",
+      nextToken?: string | null,
+    } | null,
+    owner?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    userPortfolioId?: string | null,
+    portfolioSocialLinksId?: string | null,
+  } | null,
+};
+
 export type OnCreateResearchSubscriptionVariables = {
   filter?: ModelSubscriptionResearchFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateResearchSubscription = {
@@ -3650,12 +2988,9 @@ export type OnCreateResearchSubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -3673,14 +3008,17 @@ export type OnCreateResearchSubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userResearchId?: string | null,
     researchSocialLinksId?: string | null,
   } | null,
 };
 
 export type OnUpdateResearchSubscriptionVariables = {
   filter?: ModelSubscriptionResearchFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateResearchSubscription = {
@@ -3693,12 +3031,9 @@ export type OnUpdateResearchSubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -3716,14 +3051,17 @@ export type OnUpdateResearchSubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userResearchId?: string | null,
     researchSocialLinksId?: string | null,
   } | null,
 };
 
 export type OnDeleteResearchSubscriptionVariables = {
   filter?: ModelSubscriptionResearchFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteResearchSubscription = {
@@ -3736,12 +3074,9 @@ export type OnDeleteResearchSubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -3759,14 +3094,17 @@ export type OnDeleteResearchSubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userResearchId?: string | null,
     researchSocialLinksId?: string | null,
   } | null,
 };
 
 export type OnCreateCharitySubscriptionVariables = {
   filter?: ModelSubscriptionCharityFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateCharitySubscription = {
@@ -3779,12 +3117,9 @@ export type OnCreateCharitySubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -3802,14 +3137,17 @@ export type OnCreateCharitySubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userCharityId?: string | null,
     charitySocialLinksId?: string | null,
   } | null,
 };
 
 export type OnUpdateCharitySubscriptionVariables = {
   filter?: ModelSubscriptionCharityFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateCharitySubscription = {
@@ -3822,12 +3160,9 @@ export type OnUpdateCharitySubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -3845,14 +3180,17 @@ export type OnUpdateCharitySubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userCharityId?: string | null,
     charitySocialLinksId?: string | null,
   } | null,
 };
 
 export type OnDeleteCharitySubscriptionVariables = {
   filter?: ModelSubscriptionCharityFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteCharitySubscription = {
@@ -3865,12 +3203,9 @@ export type OnDeleteCharitySubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -3888,14 +3223,17 @@ export type OnDeleteCharitySubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userCharityId?: string | null,
     charitySocialLinksId?: string | null,
   } | null,
 };
 
 export type OnCreateRestaurantSubscriptionVariables = {
   filter?: ModelSubscriptionRestaurantFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateRestaurantSubscription = {
@@ -3908,12 +3246,9 @@ export type OnCreateRestaurantSubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -3931,14 +3266,17 @@ export type OnCreateRestaurantSubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userRestaurantId?: string | null,
     restaurantSocialLinksId?: string | null,
   } | null,
 };
 
 export type OnUpdateRestaurantSubscriptionVariables = {
   filter?: ModelSubscriptionRestaurantFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateRestaurantSubscription = {
@@ -3951,12 +3289,9 @@ export type OnUpdateRestaurantSubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -3974,14 +3309,17 @@ export type OnUpdateRestaurantSubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userRestaurantId?: string | null,
     restaurantSocialLinksId?: string | null,
   } | null,
 };
 
 export type OnDeleteRestaurantSubscriptionVariables = {
   filter?: ModelSubscriptionRestaurantFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteRestaurantSubscription = {
@@ -3994,12 +3332,9 @@ export type OnDeleteRestaurantSubscription = {
       id: string,
       firstName: string,
       username: string,
+      owner?: string | null,
       createdAt: string,
       updatedAt: string,
-      userPortfolioId?: string | null,
-      userResearchId?: string | null,
-      userCharityId?: string | null,
-      userRestaurantId?: string | null,
     } | null,
     isPublished?: boolean | null,
     socialLinks?:  {
@@ -4017,8 +3352,10 @@ export type OnDeleteRestaurantSubscription = {
     } | null,
     intro?: string | null,
     photos?: Array< string | null > | null,
+    owner?: string | null,
     createdAt: string,
     updatedAt: string,
+    userRestaurantId?: string | null,
     restaurantSocialLinksId?: string | null,
   } | null,
 };

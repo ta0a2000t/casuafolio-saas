@@ -13,11 +13,30 @@
     },
     "categories": {
       "auth": {
-        "insanfoliosaasappe9cb7419": {
+        "insanfoliosaasapp95c2dfc0": {
           "userPoolId": "us-east-2_PnT6qe63x",
           "userPoolName": "InsanFolioUserPool1",
           "webClientId": "7d8esii8hotaos4e5ekptvtj8q",
           "nativeClientId": "7d8esii8hotaos4e5ekptvtj8q"
+        },
+        "insanfoliosaasapp4199d34d": {
+          "userPoolId": "us-east-2_PnT6qe63x",
+          "userPoolName": "InsanFolioUserPool1",
+          "webClientId": "7d8esii8hotaos4e5ekptvtj8q",
+          "nativeClientId": "7d8esii8hotaos4e5ekptvtj8q",
+          "identityPoolId": "us-east-2:405e1fea-9d80-4671-9463-d3543dafa027",
+          "identityPoolName": "insanfolioIdentitiyMyIdenityPool",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::339712937678:role/service-role/AuthenticatedRole",
+          "authRoleName": "AuthenticatedRole",
+          "unauthRoleArn": "arn:aws:iam::339712937678:role/service-role/insanfolioIdentitiyPool_IAM_geust_role",
+          "unauthRoleName": "insanfolioIdentitiyPool_IAM_geust_role"
+        }
+      },
+      "storage": {
+        "insanfoliosaasapp1eefdbd6": {
+          "bucketName": "insanfolios3mybucket",
+          "region": "us-east-2"
         }
       },
       "api": {

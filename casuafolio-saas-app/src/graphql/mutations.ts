@@ -8,381 +8,6 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
-export const togglePublishPortfolio = /* GraphQL */ `mutation TogglePublishPortfolio($id: ID!, $isPublished: Boolean!) {
-  togglePublishPortfolio(id: $id, isPublished: $isPublished) {
-    id
-    userID
-    user {
-      id
-      firstName
-      username
-      createdAt
-      updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
-      __typename
-    }
-    isPublished
-    socialLinks {
-      id
-      github
-      linkedin
-      twitter
-      instagram
-      youtube
-      tiktok
-      facebook
-      createdAt
-      updatedAt
-      __typename
-    }
-    intro
-    photos
-    lastName
-    resumeLink
-    sections {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    portfolioSocialLinksId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.TogglePublishPortfolioMutationVariables,
-  APITypes.TogglePublishPortfolioMutation
->;
-export const togglePublishResearch = /* GraphQL */ `mutation TogglePublishResearch($id: ID!, $isPublished: Boolean!) {
-  togglePublishResearch(id: $id, isPublished: $isPublished) {
-    id
-    userID
-    user {
-      id
-      firstName
-      username
-      createdAt
-      updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
-      __typename
-    }
-    isPublished
-    socialLinks {
-      id
-      github
-      linkedin
-      twitter
-      instagram
-      youtube
-      tiktok
-      facebook
-      createdAt
-      updatedAt
-      __typename
-    }
-    intro
-    photos
-    createdAt
-    updatedAt
-    researchSocialLinksId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.TogglePublishResearchMutationVariables,
-  APITypes.TogglePublishResearchMutation
->;
-export const togglePublishCharity = /* GraphQL */ `mutation TogglePublishCharity($id: ID!, $isPublished: Boolean!) {
-  togglePublishCharity(id: $id, isPublished: $isPublished) {
-    id
-    userID
-    user {
-      id
-      firstName
-      username
-      createdAt
-      updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
-      __typename
-    }
-    isPublished
-    socialLinks {
-      id
-      github
-      linkedin
-      twitter
-      instagram
-      youtube
-      tiktok
-      facebook
-      createdAt
-      updatedAt
-      __typename
-    }
-    intro
-    photos
-    createdAt
-    updatedAt
-    charitySocialLinksId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.TogglePublishCharityMutationVariables,
-  APITypes.TogglePublishCharityMutation
->;
-export const togglePublishRestaurant = /* GraphQL */ `mutation TogglePublishRestaurant($id: ID!, $isPublished: Boolean!) {
-  togglePublishRestaurant(id: $id, isPublished: $isPublished) {
-    id
-    userID
-    user {
-      id
-      firstName
-      username
-      createdAt
-      updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
-      __typename
-    }
-    isPublished
-    socialLinks {
-      id
-      github
-      linkedin
-      twitter
-      instagram
-      youtube
-      tiktok
-      facebook
-      createdAt
-      updatedAt
-      __typename
-    }
-    intro
-    photos
-    createdAt
-    updatedAt
-    restaurantSocialLinksId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.TogglePublishRestaurantMutationVariables,
-  APITypes.TogglePublishRestaurantMutation
->;
-export const createUser = /* GraphQL */ `mutation CreateUser(
-  $input: CreateUserInput!
-  $condition: ModelUserConditionInput
-) {
-  createUser(input: $input, condition: $condition) {
-    id
-    firstName
-    username
-    portfolio {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      lastName
-      resumeLink
-      createdAt
-      updatedAt
-      portfolioSocialLinksId
-      __typename
-    }
-    research {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      researchSocialLinksId
-      __typename
-    }
-    charity {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      charitySocialLinksId
-      __typename
-    }
-    restaurant {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      restaurantSocialLinksId
-      __typename
-    }
-    createdAt
-    updatedAt
-    userPortfolioId
-    userResearchId
-    userCharityId
-    userRestaurantId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateUserMutationVariables,
-  APITypes.CreateUserMutation
->;
-export const updateUser = /* GraphQL */ `mutation UpdateUser(
-  $input: UpdateUserInput!
-  $condition: ModelUserConditionInput
-) {
-  updateUser(input: $input, condition: $condition) {
-    id
-    firstName
-    username
-    portfolio {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      lastName
-      resumeLink
-      createdAt
-      updatedAt
-      portfolioSocialLinksId
-      __typename
-    }
-    research {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      researchSocialLinksId
-      __typename
-    }
-    charity {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      charitySocialLinksId
-      __typename
-    }
-    restaurant {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      restaurantSocialLinksId
-      __typename
-    }
-    createdAt
-    updatedAt
-    userPortfolioId
-    userResearchId
-    userCharityId
-    userRestaurantId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateUserMutationVariables,
-  APITypes.UpdateUserMutation
->;
-export const deleteUser = /* GraphQL */ `mutation DeleteUser(
-  $input: DeleteUserInput!
-  $condition: ModelUserConditionInput
-) {
-  deleteUser(input: $input, condition: $condition) {
-    id
-    firstName
-    username
-    portfolio {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      lastName
-      resumeLink
-      createdAt
-      updatedAt
-      portfolioSocialLinksId
-      __typename
-    }
-    research {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      researchSocialLinksId
-      __typename
-    }
-    charity {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      charitySocialLinksId
-      __typename
-    }
-    restaurant {
-      id
-      userID
-      isPublished
-      intro
-      photos
-      createdAt
-      updatedAt
-      restaurantSocialLinksId
-      __typename
-    }
-    createdAt
-    updatedAt
-    userPortfolioId
-    userResearchId
-    userCharityId
-    userRestaurantId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteUserMutationVariables,
-  APITypes.DeleteUserMutation
->;
 export const createSocialLinks = /* GraphQL */ `mutation CreateSocialLinks(
   $input: CreateSocialLinksInput!
   $condition: ModelSocialLinksConditionInput
@@ -449,159 +74,6 @@ export const deleteSocialLinks = /* GraphQL */ `mutation DeleteSocialLinks(
   APITypes.DeleteSocialLinksMutationVariables,
   APITypes.DeleteSocialLinksMutation
 >;
-export const createPortfolio = /* GraphQL */ `mutation CreatePortfolio(
-  $input: CreatePortfolioInput!
-  $condition: ModelPortfolioConditionInput
-) {
-  createPortfolio(input: $input, condition: $condition) {
-    id
-    userID
-    user {
-      id
-      firstName
-      username
-      createdAt
-      updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
-      __typename
-    }
-    isPublished
-    socialLinks {
-      id
-      github
-      linkedin
-      twitter
-      instagram
-      youtube
-      tiktok
-      facebook
-      createdAt
-      updatedAt
-      __typename
-    }
-    intro
-    photos
-    lastName
-    resumeLink
-    sections {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    portfolioSocialLinksId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreatePortfolioMutationVariables,
-  APITypes.CreatePortfolioMutation
->;
-export const updatePortfolio = /* GraphQL */ `mutation UpdatePortfolio(
-  $input: UpdatePortfolioInput!
-  $condition: ModelPortfolioConditionInput
-) {
-  updatePortfolio(input: $input, condition: $condition) {
-    id
-    userID
-    user {
-      id
-      firstName
-      username
-      createdAt
-      updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
-      __typename
-    }
-    isPublished
-    socialLinks {
-      id
-      github
-      linkedin
-      twitter
-      instagram
-      youtube
-      tiktok
-      facebook
-      createdAt
-      updatedAt
-      __typename
-    }
-    intro
-    photos
-    lastName
-    resumeLink
-    sections {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    portfolioSocialLinksId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdatePortfolioMutationVariables,
-  APITypes.UpdatePortfolioMutation
->;
-export const deletePortfolio = /* GraphQL */ `mutation DeletePortfolio(
-  $input: DeletePortfolioInput!
-  $condition: ModelPortfolioConditionInput
-) {
-  deletePortfolio(input: $input, condition: $condition) {
-    id
-    userID
-    user {
-      id
-      firstName
-      username
-      createdAt
-      updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
-      __typename
-    }
-    isPublished
-    socialLinks {
-      id
-      github
-      linkedin
-      twitter
-      instagram
-      youtube
-      tiktok
-      facebook
-      createdAt
-      updatedAt
-      __typename
-    }
-    intro
-    photos
-    lastName
-    resumeLink
-    sections {
-      nextToken
-      __typename
-    }
-    createdAt
-    updatedAt
-    portfolioSocialLinksId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeletePortfolioMutationVariables,
-  APITypes.DeletePortfolioMutation
->;
 export const createSection = /* GraphQL */ `mutation CreateSection(
   $input: CreateSectionInput!
   $condition: ModelSectionConditionInput
@@ -621,15 +93,19 @@ export const createSection = /* GraphQL */ `mutation CreateSection(
       isPublished
       intro
       photos
+      firstName
       lastName
       resumeLink
+      owner
       createdAt
       updatedAt
+      userPortfolioId
       portfolioSocialLinksId
       __typename
     }
     createdAt
     updatedAt
+    portfolioSectionsId
     __typename
   }
 }
@@ -656,15 +132,19 @@ export const updateSection = /* GraphQL */ `mutation UpdateSection(
       isPublished
       intro
       photos
+      firstName
       lastName
       resumeLink
+      owner
       createdAt
       updatedAt
+      userPortfolioId
       portfolioSocialLinksId
       __typename
     }
     createdAt
     updatedAt
+    portfolioSectionsId
     __typename
   }
 }
@@ -691,15 +171,19 @@ export const deleteSection = /* GraphQL */ `mutation DeleteSection(
       isPublished
       intro
       photos
+      firstName
       lastName
       resumeLink
+      owner
       createdAt
       updatedAt
+      userPortfolioId
       portfolioSocialLinksId
       __typename
     }
     createdAt
     updatedAt
+    portfolioSectionsId
     __typename
   }
 }
@@ -720,7 +204,6 @@ export const createEvent = /* GraphQL */ `mutation CreateEvent(
       id
       start
       end
-      eventID
       createdAt
       updatedAt
       __typename
@@ -737,10 +220,12 @@ export const createEvent = /* GraphQL */ `mutation CreateEvent(
       portfolioID
       createdAt
       updatedAt
+      portfolioSectionsId
       __typename
     }
     createdAt
     updatedAt
+    sectionEventsId
     eventDatesId
     __typename
   }
@@ -762,7 +247,6 @@ export const updateEvent = /* GraphQL */ `mutation UpdateEvent(
       id
       start
       end
-      eventID
       createdAt
       updatedAt
       __typename
@@ -779,10 +263,12 @@ export const updateEvent = /* GraphQL */ `mutation UpdateEvent(
       portfolioID
       createdAt
       updatedAt
+      portfolioSectionsId
       __typename
     }
     createdAt
     updatedAt
+    sectionEventsId
     eventDatesId
     __typename
   }
@@ -804,7 +290,6 @@ export const deleteEvent = /* GraphQL */ `mutation DeleteEvent(
       id
       start
       end
-      eventID
       createdAt
       updatedAt
       __typename
@@ -821,10 +306,12 @@ export const deleteEvent = /* GraphQL */ `mutation DeleteEvent(
       portfolioID
       createdAt
       updatedAt
+      portfolioSectionsId
       __typename
     }
     createdAt
     updatedAt
+    sectionEventsId
     eventDatesId
     __typename
   }
@@ -841,22 +328,6 @@ export const createDateRange = /* GraphQL */ `mutation CreateDateRange(
     id
     start
     end
-    eventID
-    event {
-      id
-      name
-      logo
-      role
-      bullets
-      skills
-      photos
-      link
-      sectionID
-      createdAt
-      updatedAt
-      eventDatesId
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -874,22 +345,6 @@ export const updateDateRange = /* GraphQL */ `mutation UpdateDateRange(
     id
     start
     end
-    eventID
-    event {
-      id
-      name
-      logo
-      role
-      bullets
-      skills
-      photos
-      link
-      sectionID
-      createdAt
-      updatedAt
-      eventDatesId
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -907,22 +362,6 @@ export const deleteDateRange = /* GraphQL */ `mutation DeleteDateRange(
     id
     start
     end
-    eventID
-    event {
-      id
-      name
-      logo
-      role
-      bullets
-      skills
-      photos
-      link
-      sectionID
-      createdAt
-      updatedAt
-      eventDatesId
-      __typename
-    }
     createdAt
     updatedAt
     __typename
@@ -932,23 +371,122 @@ export const deleteDateRange = /* GraphQL */ `mutation DeleteDateRange(
   APITypes.DeleteDateRangeMutationVariables,
   APITypes.DeleteDateRangeMutation
 >;
-export const createResearch = /* GraphQL */ `mutation CreateResearch(
-  $input: CreateResearchInput!
-  $condition: ModelResearchConditionInput
+export const createUser = /* GraphQL */ `mutation CreateUser(
+  $input: CreateUserInput!
+  $condition: ModelUserConditionInput
 ) {
-  createResearch(input: $input, condition: $condition) {
+  createUser(input: $input, condition: $condition) {
+    id
+    firstName
+    username
+    portfolio {
+      nextToken
+      __typename
+    }
+    research {
+      nextToken
+      __typename
+    }
+    charity {
+      nextToken
+      __typename
+    }
+    restaurant {
+      nextToken
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateUserMutationVariables,
+  APITypes.CreateUserMutation
+>;
+export const updateUser = /* GraphQL */ `mutation UpdateUser(
+  $input: UpdateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  updateUser(input: $input, condition: $condition) {
+    id
+    firstName
+    username
+    portfolio {
+      nextToken
+      __typename
+    }
+    research {
+      nextToken
+      __typename
+    }
+    charity {
+      nextToken
+      __typename
+    }
+    restaurant {
+      nextToken
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateUserMutationVariables,
+  APITypes.UpdateUserMutation
+>;
+export const deleteUser = /* GraphQL */ `mutation DeleteUser(
+  $input: DeleteUserInput!
+  $condition: ModelUserConditionInput
+) {
+  deleteUser(input: $input, condition: $condition) {
+    id
+    firstName
+    username
+    portfolio {
+      nextToken
+      __typename
+    }
+    research {
+      nextToken
+      __typename
+    }
+    charity {
+      nextToken
+      __typename
+    }
+    restaurant {
+      nextToken
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteUserMutationVariables,
+  APITypes.DeleteUserMutation
+>;
+export const createPortfolio = /* GraphQL */ `mutation CreatePortfolio(
+  $input: CreatePortfolioInput!
+  $condition: ModelPortfolioConditionInput
+) {
+  createPortfolio(input: $input, condition: $condition) {
     id
     userID
     user {
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -967,8 +505,163 @@ export const createResearch = /* GraphQL */ `mutation CreateResearch(
     }
     intro
     photos
+    firstName
+    lastName
+    resumeLink
+    sections {
+      nextToken
+      __typename
+    }
+    owner
     createdAt
     updatedAt
+    userPortfolioId
+    portfolioSocialLinksId
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreatePortfolioMutationVariables,
+  APITypes.CreatePortfolioMutation
+>;
+export const updatePortfolio = /* GraphQL */ `mutation UpdatePortfolio(
+  $input: UpdatePortfolioInput!
+  $condition: ModelPortfolioConditionInput
+) {
+  updatePortfolio(input: $input, condition: $condition) {
+    id
+    userID
+    user {
+      id
+      firstName
+      username
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    isPublished
+    socialLinks {
+      id
+      github
+      linkedin
+      twitter
+      instagram
+      youtube
+      tiktok
+      facebook
+      createdAt
+      updatedAt
+      __typename
+    }
+    intro
+    photos
+    firstName
+    lastName
+    resumeLink
+    sections {
+      nextToken
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    userPortfolioId
+    portfolioSocialLinksId
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdatePortfolioMutationVariables,
+  APITypes.UpdatePortfolioMutation
+>;
+export const deletePortfolio = /* GraphQL */ `mutation DeletePortfolio(
+  $input: DeletePortfolioInput!
+  $condition: ModelPortfolioConditionInput
+) {
+  deletePortfolio(input: $input, condition: $condition) {
+    id
+    userID
+    user {
+      id
+      firstName
+      username
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    isPublished
+    socialLinks {
+      id
+      github
+      linkedin
+      twitter
+      instagram
+      youtube
+      tiktok
+      facebook
+      createdAt
+      updatedAt
+      __typename
+    }
+    intro
+    photos
+    firstName
+    lastName
+    resumeLink
+    sections {
+      nextToken
+      __typename
+    }
+    owner
+    createdAt
+    updatedAt
+    userPortfolioId
+    portfolioSocialLinksId
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeletePortfolioMutationVariables,
+  APITypes.DeletePortfolioMutation
+>;
+export const createResearch = /* GraphQL */ `mutation CreateResearch(
+  $input: CreateResearchInput!
+  $condition: ModelResearchConditionInput
+) {
+  createResearch(input: $input, condition: $condition) {
+    id
+    userID
+    user {
+      id
+      firstName
+      username
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+    isPublished
+    socialLinks {
+      id
+      github
+      linkedin
+      twitter
+      instagram
+      youtube
+      tiktok
+      facebook
+      createdAt
+      updatedAt
+      __typename
+    }
+    intro
+    photos
+    owner
+    createdAt
+    updatedAt
+    userResearchId
     researchSocialLinksId
     __typename
   }
@@ -988,12 +681,9 @@ export const updateResearch = /* GraphQL */ `mutation UpdateResearch(
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -1012,8 +702,10 @@ export const updateResearch = /* GraphQL */ `mutation UpdateResearch(
     }
     intro
     photos
+    owner
     createdAt
     updatedAt
+    userResearchId
     researchSocialLinksId
     __typename
   }
@@ -1033,12 +725,9 @@ export const deleteResearch = /* GraphQL */ `mutation DeleteResearch(
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -1057,8 +746,10 @@ export const deleteResearch = /* GraphQL */ `mutation DeleteResearch(
     }
     intro
     photos
+    owner
     createdAt
     updatedAt
+    userResearchId
     researchSocialLinksId
     __typename
   }
@@ -1078,12 +769,9 @@ export const createCharity = /* GraphQL */ `mutation CreateCharity(
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -1102,8 +790,10 @@ export const createCharity = /* GraphQL */ `mutation CreateCharity(
     }
     intro
     photos
+    owner
     createdAt
     updatedAt
+    userCharityId
     charitySocialLinksId
     __typename
   }
@@ -1123,12 +813,9 @@ export const updateCharity = /* GraphQL */ `mutation UpdateCharity(
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -1147,8 +834,10 @@ export const updateCharity = /* GraphQL */ `mutation UpdateCharity(
     }
     intro
     photos
+    owner
     createdAt
     updatedAt
+    userCharityId
     charitySocialLinksId
     __typename
   }
@@ -1168,12 +857,9 @@ export const deleteCharity = /* GraphQL */ `mutation DeleteCharity(
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -1192,8 +878,10 @@ export const deleteCharity = /* GraphQL */ `mutation DeleteCharity(
     }
     intro
     photos
+    owner
     createdAt
     updatedAt
+    userCharityId
     charitySocialLinksId
     __typename
   }
@@ -1213,12 +901,9 @@ export const createRestaurant = /* GraphQL */ `mutation CreateRestaurant(
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -1237,8 +922,10 @@ export const createRestaurant = /* GraphQL */ `mutation CreateRestaurant(
     }
     intro
     photos
+    owner
     createdAt
     updatedAt
+    userRestaurantId
     restaurantSocialLinksId
     __typename
   }
@@ -1258,12 +945,9 @@ export const updateRestaurant = /* GraphQL */ `mutation UpdateRestaurant(
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -1282,8 +966,10 @@ export const updateRestaurant = /* GraphQL */ `mutation UpdateRestaurant(
     }
     intro
     photos
+    owner
     createdAt
     updatedAt
+    userRestaurantId
     restaurantSocialLinksId
     __typename
   }
@@ -1303,12 +989,9 @@ export const deleteRestaurant = /* GraphQL */ `mutation DeleteRestaurant(
       id
       firstName
       username
+      owner
       createdAt
       updatedAt
-      userPortfolioId
-      userResearchId
-      userCharityId
-      userRestaurantId
       __typename
     }
     isPublished
@@ -1327,8 +1010,10 @@ export const deleteRestaurant = /* GraphQL */ `mutation DeleteRestaurant(
     }
     intro
     photos
+    owner
     createdAt
     updatedAt
+    userRestaurantId
     restaurantSocialLinksId
     __typename
   }

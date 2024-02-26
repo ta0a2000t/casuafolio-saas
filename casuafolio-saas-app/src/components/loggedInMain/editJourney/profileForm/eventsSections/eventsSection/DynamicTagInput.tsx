@@ -104,7 +104,7 @@ const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
           return (
             <Input
               ref={editInputRef}
-              key={tag}
+              key={index}
               size="small"
               style={tagInputStyle}
               value={editInputValue}
@@ -117,7 +117,7 @@ const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
         const isLongTag = tag.length > 20;
         const tagElem = (
           <Tag
-            key={tag}
+            key={index}
             closable={index > 1} // first two are not deletable
             style={{ userSelect: 'none' }}
             onClose={() => handleClose(tag)}

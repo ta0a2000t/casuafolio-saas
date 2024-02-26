@@ -43,7 +43,7 @@ const EventInput: React.FC<{ name: number }> = ({ name }) => {
             </Form.Item>
 
             <Tooltip title={'Your Skills/Tags/Topics/Tasks'}>
-                <Form.Item label="Your Skills" name={[name, 'eventSkills']} rules={[{ required: true }]} >
+                <Form.Item label="Your Skills" name={[name, 'eventSkills']} rules={[{ required: false }]} >
                     <DynamicTagInput tagName={'Skill'} />
                 </Form.Item>
             </Tooltip>

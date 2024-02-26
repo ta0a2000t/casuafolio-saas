@@ -11,6 +11,9 @@
       {
         "mode": "AMAZON_COGNITO_USER_POOLS",
         "cognitoUserPoolId": "authinsanfoliosaasappe9cb7419"
+      },
+      {
+        "mode": "AWS_IAM"
       }
     ]
   }
