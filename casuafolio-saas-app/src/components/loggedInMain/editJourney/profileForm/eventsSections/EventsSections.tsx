@@ -52,7 +52,7 @@ const EventsSections: React.FC = () => {
 
                 >
                   {/* Render each EventsSection inside the Card */}
-                  <EventsSection name={field.name} />
+                  <EventsSection name={field.name} sectionIndex={index} />
 
                   {/* Place the delete button at the bottom of the Card */}
 

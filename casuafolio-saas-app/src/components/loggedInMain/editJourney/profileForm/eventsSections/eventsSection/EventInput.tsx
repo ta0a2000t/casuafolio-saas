@@ -12,7 +12,7 @@ const { RangePicker } = DatePicker;
 
 type RangeValue = [Dayjs | null, Dayjs | null] | null;
 
-const EventInput: React.FC<{ name: number }> = ({ name }) => {
+const EventInput: React.FC<{ name: number, sectionIndex: number, eventIndex: number }> = ({ name, sectionIndex, eventIndex }) => {
     // Card style options
     const cardStyle = {
         width: 470, // Predefined width, you can adjust as needed
@@ -42,11 +42,9 @@ const EventInput: React.FC<{ name: number }> = ({ name }) => {
                 <RangePicker value={value} onChange={setValue} />
             </Form.Item>
 
-            <Tooltip title={'Your Skills/Tags/Topics/Tasks'}>
-                <Form.Item label="Your Skills" name={[name, 'eventSkills']} rules={[{ required: false }]} >
-                    <DynamicTagInput tagName={'Skill'} />
-                </Form.Item>
-            </Tooltip>
+            <Form.Item tooltip={'Your Skills/Tags/Topics/Tasks'} label="Your Skills" name={[name, 'eventSkills']} rules={[{ required: false }]} >
+                <DynamicTagInput tagName={'Skill'} formPath={['eventsSections', sectionIndex, 'events', eventIndex, 'eventSkills']}/>
+            </Form.Item>
             
             <DynamicBulletsInput name={name}/>
 

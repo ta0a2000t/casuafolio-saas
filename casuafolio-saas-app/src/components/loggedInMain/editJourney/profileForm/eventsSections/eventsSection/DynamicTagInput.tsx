@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import type { InputRef } from 'antd';
-import { Input, Space, Tag, theme, Tooltip, message } from 'antd';
+import { Input, Space, Tag, theme, Tooltip, message, Form } from 'antd';
 
-const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
+const DynamicTagInput: React.FC<{ tagName: string, formPath: (string | number)[] }> = ({ tagName, formPath }) => {
   const { token } = theme.useToken();
   const [tags, setTags] = useState([`Click Me`, `Click Me`]);
   const [inputVisible, setInputVisible] = useState(false);
@@ -12,6 +12,22 @@ const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
   const [editInputValue, setEditInputValue] = useState('');
   const inputRef = useRef<InputRef>(null);
   const editInputRef = useRef<InputRef>(null);
+  const form = Form.useFormInstance();
+
+
+  useEffect(() => {
+    // Optionally, set initial tags state from form's initial values if necessary
+    const initialTags = form.getFieldValue(formPath);
+    if (initialTags && initialTags.length > 0) {
+      setTags(initialTags);
+    }
+  }, [form, formPath]);
+  useEffect(() => {
+    // This effect runs whenever the `tags` state changes.
+    form.setFieldValue(formPath, tags);
+  }, [tags, form, formPath]);
+
+
 
   useEffect(() => {
     if (inputVisible) {
@@ -23,9 +39,9 @@ const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
     editInputRef.current?.focus();
   }, [editInputValue]);
 
+  // runs after deleting a tag
   const handleClose = (removedTag: string) => {
     const newTags = tags.filter((tag) => tag !== removedTag);
-    console.log(newTags);
     setTags(newTags);
   };
 
@@ -47,7 +63,10 @@ const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
     } else if (tags.includes(trimmedInputValue)) {
       message.error(`This ${tagName} already exists.`);
     } else {
-      message.warning(`${tagName} cannot excceed 40 characters.`);
+      if (trimmedInputValue.length > 40) {
+        message.warning(`${tagName} cannot excceed 40 characters.`);
+      }
+      
       const finalValue = trimmedInputValue.length > 40 ? trimmedInputValue.slice(0, 40) : trimmedInputValue;
       setTags([...tags, finalValue]);
     }
@@ -64,6 +83,7 @@ const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
 
 
   const handleEditInputConfirm = () => {
+    
     const trimmedInputValue = editInputValue.trim(); // Trim the edit input value
     // Check if the trimmed input is empty
     if (!trimmedInputValue) {
@@ -77,10 +97,13 @@ const DynamicTagInput: React.FC<{ tagName: string }> = ({ tagName }) => {
       const newTags = [...tags];
       newTags[editInputIndex] = finalValue; // Update the tag at the current edit index
 
-      message.warning(`${tagName} cannot excceed 40 characters.`);
+      if (trimmedInputValue.length > 40) {
+        message.warning(`${tagName} cannot excceed 40 characters.`);
+      }
 
       setTags(newTags);
     }
+
   
     setEditInputIndex(-1); // Reset the edit index
     setEditInputValue(''); // Clear the edit input value

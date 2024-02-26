@@ -12,7 +12,7 @@ import { DeleteOutlined, QuestionCircleOutlined, PlusOutlined } from '@ant-desig
 
 
 
-const EventsSection: React.FC<{ name: number }> = ({ name }) => {
+const EventsSection: React.FC<{ name: number, sectionIndex:number }> = ({ name, sectionIndex }) => {
     // Apply conditional style based on isDarkMode
     const Panel = Collapse.Panel;
 
@@ -56,14 +56,14 @@ const EventsSection: React.FC<{ name: number }> = ({ name }) => {
                                                             position: "relative",
                                                         }}
                                                     >
-                                                        <EventInput name={field.name} />
+                                                        <EventInput name={field.name} sectionIndex={sectionIndex} eventIndex={index} />
 
 
 
                                                         <Popconfirm
                                                             title="Delete the event"
                                                             description="Are you sure to delete this event?"
-                                                            onConfirm={(e) => remove(index)}
+                                                            onConfirm={(e) => remove(field.name)}
                                                             icon={<QuestionCircleOutlined style={{ color: 'red'}} />}
                                                         >
                                                             <Button

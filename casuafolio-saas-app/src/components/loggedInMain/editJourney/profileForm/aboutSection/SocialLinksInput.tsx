@@ -95,7 +95,7 @@ const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputE
                   new URL(fullUrl);
                   return Promise.resolve();
                 } catch {
-                  return Promise.reject(new Error('Please enter a valid URL'));
+                  return Promise.reject(new Error('Please enter a valid Link'));
                 }
               }
 
