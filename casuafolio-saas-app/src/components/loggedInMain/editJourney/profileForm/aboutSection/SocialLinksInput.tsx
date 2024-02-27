@@ -1,6 +1,16 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Divider, Form, Input, Select } from 'antd';
-import { LinkOutlined, GithubOutlined, LinkedinOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, FacebookOutlined, TikTokOutlined } from '@ant-design/icons';
+import {
+  LinkOutlined,
+  GithubOutlined,
+  LinkedinOutlined,
+  TwitterOutlined,
+  InstagramOutlined,
+  YoutubeOutlined,
+  FacebookOutlined,
+  TikTokOutlined,
+} from '@ant-design/icons';
+
 
 const SocialLinksInput: React.FC = () => {
     const [selectedSocialMedia, setSelectedSocialMedia] = useState<PrefixKey[]>([]);
@@ -53,6 +63,18 @@ const SocialLinksInput: React.FC = () => {
         'tiktok-url': 'username',
         'facebook-url': 'username',
     };
+
+      // Automatically update selectedSocialMedia based on non-empty form values
+      useEffect(() => {
+        const allKeys: PrefixKey[] = ['github-url', 'linkedin-url', 'twitter-url', 'instagram-url', 'youtube-url', 'tiktok-url', 'facebook-url'];
+        const nonEmptyKeys = allKeys.filter(key => {
+            const value = form.getFieldValue(key);
+            return value && value.trim() !== '';
+        });
+        setSelectedSocialMedia(nonEmptyKeys);
+      }, [form]); // Dependency on `form` to re-check whenever form values change
+
+      
     
     const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
       let value = e.target.value;
@@ -112,7 +134,7 @@ const icons: Record<PrefixKey, React.ReactNode> = {
           key={key}
           name={key}
           label={labels[key]}
-          rules={[{ required: false }, { type: 'string', warningOnly: true }
+          rules={[{ required: true }, { type: 'string', warningOnly: true }
         ,
         {
             validator(_, value) {
