@@ -54,18 +54,26 @@ const SocialLinksInput: React.FC = () => {
         'facebook-url': 'username',
     };
     
-const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const prefix = prefixes[name];
-    let newValue = value;
-    if (value.startsWith(prefix)) {
-        newValue = value.substring(prefix.length);
-    }
-    form.setFieldsValue({ [name]: newValue });
-
-    // No need for additional action here since Form.Item's `name` prop binds the input value to the form state,
-    // which is then used to dynamically generate the suffix link.
-};
+    const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      let value = e.target.value;
+      const prefix = prefixes[name];
+      // Extract the domain name from the prefix to match it in different variations, including handling cases without protocol
+      const domainName = prefix.replace(/(https?:\/\/)?(www\.)?/, ''); // Strip off protocol and www
+  
+      // Create a RegExp to match the domain in various forms (with and without protocol and www)
+      const regex = new RegExp(`^(https?:\/\/)?(www\.)?${domainName}`);
+  
+      // Use the regex to replace the matched prefix with an empty string
+      value = value.replace(regex, '');
+  
+      // Trim any leading slashes that may remain after the replacement
+      value = value.replace(/^\/+/, '');
+  
+      form.setFieldsValue({ [name]: value });
+  };
+  
+  
+  
 
 const icons: Record<PrefixKey, React.ReactNode> = {
   'github-url': <GithubOutlined />,
