@@ -23,7 +23,7 @@ const DynamicBulletsInput: React.FC<{ name: (string | number)[] }> = ({ name }) 
                             <React.Fragment key={field.key}>
                                 <Space key={field.key} >
                                     <Space.Compact block key={field.key}>
-                                        <Form.Item name={field.name} rules={[{ required: true }]}
+                                        <Form.Item label="" name={field.name} rules={[{ required: true }]}
                                             style={{ width: "400px" }}
 
                                         >
