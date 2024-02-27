@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Upload } from 'antd';
-import type { GetProp, UploadFile, UploadProps } from 'antd';
+import { Form, GetProp, UploadFile, UploadProps } from 'antd';
 import ImgCrop from 'antd-img-crop';
 import Text from 'antd/es/typography/Text';
 
@@ -49,10 +49,15 @@ interface DraggableUploadListItemProps {
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 
-const GalleryInput: React.FC<{ galleryLabel: string, maxImages: number }> = ({ galleryLabel, maxImages }) => {
+const GalleryInput: React.FC<{ galleryLabel: string, maxImages: number, formPath: (string | number)[] }> = ({ galleryLabel, maxImages, formPath }) => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
+    const form = Form.useFormInstance();
+
+    
+
+
 
   const [fileList, setFileList] = useState<UploadFile[]>([
     {
@@ -79,12 +84,8 @@ const GalleryInput: React.FC<{ galleryLabel: string, maxImages: number }> = ({ g
 
 
 
-
-
   const onChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-
-    
   };
 
 

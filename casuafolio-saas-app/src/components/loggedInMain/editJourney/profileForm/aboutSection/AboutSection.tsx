@@ -27,7 +27,7 @@ const AboutSection: React.FC = () => {
 
       <Form.Item label="Your Photos"  name={[name, "yourPhotos"]}>
 
-        <GalleryInput galleryLabel={''} maxImages={9} />
+        <GalleryInput galleryLabel={''} maxImages={9} formPath={['about', 'yourPhotos']}/>
       </Form.Item>
 
 

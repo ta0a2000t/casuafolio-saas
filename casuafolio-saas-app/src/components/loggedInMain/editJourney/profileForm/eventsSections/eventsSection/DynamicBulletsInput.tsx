@@ -2,48 +2,46 @@ import React from 'react';
 import { Button, Form, Input, Space, message, theme } from 'antd';
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
 
-const DynamicBulletsInput: React.FC<{ name: number }> = ({ name }) => {
+const DynamicBulletsInput: React.FC<{ name: (string | number)[] }> = ({ name }) => {
     const {
         token: { colorBgLayout },
     } = theme.useToken();
 
     const handleKeyDown = (e: { key: string; preventDefault: () => void; }) => {
         if (e.key === 'Enter') {
-          // Prevent the default action to avoid new lines on Enter press
-          e.preventDefault();
+            // Prevent the default action to avoid new lines on Enter press
+            e.preventDefault();
         }
-      };
-      
+    };
+
     return (
         <Form.List name={name} >
             {(fields, { add, remove }) => {
                 return (
                     <>
                         {fields.map((field, index) => (
-                            <>
+                            <React.Fragment key={field.key}>
                                 <Space key={field.key} >
-                                    <Space.Compact block >
+                                    <Space.Compact block key={field.key}>
                                         <Form.Item name={field.name} rules={[{ required: true }]}
-                                                                style={{ width: "400px" }}
+                                            style={{ width: "400px" }}
 
                                         >
-                                        <Input.TextArea  autoSize={{ minRows: 1, maxRows: 3 }} showCount maxLength={210} minLength={20} placeholder="What did you do?"
+                                            <Input.TextArea autoSize={{ minRows: 1, maxRows: 3 }} showCount maxLength={210} minLength={20} placeholder="What did you do?"
                                                 onKeyDown={handleKeyDown} // Attach the onKeyDown event handler
-                                                />
+                                            />
                                         </Form.Item>
                                         <Button
                                             onClick={() => remove(field.name)}
                                             danger
                                             icon={<CloseOutlined />}
                                         ></Button>
-
                                     </Space.Compact>
-
                                 </Space>
-                            </>
+                            </React.Fragment>
                         ))}
 
-                        {/* Add section button outside and below all sections */}
+
                         <Form.Item>
                             <Button
                                 type="dashed"

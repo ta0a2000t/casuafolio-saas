@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { Card, Form, Input, Tooltip, theme } from 'antd';
 import DynamicTagInput from './DynamicTagInput';
 import GalleryInput from '../../shared/GalleryInput';
-import { DatePicker, Space } from 'antd';
-import type { Dayjs } from 'dayjs';
+import moment from 'moment';
+import { DatePicker } from 'antd';
 import DynamicBulletsInput from './DynamicBulletsInput';
 
 const { RangePicker } = DatePicker;
 
 
-type RangeValue = [Dayjs | null, Dayjs | null] | null;
+//type RangeValue = [Dayjs | null, Dayjs | null] | null;
 
 const EventInput: React.FC<{ name: number, sectionIndex: number, eventIndex: number }> = ({ name, sectionIndex, eventIndex }) => {
     // Card style options
@@ -19,8 +19,6 @@ const EventInput: React.FC<{ name: number, sectionIndex: number, eventIndex: num
         marginBottom: 20, // Adds space between each EventInput if you have multiple
         // For more styling, you can add additional properties here
     };
-
-    const [value, setValue] = useState<RangeValue>(null);
 
 
     return (
@@ -31,7 +29,7 @@ const EventInput: React.FC<{ name: number, sectionIndex: number, eventIndex: num
 
             <Form.Item label="Event Logo" name={[name, 'eventLogo']} >
 
-                <GalleryInput galleryLabel={''} maxImages={1} />
+                <GalleryInput galleryLabel={''} maxImages={1} formPath={['eventsSections', sectionIndex, 'events', eventIndex, 'eventLogo']}/>
             </Form.Item>
 
             <Form.Item label="Role" name={[name, 'role']} rules={[{ required: true }]} >
@@ -39,18 +37,18 @@ const EventInput: React.FC<{ name: number, sectionIndex: number, eventIndex: num
             </Form.Item>
 
             <Form.Item label="Dates" name={[name, 'eventDates']} rules={[{ required: true }]} >
-                <RangePicker value={value} onChange={setValue} />
+            <RangePicker/>
             </Form.Item>
 
             <Form.Item tooltip={'Your Skills/Tags/Topics/Tasks'} label="Your Skills" name={[name, 'eventSkills']} rules={[{ required: false }]} >
                 <DynamicTagInput tagName={'Skill'} formPath={['eventsSections', sectionIndex, 'events', eventIndex, 'eventSkills']}/>
             </Form.Item>
             
-            <DynamicBulletsInput name={name}/>
+            <DynamicBulletsInput name={[name, "bullets"]}/>
 
             <Form.Item label="Photos" name={[name, "photos"]}>
 
-                <GalleryInput galleryLabel={''} maxImages={9} />
+                <GalleryInput galleryLabel={''} maxImages={9} formPath={['eventsSections', sectionIndex, 'events', eventIndex, 'photos']} />
             </Form.Item>
 
 
