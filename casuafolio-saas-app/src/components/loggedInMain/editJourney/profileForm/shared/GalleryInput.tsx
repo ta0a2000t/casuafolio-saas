@@ -58,15 +58,33 @@ const GalleryInput: React.FC<{ galleryLabel: string, maxImages: number, formPath
     
 
 
+    // Helper function to convert URLs to UploadFile objects
+    const urlsToUploadFiles = (urls: string[]): UploadFile[] => {
+      return urls.map((url, index) => ({
+          uid: `-converted-${index}`, // Generating a unique ID
+          name: `Image ${index + 1}`, // Placeholder name, adjust as needed
+          status: 'done', // Assuming these are already uploaded
+          url: url,
+      }));
+  };
 
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ]);
+  // Initialize fileList from form values if present
+  const initialUrls: string[] = form.getFieldValue(formPath) || [];
+  const [fileList, setFileList] = useState<UploadFile[]>(urlsToUploadFiles(initialUrls));
+
+  // Effect to update form values when fileList changes
+  useEffect(() => {
+      // Update form value to an array of URLs extracted from fileList
+      const updatedUrls = fileList.map(file => file.url || '');
+      form.setFieldValue(formPath, updatedUrls );
+  }, [fileList, form, formPath]);
+
+  // Ensure to update fileList on component mount if the form has initial values
+  useEffect(() => {
+      const initialFormUrls: string[] = form.getFieldValue(formPath) || [];
+      setFileList(urlsToUploadFiles(initialFormUrls));
+  }, []); // Empty dependency array means this runs once on mount
+
 
   const sensor = useSensor(PointerSensor, {
     activationConstraint: { distance: 10 },
