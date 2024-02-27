@@ -1,8 +1,10 @@
-import React from 'react';
-import { Divider, Form, Input } from 'antd';
-import { LinkOutlined} from '@ant-design/icons';
+import React, {useState} from 'react';
+import { Divider, Form, Input, Select } from 'antd';
+import { LinkOutlined, GithubOutlined, LinkedinOutlined, TwitterOutlined, InstagramOutlined, YoutubeOutlined, FacebookOutlined, TikTokOutlined } from '@ant-design/icons';
 
 const SocialLinksInput: React.FC = () => {
+    const [selectedSocialMedia, setSelectedSocialMedia] = useState<PrefixKey[]>([]);
+
     const form = Form.useFormInstance();
 
     const handleOpenLink = (name: PrefixKey) => {
@@ -29,15 +31,16 @@ const SocialLinksInput: React.FC = () => {
 
     };
 
-    let Labels: Record<PrefixKey, string> = {
-        'github-url': 'Github URL',
-        'linkedin-url': 'LinkedIn URL',
-        'twitter-url': 'X(Twitter) URL',
-        'instagram-url': 'Instagram URL',
-        'youtube-url': 'Youtube URL',
-        'tiktok-url': 'TikTok URL',
-        'facebook-url': 'Facebook URL',
-      };
+  
+    const labels: Record<PrefixKey, string> = {
+      'github-url': 'Github',
+      'linkedin-url': 'LinkedIn',
+      'twitter-url': 'Twitter',
+      'instagram-url': 'Instagram',
+      'youtube-url': 'Youtube',
+      'tiktok-url': 'TikTok',
+      'facebook-url': 'Facebook',
+    };
 
 
     
@@ -64,6 +67,16 @@ const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputE
     // which is then used to dynamically generate the suffix link.
 };
 
+const icons: Record<PrefixKey, React.ReactNode> = {
+  'github-url': <GithubOutlined />,
+  'linkedin-url': <LinkedinOutlined />,
+  'twitter-url': <TwitterOutlined />,
+  'instagram-url': <InstagramOutlined />,
+  'youtube-url': <YoutubeOutlined />,
+  'tiktok-url': <TikTokOutlined />,
+  'facebook-url': <FacebookOutlined />,
+};
+
 
 
       
@@ -71,11 +84,26 @@ const handleRemovePrefix = (name: PrefixKey) => (e: React.ChangeEvent<HTMLInputE
   return (
     <div>
       <Divider>Social Links</Divider>
-      {Object.entries(Labels).map(([key, label]) => (
+      <Select
+        mode="multiple"
+        allowClear
+        style={{ width: '100%' }}
+        placeholder="Select platforms"
+        value={selectedSocialMedia}
+        onChange={setSelectedSocialMedia}
+      >
+        {Object.entries(labels).map(([key, label]) => (
+          <Select.Option key={key} value={key}>
+            {icons[key as PrefixKey]} {label}
+          </Select.Option>
+        ))}
+      </Select>
+
+      {selectedSocialMedia.map(key => (
         <Form.Item
           key={key}
           name={key}
-          label={label}
+          label={labels[key]}
           rules={[{ required: false }, { type: 'string', warningOnly: true }
         ,
         {
