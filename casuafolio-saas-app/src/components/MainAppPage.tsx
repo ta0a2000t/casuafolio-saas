@@ -13,6 +13,13 @@ import { type AuthUser } from "aws-amplify/auth";
 import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
 
 
+///// dynamodb //////////////////////////////////////////////////////////////////////////////////////////////////
+import { generateClient } from "aws-amplify/api";
+import { createUser } from './../graphql/mutations';
+import LandingPage from "./landing/LandingPage";
+
+const client = generateClient()
+
 
 
 const components = {
@@ -264,6 +271,10 @@ type MainAppPageProps = {
 };
 
 
+
+
+
+
 // for sign out, refer to Login.tsx file for how to do this
 const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -271,12 +282,14 @@ const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => 
     
     return (
       <div id="MainAppPage"> 
+      
       {
-      //<Authenticator formFields={formFields} components={components}>
+        //<Authenticator formFields={formFields} components={components}>
       }
+      
         <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
+        <LandingPage/>
 
-          (<LoggedInMain isDarkMode={isDarkMode}>{content}</LoggedInMain>)
           <FloatButton
             icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
             onClick={() => setIsDarkMode(!isDarkMode)}
@@ -285,6 +298,7 @@ const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => 
         </ConfigProvider>
       {//</Authenticator> 
       }
+      
       </div>
     );
   }

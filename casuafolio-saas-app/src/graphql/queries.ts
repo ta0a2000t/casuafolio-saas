@@ -66,18 +66,17 @@ export const getSection = /* GraphQL */ `query GetSection($id: ID!) {
     portfolioID
     portfolio {
       id
-      userID
       isPublished
       intro
       photos
       firstName
       lastName
       resumeLink
-      owner
       createdAt
       updatedAt
       userPortfolioId
       portfolioSocialLinksId
+      owner
       __typename
     }
     createdAt
@@ -238,9 +237,9 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       nextToken
       __typename
     }
-    owner
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -255,9 +254,9 @@ export const listUsers = /* GraphQL */ `query ListUsers(
       id
       firstName
       username
-      owner
       createdAt
       updatedAt
+      owner
       __typename
     }
     nextToken
@@ -268,16 +267,6 @@ export const listUsers = /* GraphQL */ `query ListUsers(
 export const getPortfolio = /* GraphQL */ `query GetPortfolio($id: ID!) {
   getPortfolio(id: $id) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -301,11 +290,11 @@ export const getPortfolio = /* GraphQL */ `query GetPortfolio($id: ID!) {
       nextToken
       __typename
     }
-    owner
     createdAt
     updatedAt
     userPortfolioId
     portfolioSocialLinksId
+    owner
     __typename
   }
 }
@@ -321,18 +310,17 @@ export const listPortfolios = /* GraphQL */ `query ListPortfolios(
   listPortfolios(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      userID
       isPublished
       intro
       photos
       firstName
       lastName
       resumeLink
-      owner
       createdAt
       updatedAt
       userPortfolioId
       portfolioSocialLinksId
+      owner
       __typename
     }
     nextToken
@@ -346,16 +334,6 @@ export const listPortfolios = /* GraphQL */ `query ListPortfolios(
 export const getResearch = /* GraphQL */ `query GetResearch($id: ID!) {
   getResearch(id: $id) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -372,11 +350,11 @@ export const getResearch = /* GraphQL */ `query GetResearch($id: ID!) {
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userResearchId
     researchSocialLinksId
+    owner
     __typename
   }
 }
@@ -392,15 +370,14 @@ export const listResearch = /* GraphQL */ `query ListResearch(
   listResearch(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      userID
       isPublished
       intro
       photos
-      owner
       createdAt
       updatedAt
       userResearchId
       researchSocialLinksId
+      owner
       __typename
     }
     nextToken
@@ -414,16 +391,6 @@ export const listResearch = /* GraphQL */ `query ListResearch(
 export const getCharity = /* GraphQL */ `query GetCharity($id: ID!) {
   getCharity(id: $id) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -440,11 +407,11 @@ export const getCharity = /* GraphQL */ `query GetCharity($id: ID!) {
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userCharityId
     charitySocialLinksId
+    owner
     __typename
   }
 }
@@ -460,15 +427,14 @@ export const listCharities = /* GraphQL */ `query ListCharities(
   listCharities(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      userID
       isPublished
       intro
       photos
-      owner
       createdAt
       updatedAt
       userCharityId
       charitySocialLinksId
+      owner
       __typename
     }
     nextToken
@@ -482,16 +448,6 @@ export const listCharities = /* GraphQL */ `query ListCharities(
 export const getRestaurant = /* GraphQL */ `query GetRestaurant($id: ID!) {
   getRestaurant(id: $id) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -508,11 +464,11 @@ export const getRestaurant = /* GraphQL */ `query GetRestaurant($id: ID!) {
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userRestaurantId
     restaurantSocialLinksId
+    owner
     __typename
   }
 }
@@ -528,15 +484,14 @@ export const listRestaurants = /* GraphQL */ `query ListRestaurants(
   listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      userID
       isPublished
       intro
       photos
-      owner
       createdAt
       updatedAt
       userRestaurantId
       restaurantSocialLinksId
+      owner
       __typename
     }
     nextToken

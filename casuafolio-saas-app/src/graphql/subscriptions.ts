@@ -83,18 +83,17 @@ export const onCreateSection = /* GraphQL */ `subscription OnCreateSection($filt
     portfolioID
     portfolio {
       id
-      userID
       isPublished
       intro
       photos
       firstName
       lastName
       resumeLink
-      owner
       createdAt
       updatedAt
       userPortfolioId
       portfolioSocialLinksId
+      owner
       __typename
     }
     createdAt
@@ -119,18 +118,17 @@ export const onUpdateSection = /* GraphQL */ `subscription OnUpdateSection($filt
     portfolioID
     portfolio {
       id
-      userID
       isPublished
       intro
       photos
       firstName
       lastName
       resumeLink
-      owner
       createdAt
       updatedAt
       userPortfolioId
       portfolioSocialLinksId
+      owner
       __typename
     }
     createdAt
@@ -155,18 +153,17 @@ export const onDeleteSection = /* GraphQL */ `subscription OnDeleteSection($filt
     portfolioID
     portfolio {
       id
-      userID
       isPublished
       intro
       photos
       firstName
       lastName
       resumeLink
-      owner
       createdAt
       updatedAt
       userPortfolioId
       portfolioSocialLinksId
+      owner
       __typename
     }
     createdAt
@@ -365,9 +362,9 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
       nextToken
       __typename
     }
-    owner
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -399,9 +396,9 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
       nextToken
       __typename
     }
-    owner
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -433,9 +430,9 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
       nextToken
       __typename
     }
-    owner
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -449,16 +446,6 @@ export const onCreatePortfolio = /* GraphQL */ `subscription OnCreatePortfolio(
 ) {
   onCreatePortfolio(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -482,11 +469,11 @@ export const onCreatePortfolio = /* GraphQL */ `subscription OnCreatePortfolio(
       nextToken
       __typename
     }
-    owner
     createdAt
     updatedAt
     userPortfolioId
     portfolioSocialLinksId
+    owner
     __typename
   }
 }
@@ -500,16 +487,6 @@ export const onUpdatePortfolio = /* GraphQL */ `subscription OnUpdatePortfolio(
 ) {
   onUpdatePortfolio(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -533,11 +510,11 @@ export const onUpdatePortfolio = /* GraphQL */ `subscription OnUpdatePortfolio(
       nextToken
       __typename
     }
-    owner
     createdAt
     updatedAt
     userPortfolioId
     portfolioSocialLinksId
+    owner
     __typename
   }
 }
@@ -551,16 +528,6 @@ export const onDeletePortfolio = /* GraphQL */ `subscription OnDeletePortfolio(
 ) {
   onDeletePortfolio(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -584,11 +551,11 @@ export const onDeletePortfolio = /* GraphQL */ `subscription OnDeletePortfolio(
       nextToken
       __typename
     }
-    owner
     createdAt
     updatedAt
     userPortfolioId
     portfolioSocialLinksId
+    owner
     __typename
   }
 }
@@ -602,16 +569,6 @@ export const onCreateResearch = /* GraphQL */ `subscription OnCreateResearch(
 ) {
   onCreateResearch(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -628,11 +585,11 @@ export const onCreateResearch = /* GraphQL */ `subscription OnCreateResearch(
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userResearchId
     researchSocialLinksId
+    owner
     __typename
   }
 }
@@ -646,16 +603,6 @@ export const onUpdateResearch = /* GraphQL */ `subscription OnUpdateResearch(
 ) {
   onUpdateResearch(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -672,11 +619,11 @@ export const onUpdateResearch = /* GraphQL */ `subscription OnUpdateResearch(
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userResearchId
     researchSocialLinksId
+    owner
     __typename
   }
 }
@@ -690,16 +637,6 @@ export const onDeleteResearch = /* GraphQL */ `subscription OnDeleteResearch(
 ) {
   onDeleteResearch(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -716,11 +653,11 @@ export const onDeleteResearch = /* GraphQL */ `subscription OnDeleteResearch(
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userResearchId
     researchSocialLinksId
+    owner
     __typename
   }
 }
@@ -734,16 +671,6 @@ export const onCreateCharity = /* GraphQL */ `subscription OnCreateCharity(
 ) {
   onCreateCharity(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -760,11 +687,11 @@ export const onCreateCharity = /* GraphQL */ `subscription OnCreateCharity(
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userCharityId
     charitySocialLinksId
+    owner
     __typename
   }
 }
@@ -778,16 +705,6 @@ export const onUpdateCharity = /* GraphQL */ `subscription OnUpdateCharity(
 ) {
   onUpdateCharity(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -804,11 +721,11 @@ export const onUpdateCharity = /* GraphQL */ `subscription OnUpdateCharity(
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userCharityId
     charitySocialLinksId
+    owner
     __typename
   }
 }
@@ -822,16 +739,6 @@ export const onDeleteCharity = /* GraphQL */ `subscription OnDeleteCharity(
 ) {
   onDeleteCharity(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -848,11 +755,11 @@ export const onDeleteCharity = /* GraphQL */ `subscription OnDeleteCharity(
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userCharityId
     charitySocialLinksId
+    owner
     __typename
   }
 }
@@ -866,16 +773,6 @@ export const onCreateRestaurant = /* GraphQL */ `subscription OnCreateRestaurant
 ) {
   onCreateRestaurant(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -892,11 +789,11 @@ export const onCreateRestaurant = /* GraphQL */ `subscription OnCreateRestaurant
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userRestaurantId
     restaurantSocialLinksId
+    owner
     __typename
   }
 }
@@ -910,16 +807,6 @@ export const onUpdateRestaurant = /* GraphQL */ `subscription OnUpdateRestaurant
 ) {
   onUpdateRestaurant(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -936,11 +823,11 @@ export const onUpdateRestaurant = /* GraphQL */ `subscription OnUpdateRestaurant
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userRestaurantId
     restaurantSocialLinksId
+    owner
     __typename
   }
 }
@@ -954,16 +841,6 @@ export const onDeleteRestaurant = /* GraphQL */ `subscription OnDeleteRestaurant
 ) {
   onDeleteRestaurant(filter: $filter, owner: $owner) {
     id
-    userID
-    user {
-      id
-      firstName
-      username
-      owner
-      createdAt
-      updatedAt
-      __typename
-    }
     isPublished
     socialLinks {
       id
@@ -980,11 +857,11 @@ export const onDeleteRestaurant = /* GraphQL */ `subscription OnDeleteRestaurant
     }
     intro
     photos
-    owner
     createdAt
     updatedAt
     userRestaurantId
     restaurantSocialLinksId
+    owner
     __typename
   }
 }

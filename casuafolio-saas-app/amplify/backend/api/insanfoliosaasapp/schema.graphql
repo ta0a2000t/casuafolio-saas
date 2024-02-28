@@ -2,8 +2,10 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 #input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 #input AMPLIFY { globalAuthRule: AuthRule = { allow: private } } # Adjust for production
+# auth provider for owner has to be userPools
+# auth provider for authenticated(private) or unauthenticated(public) should be iam
 
-type User @model @auth(rules: [{ allow: owner }]) {
+type User @model @auth(rules: [{ allow: owner ,  provider: userPools}]) {
 
   id: ID!
   firstName: String!
@@ -13,7 +15,6 @@ type User @model @auth(rules: [{ allow: owner }]) {
   charity: [Charity] @hasMany
   restaurant: [Restaurant] @hasMany
 
-  owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])
 
 }
  # allow unauth read when the parent type (TemplateInterface) is published
@@ -32,8 +33,6 @@ type SocialLinks @model {
 
 interface TemplateInterface {
   id: ID!
-  userID: ID!
-  user: User
   isPublished: Boolean
   socialLinks: SocialLinks
   intro: String
@@ -44,11 +43,10 @@ interface TemplateInterface {
 
 
 ### portfolio belew ###
-type Portfolio implements TemplateInterface @model @auth(rules: [{ allow: public, operations: [read], provider: iam }, { allow: owner }]) {
+type Portfolio implements TemplateInterface @model @auth(rules: [{ allow: public, operations: [read], provider: iam }, { allow: owner, provider: userPools }]) {
 
   id: ID!
-  userID: ID! 
-  user: User @belongsTo(fields: ["userID"])
+
   isPublished: Boolean!
   socialLinks: SocialLinks @hasOne
   intro: String
@@ -61,7 +59,6 @@ type Portfolio implements TemplateInterface @model @auth(rules: [{ allow: public
 
   sections: [Section] @hasMany
 
-  owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])
 
   # Additional fields specific to the portfolio template can be added here
 }
@@ -157,42 +154,35 @@ input DateRangeInput {
 
 
 ### not integrated yet below ###
-type Research implements TemplateInterface @model @auth(rules: [{ allow: public, operations: [read],  provider: iam }, { allow: owner }]) {
+type Research implements TemplateInterface @model @auth(rules: [{ allow: public, operations: [read],  provider: iam }, { allow: owner, provider: userPools }]) {
   id: ID!
-  userID: ID! 
-  user: User @belongsTo(fields: ["userID"])
   isPublished: Boolean
   socialLinks: SocialLinks @hasOne
   intro: String
   photos: [String]
 
-  owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])
 
   # Placeholder fields
 }
 
-type Charity implements TemplateInterface @model @auth(rules: [{ allow: public, operations: [read],  provider: iam}, { allow: owner }]) {
+type Charity implements TemplateInterface @model @auth(rules: [{ allow: public, operations: [read],  provider: iam}, { allow: owner, provider: userPools }]) {
   id: ID!
-  userID: ID! 
-  user: User @belongsTo(fields: ["userID"])
+
   isPublished: Boolean
   socialLinks: SocialLinks @hasOne
   intro: String
   photos: [String]
-  owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])
 
   # Placeholder fields
 }
 
-type Restaurant implements TemplateInterface@model @auth(rules: [{ allow: public, operations: [read] ,provider: iam}, { allow: owner }]) {
+type Restaurant implements TemplateInterface@model @auth(rules: [{ allow: public, operations: [read] ,provider: iam}, { allow: owner, provider: userPools }]) {
   id: ID!
-  userID: ID! 
-  user: User @belongsTo(fields: ["userID"])
+
   isPublished: Boolean
   socialLinks: SocialLinks @hasOne
   intro: String
   photos: [String]
-  owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }])
 
   # Placeholder fields
 }
