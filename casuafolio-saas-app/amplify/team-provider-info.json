@@ -41,6 +41,12 @@
       },
       "api": {
         "insanfoliosaasapp": {}
+      },
+      "function": {
+        "insanfoliosaasapplayerLambdaGQLInsanFolio": {
+          "deploymentBucketName": "amplify-insanfoliosaasapp-dev-150305-deployment",
+          "s3Key": "amplify-builds/insanfoliosaasapplayerLambdaGQLInsanFolio-LambdaLayerVersion8c2cb926-build.zip"
+        }
       }
     }
   }

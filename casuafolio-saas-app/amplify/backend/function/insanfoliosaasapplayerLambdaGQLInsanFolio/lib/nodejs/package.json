@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "url": "^0.11.3",
+    "uuid": "^9.0.1"
+  }
+}

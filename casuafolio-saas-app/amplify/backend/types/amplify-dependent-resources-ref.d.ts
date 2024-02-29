@@ -2,8 +2,12 @@ export type AmplifyDependentResourcesAttributes = {
   "api": {
     "insanfoliosaasapp": {
       "GraphQLAPIEndpointOutput": "string",
-      "GraphQLAPIIdOutput": "string",
-      "GraphQLAPIKeyOutput": "string"
+      "GraphQLAPIIdOutput": "string"
+    }
+  },
+  "function": {
+    "insanfoliosaasapplayerLambdaGQLInsanFolio": {
+      "Arn": "string"
     }
   }
 }

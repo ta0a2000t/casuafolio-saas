@@ -16,18 +16,12 @@
             {
               "authenticationType": "AMAZON_COGNITO_USER_POOLS",
               "userPoolConfig": {
-                "userPoolId": "authinsanfoliosaasappe9cb7419"
+                "userPoolId": "authinsanfoliosaasapp4199d34d"
               }
-            },
-            {
-              "authenticationType": "AWS_IAM"
             }
           ],
           "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
-            },
-            "authenticationType": "API_KEY"
+            "authenticationType": "AWS_IAM"
           }
         }
       },
@@ -42,6 +36,13 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito",
       "serviceType": "imported"
+    }
+  },
+  "function": {
+    "insanfoliosaasapplayerLambdaGQLInsanFolio": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
     }
   },
   "parameters": {
@@ -162,6 +163,22 @@
         {
           "category": "auth",
           "resourceName": "insanfoliosaasapp95c2dfc0"
+        }
+      ]
+    },
+    "AMPLIFY_function_insanfoliosaasapplayerLambdaGQLInsanFolio_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapplayerLambdaGQLInsanFolio"
+        }
+      ]
+    },
+    "AMPLIFY_function_insanfoliosaasapplayerLambdaGQLInsanFolio_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapplayerLambdaGQLInsanFolio"
         }
       ]
     },
