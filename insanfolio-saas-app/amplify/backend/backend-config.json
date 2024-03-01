@@ -1,0 +1,134 @@
+{
+  "auth": {
+    "insanfoliosaasapp0f2d420f": {
+      "customAuth": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fDefineAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fCreateAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "GIVEN_NAME"
+        ],
+        "socialProviders": [
+          "GOOGLE"
+        ],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "insanfoliosaasapp0f2d420fCreateAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "insanfoliosaasapp0f2d420fDefineAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_insanfoliosaasapp0f2d420fCreateAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fCreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_insanfoliosaasapp0f2d420fCreateAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fCreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_insanfoliosaasapp0f2d420fDefineAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fDefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_insanfoliosaasapp0f2d420fDefineAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fDefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse_RECAPTCHASECRET": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_function_insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_function_insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse"
+        }
+      ]
+    }
+  }
+}
