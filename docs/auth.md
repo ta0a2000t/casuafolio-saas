@@ -1,0 +1,1 @@
+-(skip facebok auth) facebook auth requires that the bussiness is registered officially.

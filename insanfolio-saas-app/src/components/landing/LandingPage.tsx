@@ -1,19 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-const LandingPage = () => {
+
+
+function iframe() {
+    return {
+        __html: '<iframe src="/landing/play-bootstrap-main/index.html" style="position: fixed; border: none; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%;"></iframe>'
+    }
+}
+
+const LandingPage: React.FC = () => {
   return (
     <>
-      <Helmet>
-        <title>Page Title</title>
-        <meta name="description" content="Page description" />
-        {/* Other tags for the head */}
-      </Helmet>
-      <div className="app-content">
-        {/* Your content here */}
-        <h1>Welcome to My Site</h1>
-        {/* More content */}
-      </div>
+        <div dangerouslySetInnerHTML={iframe()} />
     </>
   );
 };

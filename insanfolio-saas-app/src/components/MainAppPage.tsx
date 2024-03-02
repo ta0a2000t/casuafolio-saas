@@ -15,7 +15,7 @@ import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
 
 ///// dynamodb //////////////////////////////////////////////////////////////////////////////////////////////////
 import { generateClient } from "aws-amplify/api";
-import LandingPage from "./landing/LandingPage";
+import LandingPage from "components/landing/LandingPage";
 
 const client = generateClient()
 
@@ -286,7 +286,7 @@ const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => 
       
       
         <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
-        <LandingPage/>
+        (<LoggedInMain isDarkMode={isDarkMode}>{content}</LoggedInMain>)
 
           <FloatButton
             icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
