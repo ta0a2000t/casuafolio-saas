@@ -5,9 +5,10 @@ import logo from 'logo.svg';
 
 
 const MyLogo: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
-    const logoStyle = {
+      const logoStyle: React.CSSProperties = { // Explicitly type as React.CSSProperties
         padding: 5,
         filter: isDarkMode ? 'invert(100%)' : 'none',
+        pointerEvents: 'none',
       };
   return (
     <>
