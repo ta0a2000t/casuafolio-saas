@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../../logo.svg';
+import logo from 'logo.svg';
 
 
 
@@ -10,7 +10,9 @@ const MyLogo: React.FC<{ isDarkMode: boolean }> = ({ isDarkMode }) => {
         filter: isDarkMode ? 'invert(100%)' : 'none',
       };
   return (
-    <img src={logo} className="App-logo" alt="logo" style={logoStyle}/>
+    <>
+        <img src={logo} alt="InsanFolio logo" style={logoStyle}/>
+    </>
 
   );
 };

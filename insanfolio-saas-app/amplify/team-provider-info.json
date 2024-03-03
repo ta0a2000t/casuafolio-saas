@@ -30,6 +30,9 @@
           "deploymentBucketName": "amplify-insanfoliosaasapp-dev-183914-deployment",
           "s3Key": "amplify-builds/insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse-51733567584f31354b48-build.zip"
         }
+      },
+      "api": {
+        "insanfoliosaasapp": {}
       }
     }
   }
