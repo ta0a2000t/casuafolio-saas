@@ -128,7 +128,7 @@ const getBase64 = (file: FileType): Promise<string> =>
   };
 
   return (
-    <div>
+    <div style={{minHeight:100, minWidth:100}}>
         <Text>{galleryLabel}</Text>
 
     <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
