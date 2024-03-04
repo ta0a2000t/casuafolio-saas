@@ -13,7 +13,7 @@ export type CreateUserInput = {
 export type ModelUserConditionInput = {
   firstName?: ModelStringInput | null,
   email?: ModelStringInput | null,
-  username?: ModelIDInput | null,
+  username?: ModelStringInput | null,
   picture?: ModelStringInput | null,
   and?: Array< ModelUserConditionInput | null > | null,
   or?: Array< ModelUserConditionInput | null > | null,
@@ -58,22 +58,6 @@ export type ModelSizeInput = {
   ge?: number | null,
   gt?: number | null,
   between?: Array< number | null > | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
 };
 
 export type User = {
@@ -174,6 +158,22 @@ export type ModelFolioConditionInput = {
   not?: ModelFolioConditionInput | null,
 };
 
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
 export type ModelBooleanInput = {
   ne?: boolean | null,
   eq?: boolean | null,
@@ -233,7 +233,7 @@ export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   firstName?: ModelStringInput | null,
   email?: ModelStringInput | null,
-  username?: ModelIDInput | null,
+  username?: ModelStringInput | null,
   picture?: ModelStringInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
   or?: Array< ModelUserFilterInput | null > | null,
@@ -284,7 +284,7 @@ export type ModelSubscriptionUserFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   firstName?: ModelSubscriptionStringInput | null,
   email?: ModelSubscriptionStringInput | null,
-  username?: ModelSubscriptionIDInput | null,
+  username?: ModelSubscriptionStringInput | null,
   picture?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionUserFilterInput | null > | null,
   or?: Array< ModelSubscriptionUserFilterInput | null > | null,

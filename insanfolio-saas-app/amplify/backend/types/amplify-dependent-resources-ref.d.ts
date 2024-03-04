@@ -1,15 +1,16 @@
 export type AmplifyDependentResourcesAttributes = {
   "api": {
-    "insanfoliosaasapp": {
+    "insanfolioamplifyapp": {
       "GraphQLAPIEndpointOutput": "string",
       "GraphQLAPIIdOutput": "string",
       "GraphQLAPIKeyOutput": "string"
     }
   },
   "auth": {
-    "insanfoliosaasapp0f2d420f": {
+    "insanfolioamplifyapp177b53ef177b53ef": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "GoogleWebClient": "string",
       "HostedUIDomain": "string",
       "IdentityPoolId": "string",
       "IdentityPoolName": "string",
@@ -17,24 +18,13 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
+    },
+    "userPoolGroups": {
+      "AdminGroupRole": "string"
     }
   },
   "function": {
-    "insanfoliosaasapp0f2d420fCreateAuthChallenge": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
-    },
-    "insanfoliosaasapp0f2d420fDefineAuthChallenge": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
-    },
-    "insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse": {
+    "insanfolioamplifyapp177b53ef177b53efPostConfirmation": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",

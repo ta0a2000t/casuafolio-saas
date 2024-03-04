@@ -7,8 +7,10 @@ import {
   PoweroffOutlined
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd/es';
-import { Layout, Menu } from 'antd/es';
+import { Layout, Menu, Modal } from 'antd/es';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { signOut } from 'aws-amplify/auth';
+import SignOutConfirmationModal from './SignOutConfirmationModal';
 
 
 const { Sider } = Layout;
@@ -33,15 +35,31 @@ const items: MenuProps['items'] = [
 
 
 
+
+
+
   const Sidebar: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const navigate = useNavigate();
     const location = useLocation(); // Hook to access the current location
   
     // Find the key that matches the current pathname
     const currentKey = sidebarKeys.find(key => location.pathname.includes(key)) || sidebarKeys[0];
   
+
+    const showSignOutModal = () => setIsModalVisible(true);
+    const handleCancel = () => setIsModalVisible(false);
+    const handleConfirm = () => {
+      setIsModalVisible(false);
+      navigate('/'); // Adjust navigation as needed
+    };
+
+
+
+
     return (
+      <>
       <Sider theme="light" collapsed={true}
 
       style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0 }}>
@@ -51,8 +69,7 @@ const items: MenuProps['items'] = [
           theme="light"
           onClick={({ key }) => {
             if (key === "signOut") {
-              console.log("pressed sign out");
-              // handle sign out logic here
+              showSignOutModal();
             } else {
               navigate(key);
             }
@@ -63,6 +80,12 @@ const items: MenuProps['items'] = [
 
         />
       </Sider>
+            <SignOutConfirmationModal
+            isVisible={isModalVisible}
+            onConfirm={handleConfirm}
+            onCancel={handleCancel}
+          />
+    </>
     );
   };
   

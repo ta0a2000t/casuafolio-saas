@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "insanfolioamplifyapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authinsanfolioamplifyapp177b53ef177b53ef",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

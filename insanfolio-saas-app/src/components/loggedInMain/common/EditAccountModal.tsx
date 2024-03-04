@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Avatar, Button, Typography, Modal, message, Form, Input, Upload, UploadProps } from 'antd';
 import { UserOutlined, UploadOutlined } from '@ant-design/icons';
 import GalleryInput from '../editJourney/profileForm/shared/GalleryInput';
+import { fetchUserService } from 'services/userServices';
 
 
 const { Text } = Typography;
@@ -34,14 +35,35 @@ const EditAccountModal: React.FC<MyEditAccountModalProps> = ({ isDarkMode, userN
     messageApi.error(err);
   };
 
-  const showModal = () => {
+  const showModal = async () => {
     setOpen(true);
+    try {
+      const userId = '324f8eaf-36ae-43de-a6ad-d5183f2ab3e4'; // Use the actual user ID
+      const userData = await fetchUserService(userId);
+  
+      if (userData) {
+        const formValues = {
+          firstName: userData.firstName,
+          email: userData.email,
+          //username: userData.username,
+          // Adjust this part based on how your GalleryInput expects the picture value
+          picture: userData.picture ? userData.picture : undefined,
+        };
+  
+        form.setFieldsValue(formValues);
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
   };
+  
 
   const handleOk = () => {
     form
       .validateFields()
+      
       .then((values) => {
+        
         setConfirmLoading(true);
         // Simulate a server request
         setTimeout(() => {

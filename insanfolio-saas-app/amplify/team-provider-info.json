@@ -1,38 +1,32 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-insanfoliosaasapp-dev-183914-authRole",
-      "UnauthRoleArn": "arn:aws:iam::339712937678:role/amplify-insanfoliosaasapp-dev-183914-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::339712937678:role/amplify-insanfoliosaasapp-dev-183914-authRole",
+      "AuthRoleName": "amplify-insanfolioamplifyapp-dev-42517-authRole",
+      "UnauthRoleArn": "arn:aws:iam::590183983731:role/amplify-insanfolioamplifyapp-dev-42517-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::590183983731:role/amplify-insanfolioamplifyapp-dev-42517-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-insanfoliosaasapp-dev-183914-deployment",
-      "UnauthRoleName": "amplify-insanfoliosaasapp-dev-183914-unauthRole",
-      "StackName": "amplify-insanfoliosaasapp-dev-183914",
-      "StackId": "arn:aws:cloudformation:us-east-2:339712937678:stack/amplify-insanfoliosaasapp-dev-183914/bfb88200-d75b-11ee-9103-0a27d7a831c7",
-      "AmplifyAppId": "d3pmb4bs5t46w2",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-insanfoliosaasapp-dev-183914-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "DeploymentBucketName": "amplify-insanfolioamplifyapp-dev-42517-deployment",
+      "UnauthRoleName": "amplify-insanfolioamplifyapp-dev-42517-unauthRole",
+      "StackName": "amplify-insanfolioamplifyapp-dev-42517",
+      "StackId": "arn:aws:cloudformation:us-east-2:590183983731:stack/amplify-insanfolioamplifyapp-dev-42517/3484b1f0-d9df-11ee-a1b1-0ad3ad9dcbeb",
+      "AmplifyAppId": "d2uihy85uu9kns",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-insanfolioamplifyapp-dev-42517-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
-        "insanfoliosaasapp0f2d420f": {}
+        "insanfolioamplifyapp177b53ef177b53ef": {
+          "googleClientId": "736443581918-96gvgg17kq7idn832famqf5gs7eq7d8h.apps.googleusercontent.com"
+        },
+        "userPoolGroups": {}
       },
       "function": {
-        "insanfoliosaasapp0f2d420fDefineAuthChallenge": {
-          "deploymentBucketName": "amplify-insanfoliosaasapp-dev-183914-deployment",
-          "s3Key": "amplify-builds/insanfoliosaasapp0f2d420fDefineAuthChallenge-4879625a6b374b567243-build.zip"
-        },
-        "insanfoliosaasapp0f2d420fCreateAuthChallenge": {
-          "deploymentBucketName": "amplify-insanfoliosaasapp-dev-183914-deployment",
-          "s3Key": "amplify-builds/insanfoliosaasapp0f2d420fCreateAuthChallenge-2b49654b71475451552b-build.zip"
-        },
-        "insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse": {
-          "RECAPTCHASECRET": "6LcEqIUpAAAAADyUtFFtBWgUc4j83q4O7qH6C0m7",
-          "deploymentBucketName": "amplify-insanfoliosaasapp-dev-183914-deployment",
-          "s3Key": "amplify-builds/insanfoliosaasapp0f2d420fVerifyAuthChallengeResponse-51733567584f31354b48-build.zip"
+        "insanfolioamplifyapp177b53ef177b53efPostConfirmation": {
+          "deploymentBucketName": "amplify-insanfolioamplifyapp-dev-42517-deployment",
+          "s3Key": "amplify-builds/insanfolioamplifyapp177b53ef177b53efPostConfirmation-4851535a427658776837-build.zip"
         }
       },
       "api": {
-        "insanfoliosaasapp": {}
+        "insanfolioamplifyapp": {}
       }
     }
   }
