@@ -1,61 +1,60 @@
-import React from 'react';
-import { Button, Card, Alert, Row, Col, theme, Modal } from 'antd';
-import { EditOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Footer } from 'antd/es/layout/layout';
-import Link from 'antd/es/typography/Link';
+import React, { useState } from 'react';
+import { Button, Card, Modal, Row, Col, Tooltip, Input, Select, DatePicker } from 'antd';
+import { EditOutlined, EyeOutlined, DeleteOutlined, PlusOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import MyWebsites from './MyWebsites';
+
+
+const { Option } = Select;
 
 const Home: React.FC = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  const [isProjectModalVisible, setIsProjectModalVisible] = useState(false);
 
-  // Dummy data for the projects
-  const projects = [
-    { id: 1, name: 'Project 1', type: 'Timeline' },
-    { id: 2, name: 'Project 2', type: 'Research' },
-    { id: 3, name: 'Project 3', type: 'Restaurant' },
-    // Add more projects as needed
-  ];
 
-  // Function to handle quick actions
-  const handleAction = (action: string, projectId: number) => {
-    console.log(`${action} action triggered for project ID: ${projectId}`);
-    // Here, you could add logic to handle each action, such as opening a modal, redirecting, or deleting.
+  const showProjectModal = () => {
+    setIsProjectModalVisible(true);
   };
 
-  return (
-    <div style={{ padding: 24, background: colorBgContainer, borderRadius: borderRadiusLG }}>
-      <Alert
-        message="Welcome Back!"
-        description="This is your personalized dashboard."
-        type="success"
-        showIcon
-        closable
-      />
+  const handleProjectOk = () => {
+    // Example: Add new project to projects array
+    // You should include form for project creation and handle form submission here
+    setIsProjectModalVisible(false);
+  };
 
-      <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
-        {/* Generate a Card for each project */}
-        {projects.map(project => (
-          <Col span={8} key={project.id}>
-            <Card
-              title={project.name}
-              actions={[
-                <EditOutlined key="edit" onClick={() => handleAction('Edit', project.id)} />,
-                <EyeOutlined key="view" onClick={() => handleAction('View', project.id)} />,
-                <DeleteOutlined key="delete" onClick={() => handleAction('Delete', project.id)} />,
-              ]}
-            >
-              <p>Category: {project.type}</p>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+  const handleProjectCancel = () => {
+    setIsProjectModalVisible(false);
+  };
+
+
+
+  return (
+    <div style={{ padding: '24px' }}>
+      <Tooltip title="Watch introduction video">
+        <Button shape="circle" icon={<VideoCameraOutlined />} href='https://www.youtube.com/watch?v=MFQRombmdxw' target='_blank' />
+      </Tooltip>
+
 
       <div style={{ textAlign: 'center', margin: '24px 0' }}>
-        <Button type="primary" size="large">
+        <Button type="primary" size="large" onClick={showProjectModal}>
           Create New Project
         </Button>
       </div>
+
+      <Modal title="Create New Project" open={isProjectModalVisible} onOk={handleProjectOk} onCancel={handleProjectCancel}>
+        {/* Implement your form for creating a new project here */}
+        <p>Select a template and add a project name.</p>
+        <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
+        {/* Example template categories */}
+        <Col span={8}>
+          <Card hoverable cover={<img alt="example" src="https://fastly.picsum.photos/id/281/200/300.jpg?hmac=KCN8F5QTgxHdeQxLpZ5BOuUEVQEp8jAedlLSRERW7CY" />}>
+            <Card.Meta title="Personal Portfolio" description="A brief description of this category." />
+          </Card>
+        </Col>
+        {/* Repeat for other categories */}
+      </Row>
+      </Modal>
+
+      <MyWebsites/>
+
 
     </div>
   );

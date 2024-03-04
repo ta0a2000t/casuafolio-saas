@@ -30,6 +30,8 @@ const SignOutConfirmationModal: React.FC<SignOutConfirmationModalProps> = ({
       onCancel={onCancel}
       okText="Sign Out"
       cancelText="Cancel"
+      okButtonProps={{ danger: true }} // This makes the OK button a danger button
+
     >
       Are you sure you want to sign out?
     </Modal>

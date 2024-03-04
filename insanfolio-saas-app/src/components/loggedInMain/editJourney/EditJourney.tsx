@@ -2,17 +2,12 @@
 import React, { useState } from 'react';
 import { Button, Space } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import ProfileForm from './profileForm/ProfileForm';
-import ProfilePage from '../accountPage/AccountPage';
-import HomePage from '../homePage/HomePage';
-import MyWebsites from '../myWebsites/MyWebsites';
 
 
 const EditJourney: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [activateForm, setActivateForm] = useState<boolean>(false); // Added this line
-  const navigate = useNavigate();
 
   const enterLoading = () => {
     setLoading(true);

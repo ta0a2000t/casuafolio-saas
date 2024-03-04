@@ -15,13 +15,10 @@ import SignOutConfirmationModal from './SignOutConfirmationModal';
 
 const { Sider } = Layout;
 
-const sidebarTabs = ["Home", "Account",  "Edit Journey", "My Websites", "Sign Out"]
-const sidebarKeys = ["/homePage", "/accountPage", "/editJourney", "/myWebsites", "signOut"]
+const sidebarTabs = ["Home", "Sign Out"]
+const sidebarKeys = ["/homePage", "signOut"]
 const items: MenuProps['items'] = [
     HomeOutlined,
-    UserOutlined,
-    EditOutlined,
-    CloudOutlined,
     PoweroffOutlined
   ].map((icon, index) => ({
     key: sidebarKeys[index],
