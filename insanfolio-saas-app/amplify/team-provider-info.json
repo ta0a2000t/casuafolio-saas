@@ -22,7 +22,7 @@
       "function": {
         "insanfolioamplifyapp177b53ef177b53efPostConfirmation": {
           "deploymentBucketName": "amplify-insanfolioamplifyapp-dev-42517-deployment",
-          "s3Key": "amplify-builds/insanfolioamplifyapp177b53ef177b53efPostConfirmation-4851535a427658776837-build.zip"
+          "s3Key": "amplify-builds/insanfolioamplifyapp177b53ef177b53efPostConfirmation-556a4b72374951767356-build.zip"
         }
       },
       "api": {

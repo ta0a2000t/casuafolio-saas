@@ -26,6 +26,7 @@ exports.handler = async (event, context) => {
                 'username': {S: username}, 
                 'createdAt': {S: date.toISOString()},
                 'updatedAt': {S: date.toISOString()},
+                'owner': {S: sub}, // include the owner attribute
                 //  picture and Folios are optional.
             },
             TableName: process.env.USERTABLE

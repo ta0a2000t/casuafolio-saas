@@ -13,11 +13,10 @@ const exampleUserInput = {
     email: "jane.doe@example.com",
     username: "janedoe",
     picture: "https://xsgames.co/randomusers/assets/avatars/pixel/30.jpg"
-  };
+};
 
 export const fetchUserService = async (userId: string) => {
   try {
-    createUserService(exampleUserInput)
     console.log(userId);
     const { data } = await client.graphql({
       query: getUser,

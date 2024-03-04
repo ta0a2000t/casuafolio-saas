@@ -38,14 +38,14 @@ const EditAccountModal: React.FC<MyEditAccountModalProps> = ({ isDarkMode, userN
   const showModal = async () => {
     setOpen(true);
     try {
-      const userId = '324f8eaf-36ae-43de-a6ad-d5183f2ab3e4'; // Use the actual user ID
+      const userId = 'c78755bb-82a9-4cba-8888-b1cbaaf9df42'; // Use the actual user ID
       const userData = await fetchUserService(userId);
   
       if (userData) {
         const formValues = {
           firstName: userData.firstName,
           email: userData.email,
-          //username: userData.username,
+          username: userData.username,
           // Adjust this part based on how your GalleryInput expects the picture value
           picture: userData.picture ? userData.picture : undefined,
         };

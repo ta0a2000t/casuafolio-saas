@@ -1,13 +1,4 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
-
-type User
-@model
-@auth(rules: [
-  { allow: owner, operations: [read, update] }, # Owners can read and update their profile
-  { allow: groups, groups: ["AdminGroup"], operations: [create, read, update, delete] }, # Admins can perform all operations
-]) {
+type User @model @auth(rules: [{allow: owner, operations: [read, update], provider: userPools}, {allow: groups, groups: ["AdminGroup"], operations: [create, read, update, delete]}]) {
   id: ID!
   firstName: String!
   email: AWSEmail!
@@ -16,17 +7,9 @@ type User
   picture: AWSURL
 }
 
-type Folio
-@model
-@auth(rules: [
-  # Allow unauthenticated (anonymous) and authenticated users to read
-  { allow: public, operations: [read] },
-  
-  # Allow owners to read, create, update, and delete their folios
-  { allow: owner, operations: [read, create, update, delete] }
-]) {
+type Folio @model @auth(rules: [{allow: public, operations: [read], provider: iam}, {allow: owner, operations: [read, create, update, delete], provider: userPools}]) {
   id: ID!
-  userID: ID!  @index(name: "byUser") 
+  userID: ID! @index(name: "byUser")
   isPublished: Boolean!
   intro: String
   photos: [AWSURL]
@@ -36,15 +19,7 @@ type Folio
   User: User @belongsTo(fields: ["userID"])
 }
 
-type SocialLink
-@model
-@auth(rules: [
-  # Allow unauthenticated (anonymous) and authenticated users to read
-  { allow: public, operations: [read] },
-  
-  # Allow owners to read, create, update, and delete their folios
-  { allow: owner, operations: [read, create, update, delete] }
-]) {
+type SocialLink @model @auth(rules: [{allow: public, operations: [read], provider: iam}, {allow: owner, operations: [read, create, update, delete], provider: userPools}]) {
   id: ID!
   SocialPlatformType: SocialPlatformType!
   urlPostfix: AWSURL!
@@ -66,6 +41,4 @@ enum SocialPlatformType {
   FACEBOOK
   TIKTOK
 }
-
-
-
+ 
