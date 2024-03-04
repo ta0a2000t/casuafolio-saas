@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Avatar, Button, Typography, Modal, message, Form, Input, Upload, UploadProps } from 'antd';
 import { UserOutlined, UploadOutlined } from '@ant-design/icons';
-import GalleryInput from '../editJourney/profileForm/shared/GalleryInput';
+import GalleryInput from '../editFolio/folioForms/timelineFormManagement/timelineForm/shared/GalleryInput';
 import { fetchUserService } from 'services/userServices';
 
 

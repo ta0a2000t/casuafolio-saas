@@ -151,7 +151,7 @@ const initialValuesWithMoment = {
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
-const ProfileForm: React.FC = () => {
+const TimelineForm: React.FC = () => {
   const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
   const [form] = Form.useForm();
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
@@ -254,4 +254,4 @@ const ProfileForm: React.FC = () => {
   );
 };
 
-export default ProfileForm;
+export default TimelineForm;

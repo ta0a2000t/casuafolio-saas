@@ -6,9 +6,6 @@ import MyFooter from './common/MyFooter';
 import MyHeader from './common/MyHeader';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './homePage/HomePage';
-import EditJourney from './editJourney/EditJourney';
-import ProfileForm from './editJourney/profileForm/ProfileForm';
-import EditAccountModal from './common/EditAccountModal';
 
 const { Header, Content, Footer, Sider } = Layout;
 

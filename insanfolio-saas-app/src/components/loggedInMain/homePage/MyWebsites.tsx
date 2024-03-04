@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { List, Popconfirm, Space, Tooltip } from 'antd';
 import { LikeOutlined, MessageOutlined, StarOutlined, EditOutlined, BarChartOutlined, CloudUploadOutlined, CloudDownloadOutlined, DeleteOutlined } from '@ant-design/icons';
+import {useNavigate} from 'react-router-dom';
 
 // Assuming initial projects array contains the relevant data
 const initialProjects = [
@@ -69,9 +70,12 @@ const IconText: React.FC<IconTextProps> = ({ icon, text, onClick, color, confirm
 
 const MyWebsites: React.FC = () => {
   const [projects, setProjects] = useState(initialProjects); // Convert projects array into state variable
+  const navigate = useNavigate();
 
   // Implement the functions for actions
-  const handleEdit = (projectId: number) => {/* Implementation */};
+  const handleEdit = (projectId: number) => {/* Implementation */
+    navigate('/editFolio',{state:{id:1,type: 'Timeline', folioId: '09233-09r0jff-niweunew'}});
+    };
   const handleDelete = (projectId: number) => {
     setProjects(prevProjects => prevProjects.filter(project => project.id !== projectId));
   };
