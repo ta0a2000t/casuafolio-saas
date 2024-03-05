@@ -87,20 +87,6 @@ export const createFolio = /* GraphQL */ `mutation CreateFolio(
   createFolio(input: $input, condition: $condition) {
     id
     userID
-    isPublished
-    intro
-    photos
-    FolioType
-    SocialLinks {
-      id
-      SocialPlatformType
-      urlPostfix
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-    customDetails
     User {
       id
       firstName
@@ -112,8 +98,31 @@ export const createFolio = /* GraphQL */ `mutation CreateFolio(
       owner
       __typename
     }
+    publishedData {
+      id
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    draftData {
+      id
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    title
+    description
+    folioType
+    folioNumber
+    customMetadata
     createdAt
     updatedAt
+    folioPublishedDataId
+    folioDraftDataId
     owner
     __typename
   }
@@ -129,20 +138,6 @@ export const updateFolio = /* GraphQL */ `mutation UpdateFolio(
   updateFolio(input: $input, condition: $condition) {
     id
     userID
-    isPublished
-    intro
-    photos
-    FolioType
-    SocialLinks {
-      id
-      SocialPlatformType
-      urlPostfix
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-    customDetails
     User {
       id
       firstName
@@ -154,8 +149,31 @@ export const updateFolio = /* GraphQL */ `mutation UpdateFolio(
       owner
       __typename
     }
+    publishedData {
+      id
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    draftData {
+      id
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    title
+    description
+    folioType
+    folioNumber
+    customMetadata
     createdAt
     updatedAt
+    folioPublishedDataId
+    folioDraftDataId
     owner
     __typename
   }
@@ -171,20 +189,6 @@ export const deleteFolio = /* GraphQL */ `mutation DeleteFolio(
   deleteFolio(input: $input, condition: $condition) {
     id
     userID
-    isPublished
-    intro
-    photos
-    FolioType
-    SocialLinks {
-      id
-      SocialPlatformType
-      urlPostfix
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-    customDetails
     User {
       id
       firstName
@@ -196,8 +200,31 @@ export const deleteFolio = /* GraphQL */ `mutation DeleteFolio(
       owner
       __typename
     }
+    publishedData {
+      id
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    draftData {
+      id
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    title
+    description
+    folioType
+    folioNumber
+    customMetadata
     createdAt
     updatedAt
+    folioPublishedDataId
+    folioDraftDataId
     owner
     __typename
   }
@@ -206,14 +233,19 @@ export const deleteFolio = /* GraphQL */ `mutation DeleteFolio(
   APITypes.DeleteFolioMutationVariables,
   APITypes.DeleteFolioMutation
 >;
-export const createSocialLink = /* GraphQL */ `mutation CreateSocialLink(
-  $input: CreateSocialLinkInput!
-  $condition: ModelSocialLinkConditionInput
+export const createDraftFolioData = /* GraphQL */ `mutation CreateDraftFolioData(
+  $input: CreateDraftFolioDataInput!
+  $condition: ModelDraftFolioDataConditionInput
 ) {
-  createSocialLink(input: $input, condition: $condition) {
+  createDraftFolioData(input: $input, condition: $condition) {
     id
-    SocialPlatformType
-    urlPostfix
+    SocialLinks {
+      id
+      SocialPlatformType
+      urlPostfix
+      __typename
+    }
+    customData
     createdAt
     updatedAt
     owner
@@ -221,17 +253,22 @@ export const createSocialLink = /* GraphQL */ `mutation CreateSocialLink(
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateSocialLinkMutationVariables,
-  APITypes.CreateSocialLinkMutation
+  APITypes.CreateDraftFolioDataMutationVariables,
+  APITypes.CreateDraftFolioDataMutation
 >;
-export const updateSocialLink = /* GraphQL */ `mutation UpdateSocialLink(
-  $input: UpdateSocialLinkInput!
-  $condition: ModelSocialLinkConditionInput
+export const updateDraftFolioData = /* GraphQL */ `mutation UpdateDraftFolioData(
+  $input: UpdateDraftFolioDataInput!
+  $condition: ModelDraftFolioDataConditionInput
 ) {
-  updateSocialLink(input: $input, condition: $condition) {
+  updateDraftFolioData(input: $input, condition: $condition) {
     id
-    SocialPlatformType
-    urlPostfix
+    SocialLinks {
+      id
+      SocialPlatformType
+      urlPostfix
+      __typename
+    }
+    customData
     createdAt
     updatedAt
     owner
@@ -239,17 +276,22 @@ export const updateSocialLink = /* GraphQL */ `mutation UpdateSocialLink(
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateSocialLinkMutationVariables,
-  APITypes.UpdateSocialLinkMutation
+  APITypes.UpdateDraftFolioDataMutationVariables,
+  APITypes.UpdateDraftFolioDataMutation
 >;
-export const deleteSocialLink = /* GraphQL */ `mutation DeleteSocialLink(
-  $input: DeleteSocialLinkInput!
-  $condition: ModelSocialLinkConditionInput
+export const deleteDraftFolioData = /* GraphQL */ `mutation DeleteDraftFolioData(
+  $input: DeleteDraftFolioDataInput!
+  $condition: ModelDraftFolioDataConditionInput
 ) {
-  deleteSocialLink(input: $input, condition: $condition) {
+  deleteDraftFolioData(input: $input, condition: $condition) {
     id
-    SocialPlatformType
-    urlPostfix
+    SocialLinks {
+      id
+      SocialPlatformType
+      urlPostfix
+      __typename
+    }
+    customData
     createdAt
     updatedAt
     owner
@@ -257,6 +299,75 @@ export const deleteSocialLink = /* GraphQL */ `mutation DeleteSocialLink(
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteSocialLinkMutationVariables,
-  APITypes.DeleteSocialLinkMutation
+  APITypes.DeleteDraftFolioDataMutationVariables,
+  APITypes.DeleteDraftFolioDataMutation
+>;
+export const createPublishedFolioData = /* GraphQL */ `mutation CreatePublishedFolioData(
+  $input: CreatePublishedFolioDataInput!
+  $condition: ModelPublishedFolioDataConditionInput
+) {
+  createPublishedFolioData(input: $input, condition: $condition) {
+    id
+    SocialLinks {
+      id
+      SocialPlatformType
+      urlPostfix
+      __typename
+    }
+    customData
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreatePublishedFolioDataMutationVariables,
+  APITypes.CreatePublishedFolioDataMutation
+>;
+export const updatePublishedFolioData = /* GraphQL */ `mutation UpdatePublishedFolioData(
+  $input: UpdatePublishedFolioDataInput!
+  $condition: ModelPublishedFolioDataConditionInput
+) {
+  updatePublishedFolioData(input: $input, condition: $condition) {
+    id
+    SocialLinks {
+      id
+      SocialPlatformType
+      urlPostfix
+      __typename
+    }
+    customData
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdatePublishedFolioDataMutationVariables,
+  APITypes.UpdatePublishedFolioDataMutation
+>;
+export const deletePublishedFolioData = /* GraphQL */ `mutation DeletePublishedFolioData(
+  $input: DeletePublishedFolioDataInput!
+  $condition: ModelPublishedFolioDataConditionInput
+) {
+  deletePublishedFolioData(input: $input, condition: $condition) {
+    id
+    SocialLinks {
+      id
+      SocialPlatformType
+      urlPostfix
+      __typename
+    }
+    customData
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeletePublishedFolioDataMutationVariables,
+  APITypes.DeletePublishedFolioDataMutation
 >;

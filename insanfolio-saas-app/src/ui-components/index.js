@@ -4,8 +4,10 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
-export { default as SocialLinkCreateForm } from "./SocialLinkCreateForm";
-export { default as SocialLinkUpdateForm } from "./SocialLinkUpdateForm";
+export { default as DraftFolioDataCreateForm } from "./DraftFolioDataCreateForm";
+export { default as DraftFolioDataUpdateForm } from "./DraftFolioDataUpdateForm";
+export { default as PublishedFolioDataCreateForm } from "./PublishedFolioDataCreateForm";
+export { default as PublishedFolioDataUpdateForm } from "./PublishedFolioDataUpdateForm";
 export { default as UserCreateForm } from "./UserCreateForm";
 export { default as UserUpdateForm } from "./UserUpdateForm";
 export { default as studioTheme } from "./studioTheme";

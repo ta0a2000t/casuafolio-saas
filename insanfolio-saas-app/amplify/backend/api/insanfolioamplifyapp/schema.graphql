@@ -10,16 +10,32 @@ type User @model @auth(rules: [{allow: owner, operations: [read, update], provid
 type Folio @model @auth(rules: [{allow: public, operations: [read], provider: iam}, {allow: owner, operations: [read, create, update, delete], provider: userPools}]) {
   id: ID!
   userID: ID! @index(name: "byUser")
-  isPublished: Boolean!
-  intro: String
-  photos: [AWSURL]
-  FolioType: FolioType!
-  SocialLinks: [SocialLink]
-  customDetails: AWSJSON!
   User: User @belongsTo(fields: ["userID"])
+
+  publishedData: PublishedFolioData @hasOne
+  draftData: DraftFolioData @hasOne
+  title: String!
+  description: String
+  folioType: FolioType!
+  folioNumber: Int
+  customMetadata: AWSJSON
 }
 
-type SocialLink @model @auth(rules: [{allow: public, operations: [read], provider: iam}, {allow: owner, operations: [read, create, update, delete], provider: userPools}]) {
+type DraftFolioData @model @auth(rules: [{allow: owner, operations: [read, create, update, delete], provider: userPools}]) {
+  id: ID!
+
+  SocialLinks: [SocialLink]
+  customData: AWSJSON!
+}
+
+type PublishedFolioData @model @auth(rules: [{allow: public, operations: [read], provider: iam}, {allow: owner, operations: [read, create, update, delete], provider: userPools}]) {
+  id: ID!
+
+  SocialLinks: [SocialLink]
+  customData: AWSJSON!
+}
+
+type SocialLink {
   id: ID!
   SocialPlatformType: SocialPlatformType!
   urlPostfix: AWSURL!
@@ -30,6 +46,7 @@ enum FolioType {
   RESEARCH
   RESTAURANT
   LANDING
+  ORGANIZATION
 }
 
 enum SocialPlatformType {

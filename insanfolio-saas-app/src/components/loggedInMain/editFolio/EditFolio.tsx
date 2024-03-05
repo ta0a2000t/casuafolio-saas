@@ -6,7 +6,7 @@ import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
 import {useLocation} from 'react-router-dom';
 import MenuForm from './folioForms/MenuForm';
 import ResearchForm from './folioForms/ResearchForm';
-import TimelineForm from './folioForms/timelineFormManagement/TimelineFormManagement';
+import TimelineFormManagement from './folioForms/timelineFormManagement/TimelineFormManagement';
 
 
 const EditFolio: React.FC = () => {
@@ -32,7 +32,7 @@ const EditFolio: React.FC = () => {
       <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} spin />} />
       )}
 
-      {activateForm && folioType === "Timeline" && <TimelineForm folioId={folioId} />} 
+      {activateForm && folioType === "Timeline" && <TimelineFormManagement folioId={folioId} />} 
       {activateForm && folioType === "Menu" && <MenuForm folioId={folioId} />} 
       {activateForm && folioType === "Research" && <ResearchForm folioId={folioId} />} 
 

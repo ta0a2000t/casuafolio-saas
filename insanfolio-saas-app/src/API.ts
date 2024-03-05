@@ -83,34 +83,36 @@ export type Folio = {
   __typename: "Folio",
   id: string,
   userID: string,
-  isPublished: boolean,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  FolioType: FolioType,
-  SocialLinks?:  Array<SocialLink | null > | null,
-  customDetails: string,
   User?: User | null,
+  publishedData?: PublishedFolioData | null,
+  draftData?: DraftFolioData | null,
+  title: string,
+  description?: string | null,
+  folioType: FolioType,
+  folioNumber?: number | null,
+  customMetadata?: string | null,
+  createdAt: string,
+  updatedAt: string,
+  folioPublishedDataId?: string | null,
+  folioDraftDataId?: string | null,
+  owner?: string | null,
+};
+
+export type PublishedFolioData = {
+  __typename: "PublishedFolioData",
+  id: string,
+  SocialLinks?:  Array<SocialLink | null > | null,
+  customData: string,
   createdAt: string,
   updatedAt: string,
   owner?: string | null,
 };
-
-export enum FolioType {
-  TIMELINE = "TIMELINE",
-  RESEARCH = "RESEARCH",
-  RESTAURANT = "RESTAURANT",
-  LANDING = "LANDING",
-}
-
 
 export type SocialLink = {
   __typename: "SocialLink",
   id: string,
   SocialPlatformType: SocialPlatformType,
   urlPostfix: string,
-  createdAt: string,
-  updatedAt: string,
-  owner?: string | null,
 };
 
 export enum SocialPlatformType {
@@ -121,6 +123,25 @@ export enum SocialPlatformType {
   GITHUB = "GITHUB",
   FACEBOOK = "FACEBOOK",
   TIKTOK = "TIKTOK",
+}
+
+
+export type DraftFolioData = {
+  __typename: "DraftFolioData",
+  id: string,
+  SocialLinks?:  Array<SocialLink | null > | null,
+  customData: string,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export enum FolioType {
+  TIMELINE = "TIMELINE",
+  RESEARCH = "RESEARCH",
+  RESTAURANT = "RESTAURANT",
+  LANDING = "LANDING",
+  ORGANIZATION = "ORGANIZATION",
 }
 
 
@@ -139,23 +160,27 @@ export type DeleteUserInput = {
 export type CreateFolioInput = {
   id?: string | null,
   userID: string,
-  isPublished: boolean,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  FolioType: FolioType,
-  customDetails: string,
+  title: string,
+  description?: string | null,
+  folioType: FolioType,
+  folioNumber?: number | null,
+  customMetadata?: string | null,
+  folioPublishedDataId?: string | null,
+  folioDraftDataId?: string | null,
 };
 
 export type ModelFolioConditionInput = {
   userID?: ModelIDInput | null,
-  isPublished?: ModelBooleanInput | null,
-  intro?: ModelStringInput | null,
-  photos?: ModelStringInput | null,
-  FolioType?: ModelFolioTypeInput | null,
-  customDetails?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  folioType?: ModelFolioTypeInput | null,
+  folioNumber?: ModelIntInput | null,
+  customMetadata?: ModelStringInput | null,
   and?: Array< ModelFolioConditionInput | null > | null,
   or?: Array< ModelFolioConditionInput | null > | null,
   not?: ModelFolioConditionInput | null,
+  folioPublishedDataId?: ModelIDInput | null,
+  folioDraftDataId?: ModelIDInput | null,
 };
 
 export type ModelIDInput = {
@@ -174,58 +199,88 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type ModelBooleanInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
 export type ModelFolioTypeInput = {
   eq?: FolioType | null,
   ne?: FolioType | null,
 };
 
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type UpdateFolioInput = {
   id: string,
   userID?: string | null,
-  isPublished?: boolean | null,
-  intro?: string | null,
-  photos?: Array< string | null > | null,
-  FolioType?: FolioType | null,
-  customDetails?: string | null,
+  title?: string | null,
+  description?: string | null,
+  folioType?: FolioType | null,
+  folioNumber?: number | null,
+  customMetadata?: string | null,
+  folioPublishedDataId?: string | null,
+  folioDraftDataId?: string | null,
 };
 
 export type DeleteFolioInput = {
   id: string,
 };
 
-export type CreateSocialLinkInput = {
+export type CreateDraftFolioDataInput = {
   id?: string | null,
+  SocialLinks?: Array< SocialLinkInput | null > | null,
+  customData: string,
+};
+
+export type SocialLinkInput = {
+  id: string,
   SocialPlatformType: SocialPlatformType,
   urlPostfix: string,
 };
 
-export type ModelSocialLinkConditionInput = {
-  SocialPlatformType?: ModelSocialPlatformTypeInput | null,
-  urlPostfix?: ModelStringInput | null,
-  and?: Array< ModelSocialLinkConditionInput | null > | null,
-  or?: Array< ModelSocialLinkConditionInput | null > | null,
-  not?: ModelSocialLinkConditionInput | null,
+export type ModelDraftFolioDataConditionInput = {
+  customData?: ModelStringInput | null,
+  and?: Array< ModelDraftFolioDataConditionInput | null > | null,
+  or?: Array< ModelDraftFolioDataConditionInput | null > | null,
+  not?: ModelDraftFolioDataConditionInput | null,
 };
 
-export type ModelSocialPlatformTypeInput = {
-  eq?: SocialPlatformType | null,
-  ne?: SocialPlatformType | null,
-};
-
-export type UpdateSocialLinkInput = {
+export type UpdateDraftFolioDataInput = {
   id: string,
-  SocialPlatformType?: SocialPlatformType | null,
-  urlPostfix?: string | null,
+  SocialLinks?: Array< SocialLinkInput | null > | null,
+  customData?: string | null,
 };
 
-export type DeleteSocialLinkInput = {
+export type DeleteDraftFolioDataInput = {
+  id: string,
+};
+
+export type CreatePublishedFolioDataInput = {
+  id?: string | null,
+  SocialLinks?: Array< SocialLinkInput | null > | null,
+  customData: string,
+};
+
+export type ModelPublishedFolioDataConditionInput = {
+  customData?: ModelStringInput | null,
+  and?: Array< ModelPublishedFolioDataConditionInput | null > | null,
+  or?: Array< ModelPublishedFolioDataConditionInput | null > | null,
+  not?: ModelPublishedFolioDataConditionInput | null,
+};
+
+export type UpdatePublishedFolioDataInput = {
+  id: string,
+  SocialLinks?: Array< SocialLinkInput | null > | null,
+  customData?: string | null,
+};
+
+export type DeletePublishedFolioDataInput = {
   id: string,
 };
 
@@ -249,14 +304,16 @@ export type ModelUserConnection = {
 export type ModelFolioFilterInput = {
   id?: ModelIDInput | null,
   userID?: ModelIDInput | null,
-  isPublished?: ModelBooleanInput | null,
-  intro?: ModelStringInput | null,
-  photos?: ModelStringInput | null,
-  FolioType?: ModelFolioTypeInput | null,
-  customDetails?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  folioType?: ModelFolioTypeInput | null,
+  folioNumber?: ModelIntInput | null,
+  customMetadata?: ModelStringInput | null,
   and?: Array< ModelFolioFilterInput | null > | null,
   or?: Array< ModelFolioFilterInput | null > | null,
   not?: ModelFolioFilterInput | null,
+  folioPublishedDataId?: ModelIDInput | null,
+  folioDraftDataId?: ModelIDInput | null,
 };
 
 export enum ModelSortDirection {
@@ -265,18 +322,31 @@ export enum ModelSortDirection {
 }
 
 
-export type ModelSocialLinkFilterInput = {
+export type ModelDraftFolioDataFilterInput = {
   id?: ModelIDInput | null,
-  SocialPlatformType?: ModelSocialPlatformTypeInput | null,
-  urlPostfix?: ModelStringInput | null,
-  and?: Array< ModelSocialLinkFilterInput | null > | null,
-  or?: Array< ModelSocialLinkFilterInput | null > | null,
-  not?: ModelSocialLinkFilterInput | null,
+  customData?: ModelStringInput | null,
+  and?: Array< ModelDraftFolioDataFilterInput | null > | null,
+  or?: Array< ModelDraftFolioDataFilterInput | null > | null,
+  not?: ModelDraftFolioDataFilterInput | null,
 };
 
-export type ModelSocialLinkConnection = {
-  __typename: "ModelSocialLinkConnection",
-  items:  Array<SocialLink | null >,
+export type ModelDraftFolioDataConnection = {
+  __typename: "ModelDraftFolioDataConnection",
+  items:  Array<DraftFolioData | null >,
+  nextToken?: string | null,
+};
+
+export type ModelPublishedFolioDataFilterInput = {
+  id?: ModelIDInput | null,
+  customData?: ModelStringInput | null,
+  and?: Array< ModelPublishedFolioDataFilterInput | null > | null,
+  or?: Array< ModelPublishedFolioDataFilterInput | null > | null,
+  not?: ModelPublishedFolioDataFilterInput | null,
+};
+
+export type ModelPublishedFolioDataConnection = {
+  __typename: "ModelPublishedFolioDataConnection",
+  items:  Array<PublishedFolioData | null >,
   nextToken?: string | null,
 };
 
@@ -323,26 +393,39 @@ export type ModelSubscriptionStringInput = {
 export type ModelSubscriptionFolioFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   userID?: ModelSubscriptionIDInput | null,
-  isPublished?: ModelSubscriptionBooleanInput | null,
-  intro?: ModelSubscriptionStringInput | null,
-  photos?: ModelSubscriptionStringInput | null,
-  FolioType?: ModelSubscriptionStringInput | null,
-  customDetails?: ModelSubscriptionStringInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  folioType?: ModelSubscriptionStringInput | null,
+  folioNumber?: ModelSubscriptionIntInput | null,
+  customMetadata?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionFolioFilterInput | null > | null,
   or?: Array< ModelSubscriptionFolioFilterInput | null > | null,
 };
 
-export type ModelSubscriptionBooleanInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
+export type ModelSubscriptionIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  in?: Array< number | null > | null,
+  notIn?: Array< number | null > | null,
 };
 
-export type ModelSubscriptionSocialLinkFilterInput = {
+export type ModelSubscriptionDraftFolioDataFilterInput = {
   id?: ModelSubscriptionIDInput | null,
-  SocialPlatformType?: ModelSubscriptionStringInput | null,
-  urlPostfix?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionSocialLinkFilterInput | null > | null,
-  or?: Array< ModelSubscriptionSocialLinkFilterInput | null > | null,
+  customData?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionDraftFolioDataFilterInput | null > | null,
+  or?: Array< ModelSubscriptionDraftFolioDataFilterInput | null > | null,
+};
+
+export type ModelSubscriptionPublishedFolioDataFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  customData?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionPublishedFolioDataFilterInput | null > | null,
+  or?: Array< ModelSubscriptionPublishedFolioDataFilterInput | null > | null,
 };
 
 export type CreateUserMutationVariables = {
@@ -424,20 +507,6 @@ export type CreateFolioMutation = {
     __typename: "Folio",
     id: string,
     userID: string,
-    isPublished: boolean,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    FolioType: FolioType,
-    SocialLinks?:  Array< {
-      __typename: "SocialLink",
-      id: string,
-      SocialPlatformType: SocialPlatformType,
-      urlPostfix: string,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    customDetails: string,
     User?:  {
       __typename: "User",
       id: string,
@@ -449,8 +518,31 @@ export type CreateFolioMutation = {
       updatedAt: string,
       owner?: string | null,
     } | null,
+    publishedData?:  {
+      __typename: "PublishedFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    draftData?:  {
+      __typename: "DraftFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    title: string,
+    description?: string | null,
+    folioType: FolioType,
+    folioNumber?: number | null,
+    customMetadata?: string | null,
     createdAt: string,
     updatedAt: string,
+    folioPublishedDataId?: string | null,
+    folioDraftDataId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -465,20 +557,6 @@ export type UpdateFolioMutation = {
     __typename: "Folio",
     id: string,
     userID: string,
-    isPublished: boolean,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    FolioType: FolioType,
-    SocialLinks?:  Array< {
-      __typename: "SocialLink",
-      id: string,
-      SocialPlatformType: SocialPlatformType,
-      urlPostfix: string,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    customDetails: string,
     User?:  {
       __typename: "User",
       id: string,
@@ -490,8 +568,31 @@ export type UpdateFolioMutation = {
       updatedAt: string,
       owner?: string | null,
     } | null,
+    publishedData?:  {
+      __typename: "PublishedFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    draftData?:  {
+      __typename: "DraftFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    title: string,
+    description?: string | null,
+    folioType: FolioType,
+    folioNumber?: number | null,
+    customMetadata?: string | null,
     createdAt: string,
     updatedAt: string,
+    folioPublishedDataId?: string | null,
+    folioDraftDataId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -506,20 +607,6 @@ export type DeleteFolioMutation = {
     __typename: "Folio",
     id: string,
     userID: string,
-    isPublished: boolean,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    FolioType: FolioType,
-    SocialLinks?:  Array< {
-      __typename: "SocialLink",
-      id: string,
-      SocialPlatformType: SocialPlatformType,
-      urlPostfix: string,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    customDetails: string,
     User?:  {
       __typename: "User",
       id: string,
@@ -531,57 +618,161 @@ export type DeleteFolioMutation = {
       updatedAt: string,
       owner?: string | null,
     } | null,
+    publishedData?:  {
+      __typename: "PublishedFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    draftData?:  {
+      __typename: "DraftFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    title: string,
+    description?: string | null,
+    folioType: FolioType,
+    folioNumber?: number | null,
+    customMetadata?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    folioPublishedDataId?: string | null,
+    folioDraftDataId?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type CreateDraftFolioDataMutationVariables = {
+  input: CreateDraftFolioDataInput,
+  condition?: ModelDraftFolioDataConditionInput | null,
+};
+
+export type CreateDraftFolioDataMutation = {
+  createDraftFolioData?:  {
+    __typename: "DraftFolioData",
+    id: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
   } | null,
 };
 
-export type CreateSocialLinkMutationVariables = {
-  input: CreateSocialLinkInput,
-  condition?: ModelSocialLinkConditionInput | null,
+export type UpdateDraftFolioDataMutationVariables = {
+  input: UpdateDraftFolioDataInput,
+  condition?: ModelDraftFolioDataConditionInput | null,
 };
 
-export type CreateSocialLinkMutation = {
-  createSocialLink?:  {
-    __typename: "SocialLink",
+export type UpdateDraftFolioDataMutation = {
+  updateDraftFolioData?:  {
+    __typename: "DraftFolioData",
     id: string,
-    SocialPlatformType: SocialPlatformType,
-    urlPostfix: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
   } | null,
 };
 
-export type UpdateSocialLinkMutationVariables = {
-  input: UpdateSocialLinkInput,
-  condition?: ModelSocialLinkConditionInput | null,
+export type DeleteDraftFolioDataMutationVariables = {
+  input: DeleteDraftFolioDataInput,
+  condition?: ModelDraftFolioDataConditionInput | null,
 };
 
-export type UpdateSocialLinkMutation = {
-  updateSocialLink?:  {
-    __typename: "SocialLink",
+export type DeleteDraftFolioDataMutation = {
+  deleteDraftFolioData?:  {
+    __typename: "DraftFolioData",
     id: string,
-    SocialPlatformType: SocialPlatformType,
-    urlPostfix: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
   } | null,
 };
 
-export type DeleteSocialLinkMutationVariables = {
-  input: DeleteSocialLinkInput,
-  condition?: ModelSocialLinkConditionInput | null,
+export type CreatePublishedFolioDataMutationVariables = {
+  input: CreatePublishedFolioDataInput,
+  condition?: ModelPublishedFolioDataConditionInput | null,
 };
 
-export type DeleteSocialLinkMutation = {
-  deleteSocialLink?:  {
-    __typename: "SocialLink",
+export type CreatePublishedFolioDataMutation = {
+  createPublishedFolioData?:  {
+    __typename: "PublishedFolioData",
     id: string,
-    SocialPlatformType: SocialPlatformType,
-    urlPostfix: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdatePublishedFolioDataMutationVariables = {
+  input: UpdatePublishedFolioDataInput,
+  condition?: ModelPublishedFolioDataConditionInput | null,
+};
+
+export type UpdatePublishedFolioDataMutation = {
+  updatePublishedFolioData?:  {
+    __typename: "PublishedFolioData",
+    id: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeletePublishedFolioDataMutationVariables = {
+  input: DeletePublishedFolioDataInput,
+  condition?: ModelPublishedFolioDataConditionInput | null,
+};
+
+export type DeletePublishedFolioDataMutation = {
+  deletePublishedFolioData?:  {
+    __typename: "PublishedFolioData",
+    id: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
@@ -643,20 +834,6 @@ export type GetFolioQuery = {
     __typename: "Folio",
     id: string,
     userID: string,
-    isPublished: boolean,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    FolioType: FolioType,
-    SocialLinks?:  Array< {
-      __typename: "SocialLink",
-      id: string,
-      SocialPlatformType: SocialPlatformType,
-      urlPostfix: string,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    customDetails: string,
     User?:  {
       __typename: "User",
       id: string,
@@ -668,8 +845,31 @@ export type GetFolioQuery = {
       updatedAt: string,
       owner?: string | null,
     } | null,
+    publishedData?:  {
+      __typename: "PublishedFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    draftData?:  {
+      __typename: "DraftFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    title: string,
+    description?: string | null,
+    folioType: FolioType,
+    folioNumber?: number | null,
+    customMetadata?: string | null,
     createdAt: string,
     updatedAt: string,
+    folioPublishedDataId?: string | null,
+    folioDraftDataId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -687,13 +887,15 @@ export type ListFoliosQuery = {
       __typename: "Folio",
       id: string,
       userID: string,
-      isPublished: boolean,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      FolioType: FolioType,
-      customDetails: string,
+      title: string,
+      description?: string | null,
+      folioType: FolioType,
+      folioNumber?: number | null,
+      customMetadata?: string | null,
       createdAt: string,
       updatedAt: string,
+      folioPublishedDataId?: string | null,
+      folioDraftDataId?: string | null,
       owner?: string | null,
     } | null >,
     nextToken?: string | null,
@@ -715,11 +917,55 @@ export type FoliosByUserIDQuery = {
       __typename: "Folio",
       id: string,
       userID: string,
-      isPublished: boolean,
-      intro?: string | null,
-      photos?: Array< string | null > | null,
-      FolioType: FolioType,
-      customDetails: string,
+      title: string,
+      description?: string | null,
+      folioType: FolioType,
+      folioNumber?: number | null,
+      customMetadata?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      folioPublishedDataId?: string | null,
+      folioDraftDataId?: string | null,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetDraftFolioDataQueryVariables = {
+  id: string,
+};
+
+export type GetDraftFolioDataQuery = {
+  getDraftFolioData?:  {
+    __typename: "DraftFolioData",
+    id: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListDraftFolioDataQueryVariables = {
+  filter?: ModelDraftFolioDataFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListDraftFolioDataQuery = {
+  listDraftFolioData?:  {
+    __typename: "ModelDraftFolioDataConnection",
+    items:  Array< {
+      __typename: "DraftFolioData",
+      id: string,
+      customData: string,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -728,36 +974,40 @@ export type FoliosByUserIDQuery = {
   } | null,
 };
 
-export type GetSocialLinkQueryVariables = {
+export type GetPublishedFolioDataQueryVariables = {
   id: string,
 };
 
-export type GetSocialLinkQuery = {
-  getSocialLink?:  {
-    __typename: "SocialLink",
+export type GetPublishedFolioDataQuery = {
+  getPublishedFolioData?:  {
+    __typename: "PublishedFolioData",
     id: string,
-    SocialPlatformType: SocialPlatformType,
-    urlPostfix: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
   } | null,
 };
 
-export type ListSocialLinksQueryVariables = {
-  filter?: ModelSocialLinkFilterInput | null,
+export type ListPublishedFolioDataQueryVariables = {
+  filter?: ModelPublishedFolioDataFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListSocialLinksQuery = {
-  listSocialLinks?:  {
-    __typename: "ModelSocialLinkConnection",
+export type ListPublishedFolioDataQuery = {
+  listPublishedFolioData?:  {
+    __typename: "ModelPublishedFolioDataConnection",
     items:  Array< {
-      __typename: "SocialLink",
+      __typename: "PublishedFolioData",
       id: string,
-      SocialPlatformType: SocialPlatformType,
-      urlPostfix: string,
+      customData: string,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -845,20 +1095,6 @@ export type OnCreateFolioSubscription = {
     __typename: "Folio",
     id: string,
     userID: string,
-    isPublished: boolean,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    FolioType: FolioType,
-    SocialLinks?:  Array< {
-      __typename: "SocialLink",
-      id: string,
-      SocialPlatformType: SocialPlatformType,
-      urlPostfix: string,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    customDetails: string,
     User?:  {
       __typename: "User",
       id: string,
@@ -870,8 +1106,31 @@ export type OnCreateFolioSubscription = {
       updatedAt: string,
       owner?: string | null,
     } | null,
+    publishedData?:  {
+      __typename: "PublishedFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    draftData?:  {
+      __typename: "DraftFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    title: string,
+    description?: string | null,
+    folioType: FolioType,
+    folioNumber?: number | null,
+    customMetadata?: string | null,
     createdAt: string,
     updatedAt: string,
+    folioPublishedDataId?: string | null,
+    folioDraftDataId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -886,20 +1145,6 @@ export type OnUpdateFolioSubscription = {
     __typename: "Folio",
     id: string,
     userID: string,
-    isPublished: boolean,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    FolioType: FolioType,
-    SocialLinks?:  Array< {
-      __typename: "SocialLink",
-      id: string,
-      SocialPlatformType: SocialPlatformType,
-      urlPostfix: string,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    customDetails: string,
     User?:  {
       __typename: "User",
       id: string,
@@ -911,8 +1156,31 @@ export type OnUpdateFolioSubscription = {
       updatedAt: string,
       owner?: string | null,
     } | null,
+    publishedData?:  {
+      __typename: "PublishedFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    draftData?:  {
+      __typename: "DraftFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    title: string,
+    description?: string | null,
+    folioType: FolioType,
+    folioNumber?: number | null,
+    customMetadata?: string | null,
     createdAt: string,
     updatedAt: string,
+    folioPublishedDataId?: string | null,
+    folioDraftDataId?: string | null,
     owner?: string | null,
   } | null,
 };
@@ -927,20 +1195,6 @@ export type OnDeleteFolioSubscription = {
     __typename: "Folio",
     id: string,
     userID: string,
-    isPublished: boolean,
-    intro?: string | null,
-    photos?: Array< string | null > | null,
-    FolioType: FolioType,
-    SocialLinks?:  Array< {
-      __typename: "SocialLink",
-      id: string,
-      SocialPlatformType: SocialPlatformType,
-      urlPostfix: string,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    customDetails: string,
     User?:  {
       __typename: "User",
       id: string,
@@ -952,57 +1206,161 @@ export type OnDeleteFolioSubscription = {
       updatedAt: string,
       owner?: string | null,
     } | null,
+    publishedData?:  {
+      __typename: "PublishedFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    draftData?:  {
+      __typename: "DraftFolioData",
+      id: string,
+      customData: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    title: string,
+    description?: string | null,
+    folioType: FolioType,
+    folioNumber?: number | null,
+    customMetadata?: string | null,
+    createdAt: string,
+    updatedAt: string,
+    folioPublishedDataId?: string | null,
+    folioDraftDataId?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateDraftFolioDataSubscriptionVariables = {
+  filter?: ModelSubscriptionDraftFolioDataFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnCreateDraftFolioDataSubscription = {
+  onCreateDraftFolioData?:  {
+    __typename: "DraftFolioData",
+    id: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
   } | null,
 };
 
-export type OnCreateSocialLinkSubscriptionVariables = {
-  filter?: ModelSubscriptionSocialLinkFilterInput | null,
+export type OnUpdateDraftFolioDataSubscriptionVariables = {
+  filter?: ModelSubscriptionDraftFolioDataFilterInput | null,
   owner?: string | null,
 };
 
-export type OnCreateSocialLinkSubscription = {
-  onCreateSocialLink?:  {
-    __typename: "SocialLink",
+export type OnUpdateDraftFolioDataSubscription = {
+  onUpdateDraftFolioData?:  {
+    __typename: "DraftFolioData",
     id: string,
-    SocialPlatformType: SocialPlatformType,
-    urlPostfix: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
   } | null,
 };
 
-export type OnUpdateSocialLinkSubscriptionVariables = {
-  filter?: ModelSubscriptionSocialLinkFilterInput | null,
+export type OnDeleteDraftFolioDataSubscriptionVariables = {
+  filter?: ModelSubscriptionDraftFolioDataFilterInput | null,
   owner?: string | null,
 };
 
-export type OnUpdateSocialLinkSubscription = {
-  onUpdateSocialLink?:  {
-    __typename: "SocialLink",
+export type OnDeleteDraftFolioDataSubscription = {
+  onDeleteDraftFolioData?:  {
+    __typename: "DraftFolioData",
     id: string,
-    SocialPlatformType: SocialPlatformType,
-    urlPostfix: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,
   } | null,
 };
 
-export type OnDeleteSocialLinkSubscriptionVariables = {
-  filter?: ModelSubscriptionSocialLinkFilterInput | null,
+export type OnCreatePublishedFolioDataSubscriptionVariables = {
+  filter?: ModelSubscriptionPublishedFolioDataFilterInput | null,
   owner?: string | null,
 };
 
-export type OnDeleteSocialLinkSubscription = {
-  onDeleteSocialLink?:  {
-    __typename: "SocialLink",
+export type OnCreatePublishedFolioDataSubscription = {
+  onCreatePublishedFolioData?:  {
+    __typename: "PublishedFolioData",
     id: string,
-    SocialPlatformType: SocialPlatformType,
-    urlPostfix: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdatePublishedFolioDataSubscriptionVariables = {
+  filter?: ModelSubscriptionPublishedFolioDataFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnUpdatePublishedFolioDataSubscription = {
+  onUpdatePublishedFolioData?:  {
+    __typename: "PublishedFolioData",
+    id: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeletePublishedFolioDataSubscriptionVariables = {
+  filter?: ModelSubscriptionPublishedFolioDataFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnDeletePublishedFolioDataSubscription = {
+  onDeletePublishedFolioData?:  {
+    __typename: "PublishedFolioData",
+    id: string,
+    SocialLinks?:  Array< {
+      __typename: "SocialLink",
+      id: string,
+      SocialPlatformType: SocialPlatformType,
+      urlPostfix: string,
+    } | null > | null,
+    customData: string,
     createdAt: string,
     updatedAt: string,
     owner?: string | null,

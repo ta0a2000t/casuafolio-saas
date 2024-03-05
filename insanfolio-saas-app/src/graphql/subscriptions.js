@@ -75,20 +75,6 @@ export const onCreateFolio = /* GraphQL */ `
     onCreateFolio(filter: $filter, owner: $owner) {
       id
       userID
-      isPublished
-      intro
-      photos
-      FolioType
-      SocialLinks {
-        id
-        SocialPlatformType
-        urlPostfix
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      customDetails
       User {
         id
         firstName
@@ -100,8 +86,31 @@ export const onCreateFolio = /* GraphQL */ `
         owner
         __typename
       }
+      publishedData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      draftData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      title
+      description
+      folioType
+      folioNumber
+      customMetadata
       createdAt
       updatedAt
+      folioPublishedDataId
+      folioDraftDataId
       owner
       __typename
     }
@@ -115,20 +124,6 @@ export const onUpdateFolio = /* GraphQL */ `
     onUpdateFolio(filter: $filter, owner: $owner) {
       id
       userID
-      isPublished
-      intro
-      photos
-      FolioType
-      SocialLinks {
-        id
-        SocialPlatformType
-        urlPostfix
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      customDetails
       User {
         id
         firstName
@@ -140,8 +135,31 @@ export const onUpdateFolio = /* GraphQL */ `
         owner
         __typename
       }
+      publishedData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      draftData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      title
+      description
+      folioType
+      folioNumber
+      customMetadata
       createdAt
       updatedAt
+      folioPublishedDataId
+      folioDraftDataId
       owner
       __typename
     }
@@ -155,20 +173,6 @@ export const onDeleteFolio = /* GraphQL */ `
     onDeleteFolio(filter: $filter, owner: $owner) {
       id
       userID
-      isPublished
-      intro
-      photos
-      FolioType
-      SocialLinks {
-        id
-        SocialPlatformType
-        urlPostfix
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      customDetails
       User {
         id
         firstName
@@ -180,6 +184,50 @@ export const onDeleteFolio = /* GraphQL */ `
         owner
         __typename
       }
+      publishedData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      draftData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      title
+      description
+      folioType
+      folioNumber
+      customMetadata
+      createdAt
+      updatedAt
+      folioPublishedDataId
+      folioDraftDataId
+      owner
+      __typename
+    }
+  }
+`;
+export const onCreateDraftFolioData = /* GraphQL */ `
+  subscription OnCreateDraftFolioData(
+    $filter: ModelSubscriptionDraftFolioDataFilterInput
+    $owner: String
+  ) {
+    onCreateDraftFolioData(filter: $filter, owner: $owner) {
+      id
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner
@@ -187,15 +235,20 @@ export const onDeleteFolio = /* GraphQL */ `
     }
   }
 `;
-export const onCreateSocialLink = /* GraphQL */ `
-  subscription OnCreateSocialLink(
-    $filter: ModelSubscriptionSocialLinkFilterInput
+export const onUpdateDraftFolioData = /* GraphQL */ `
+  subscription OnUpdateDraftFolioData(
+    $filter: ModelSubscriptionDraftFolioDataFilterInput
     $owner: String
   ) {
-    onCreateSocialLink(filter: $filter, owner: $owner) {
+    onUpdateDraftFolioData(filter: $filter, owner: $owner) {
       id
-      SocialPlatformType
-      urlPostfix
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner
@@ -203,15 +256,20 @@ export const onCreateSocialLink = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateSocialLink = /* GraphQL */ `
-  subscription OnUpdateSocialLink(
-    $filter: ModelSubscriptionSocialLinkFilterInput
+export const onDeleteDraftFolioData = /* GraphQL */ `
+  subscription OnDeleteDraftFolioData(
+    $filter: ModelSubscriptionDraftFolioDataFilterInput
     $owner: String
   ) {
-    onUpdateSocialLink(filter: $filter, owner: $owner) {
+    onDeleteDraftFolioData(filter: $filter, owner: $owner) {
       id
-      SocialPlatformType
-      urlPostfix
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner
@@ -219,15 +277,62 @@ export const onUpdateSocialLink = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteSocialLink = /* GraphQL */ `
-  subscription OnDeleteSocialLink(
-    $filter: ModelSubscriptionSocialLinkFilterInput
+export const onCreatePublishedFolioData = /* GraphQL */ `
+  subscription OnCreatePublishedFolioData(
+    $filter: ModelSubscriptionPublishedFolioDataFilterInput
     $owner: String
   ) {
-    onDeleteSocialLink(filter: $filter, owner: $owner) {
+    onCreatePublishedFolioData(filter: $filter, owner: $owner) {
       id
-      SocialPlatformType
-      urlPostfix
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const onUpdatePublishedFolioData = /* GraphQL */ `
+  subscription OnUpdatePublishedFolioData(
+    $filter: ModelSubscriptionPublishedFolioDataFilterInput
+    $owner: String
+  ) {
+    onUpdatePublishedFolioData(filter: $filter, owner: $owner) {
+      id
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const onDeletePublishedFolioData = /* GraphQL */ `
+  subscription OnDeletePublishedFolioData(
+    $filter: ModelSubscriptionPublishedFolioDataFilterInput
+    $owner: String
+  ) {
+    onDeletePublishedFolioData(filter: $filter, owner: $owner) {
+      id
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner

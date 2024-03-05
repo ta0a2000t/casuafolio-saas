@@ -267,6 +267,8 @@ type MainAppPageProps = {
   signOut?: UseAuthenticator["signOut"]; //() => void;
   user?: AuthUser;
   content:  React.ReactNode
+  isDarkMode: boolean;
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 
@@ -275,8 +277,7 @@ type MainAppPageProps = {
 
 
 // for sign out, refer to Login.tsx file for how to do this
-const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content }) => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content , isDarkMode, setIsDarkMode}) => {
     const { defaultAlgorithm, darkAlgorithm } = theme;
     
     return (

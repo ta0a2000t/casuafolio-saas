@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
-import './Template1.css';
+import './App.css';
 import TimelineEvent from './components/TimelineEvent';
 import './font-awesome/css/font-awesome.min.css';
 import About from './components/About'
@@ -13,7 +13,7 @@ import {HEADER_COLOR} from './stylingConstants';
 import { getColor } from './helpers/utils';
 
 
-function Template1() {
+function App(values) {
   const bgColor = 'rgba(0, 0, 0, 1)';
   const theme = '';
   const [timelineEvents, setTimelineEvents] = useState([]);
@@ -64,9 +64,9 @@ function Template1() {
   }, [bgColor]);
 
   return (
-    <div className={`Template1 ${theme}`} style={{ backgroundColor: bgColor }}>
+    <div className={`App ${theme}`} style={{ backgroundColor: bgColor }}>
     
-    <header className="Template1-header" style={{ backgroundColor: headerColor }}>
+    <header className="App-header" style={{ backgroundColor: headerColor }}>
       <div className="top-left">
         <div className="Fullname">{FULL_NAME}</div>
       </div>
@@ -140,4 +140,4 @@ function Template1() {
   );
 }
 
-export default Template1;
+export default App;

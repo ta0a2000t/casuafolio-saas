@@ -1,22 +1,23 @@
 import React from 'react';
 
-import {theme } from 'antd';
+import {Layout, theme } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import Link from 'antd/es/typography/Link';
-
+import TimelineForm from './timelineForm/TimelineForm';
+import App from 'templates/timeline/timelineTemplate1/src/App'
 
 interface TimelineFormProps {
     folioId: string;
 }
 
-const TimelineForm: React.FC<TimelineFormProps> = ({folioId}) => {
+const TimelineFormManagement: React.FC<TimelineFormProps> = ({folioId}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   return (
-    <>Timeline edit</>
+      <TimelineForm/>
   );
 };
 
-export default TimelineForm;
+export default TimelineFormManagement;

@@ -75,20 +75,6 @@ export const createFolio = /* GraphQL */ `
     createFolio(input: $input, condition: $condition) {
       id
       userID
-      isPublished
-      intro
-      photos
-      FolioType
-      SocialLinks {
-        id
-        SocialPlatformType
-        urlPostfix
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      customDetails
       User {
         id
         firstName
@@ -100,8 +86,31 @@ export const createFolio = /* GraphQL */ `
         owner
         __typename
       }
+      publishedData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      draftData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      title
+      description
+      folioType
+      folioNumber
+      customMetadata
       createdAt
       updatedAt
+      folioPublishedDataId
+      folioDraftDataId
       owner
       __typename
     }
@@ -115,20 +124,6 @@ export const updateFolio = /* GraphQL */ `
     updateFolio(input: $input, condition: $condition) {
       id
       userID
-      isPublished
-      intro
-      photos
-      FolioType
-      SocialLinks {
-        id
-        SocialPlatformType
-        urlPostfix
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      customDetails
       User {
         id
         firstName
@@ -140,8 +135,31 @@ export const updateFolio = /* GraphQL */ `
         owner
         __typename
       }
+      publishedData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      draftData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      title
+      description
+      folioType
+      folioNumber
+      customMetadata
       createdAt
       updatedAt
+      folioPublishedDataId
+      folioDraftDataId
       owner
       __typename
     }
@@ -155,20 +173,6 @@ export const deleteFolio = /* GraphQL */ `
     deleteFolio(input: $input, condition: $condition) {
       id
       userID
-      isPublished
-      intro
-      photos
-      FolioType
-      SocialLinks {
-        id
-        SocialPlatformType
-        urlPostfix
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      customDetails
       User {
         id
         firstName
@@ -180,6 +184,50 @@ export const deleteFolio = /* GraphQL */ `
         owner
         __typename
       }
+      publishedData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      draftData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      title
+      description
+      folioType
+      folioNumber
+      customMetadata
+      createdAt
+      updatedAt
+      folioPublishedDataId
+      folioDraftDataId
+      owner
+      __typename
+    }
+  }
+`;
+export const createDraftFolioData = /* GraphQL */ `
+  mutation CreateDraftFolioData(
+    $input: CreateDraftFolioDataInput!
+    $condition: ModelDraftFolioDataConditionInput
+  ) {
+    createDraftFolioData(input: $input, condition: $condition) {
+      id
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner
@@ -187,15 +235,20 @@ export const deleteFolio = /* GraphQL */ `
     }
   }
 `;
-export const createSocialLink = /* GraphQL */ `
-  mutation CreateSocialLink(
-    $input: CreateSocialLinkInput!
-    $condition: ModelSocialLinkConditionInput
+export const updateDraftFolioData = /* GraphQL */ `
+  mutation UpdateDraftFolioData(
+    $input: UpdateDraftFolioDataInput!
+    $condition: ModelDraftFolioDataConditionInput
   ) {
-    createSocialLink(input: $input, condition: $condition) {
+    updateDraftFolioData(input: $input, condition: $condition) {
       id
-      SocialPlatformType
-      urlPostfix
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner
@@ -203,15 +256,20 @@ export const createSocialLink = /* GraphQL */ `
     }
   }
 `;
-export const updateSocialLink = /* GraphQL */ `
-  mutation UpdateSocialLink(
-    $input: UpdateSocialLinkInput!
-    $condition: ModelSocialLinkConditionInput
+export const deleteDraftFolioData = /* GraphQL */ `
+  mutation DeleteDraftFolioData(
+    $input: DeleteDraftFolioDataInput!
+    $condition: ModelDraftFolioDataConditionInput
   ) {
-    updateSocialLink(input: $input, condition: $condition) {
+    deleteDraftFolioData(input: $input, condition: $condition) {
       id
-      SocialPlatformType
-      urlPostfix
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner
@@ -219,15 +277,62 @@ export const updateSocialLink = /* GraphQL */ `
     }
   }
 `;
-export const deleteSocialLink = /* GraphQL */ `
-  mutation DeleteSocialLink(
-    $input: DeleteSocialLinkInput!
-    $condition: ModelSocialLinkConditionInput
+export const createPublishedFolioData = /* GraphQL */ `
+  mutation CreatePublishedFolioData(
+    $input: CreatePublishedFolioDataInput!
+    $condition: ModelPublishedFolioDataConditionInput
   ) {
-    deleteSocialLink(input: $input, condition: $condition) {
+    createPublishedFolioData(input: $input, condition: $condition) {
       id
-      SocialPlatformType
-      urlPostfix
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const updatePublishedFolioData = /* GraphQL */ `
+  mutation UpdatePublishedFolioData(
+    $input: UpdatePublishedFolioDataInput!
+    $condition: ModelPublishedFolioDataConditionInput
+  ) {
+    updatePublishedFolioData(input: $input, condition: $condition) {
+      id
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const deletePublishedFolioData = /* GraphQL */ `
+  mutation DeletePublishedFolioData(
+    $input: DeletePublishedFolioDataInput!
+    $condition: ModelPublishedFolioDataConditionInput
+  ) {
+    deletePublishedFolioData(input: $input, condition: $condition) {
+      id
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner

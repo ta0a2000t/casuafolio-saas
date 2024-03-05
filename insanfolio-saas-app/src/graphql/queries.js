@@ -48,20 +48,6 @@ export const getFolio = /* GraphQL */ `
     getFolio(id: $id) {
       id
       userID
-      isPublished
-      intro
-      photos
-      FolioType
-      SocialLinks {
-        id
-        SocialPlatformType
-        urlPostfix
-        createdAt
-        updatedAt
-        owner
-        __typename
-      }
-      customDetails
       User {
         id
         firstName
@@ -73,8 +59,31 @@ export const getFolio = /* GraphQL */ `
         owner
         __typename
       }
+      publishedData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      draftData {
+        id
+        customData
+        createdAt
+        updatedAt
+        owner
+        __typename
+      }
+      title
+      description
+      folioType
+      folioNumber
+      customMetadata
       createdAt
       updatedAt
+      folioPublishedDataId
+      folioDraftDataId
       owner
       __typename
     }
@@ -90,13 +99,15 @@ export const listFolios = /* GraphQL */ `
       items {
         id
         userID
-        isPublished
-        intro
-        photos
-        FolioType
-        customDetails
+        title
+        description
+        folioType
+        folioNumber
+        customMetadata
         createdAt
         updatedAt
+        folioPublishedDataId
+        folioDraftDataId
         owner
         __typename
       }
@@ -123,11 +134,51 @@ export const foliosByUserID = /* GraphQL */ `
       items {
         id
         userID
-        isPublished
-        intro
-        photos
-        FolioType
-        customDetails
+        title
+        description
+        folioType
+        folioNumber
+        customMetadata
+        createdAt
+        updatedAt
+        folioPublishedDataId
+        folioDraftDataId
+        owner
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getDraftFolioData = /* GraphQL */ `
+  query GetDraftFolioData($id: ID!) {
+    getDraftFolioData(id: $id) {
+      id
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+  }
+`;
+export const listDraftFolioData = /* GraphQL */ `
+  query ListDraftFolioData(
+    $filter: ModelDraftFolioDataFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listDraftFolioData(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        customData
         createdAt
         updatedAt
         owner
@@ -138,12 +189,17 @@ export const foliosByUserID = /* GraphQL */ `
     }
   }
 `;
-export const getSocialLink = /* GraphQL */ `
-  query GetSocialLink($id: ID!) {
-    getSocialLink(id: $id) {
+export const getPublishedFolioData = /* GraphQL */ `
+  query GetPublishedFolioData($id: ID!) {
+    getPublishedFolioData(id: $id) {
       id
-      SocialPlatformType
-      urlPostfix
+      SocialLinks {
+        id
+        SocialPlatformType
+        urlPostfix
+        __typename
+      }
+      customData
       createdAt
       updatedAt
       owner
@@ -151,17 +207,20 @@ export const getSocialLink = /* GraphQL */ `
     }
   }
 `;
-export const listSocialLinks = /* GraphQL */ `
-  query ListSocialLinks(
-    $filter: ModelSocialLinkFilterInput
+export const listPublishedFolioData = /* GraphQL */ `
+  query ListPublishedFolioData(
+    $filter: ModelPublishedFolioDataFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listSocialLinks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPublishedFolioData(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
-        SocialPlatformType
-        urlPostfix
+        customData
         createdAt
         updatedAt
         owner
