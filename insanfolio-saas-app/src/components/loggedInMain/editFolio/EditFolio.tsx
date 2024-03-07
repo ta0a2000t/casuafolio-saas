@@ -1,42 +1,58 @@
-// has a big button introducing to filling out the form. this then hides the sidebar and navigates to the form
-import React, { useState } from 'react';
-import { Button, Space, Spin } from 'antd';
-import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
-
-import {useLocation} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { useLocation } from 'react-router-dom';
 import MenuForm from './folioForms/MenuForm';
 import ResearchForm from './folioForms/ResearchForm';
 import TimelineFormManagement from './folioForms/timelineFormManagement/TimelineFormManagement';
-
+import { fetchFolioService } from 'services/folioServices';
+import { FolioType, GetFolioQuery } from 'API';
 
 const EditFolio: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [activateForm, setActivateForm] = useState<boolean>(true); // Added this line
+  const [activateForm, setActivateForm] = useState<boolean>(false);
+  const [folioData, setFolioData] = useState<GetFolioQuery | null>(null);
   const location = useLocation();
 
-  const folioType = location.state.type;
-  const folioId = location.state.folioId;
+  // Extract folioType and folioId outside of useEffect to make them accessible throughout the component
+  const folioType = location.state?.type as FolioType;
+  const folioId = location.state?.folioId as string;
 
-  const enterLoading = () => {
-    setLoading(true);
+  useEffect(() => {
+    // No need to extract folioType and folioId here again since they're already available in the component scope
 
-    setTimeout(() => {
-      setLoading(false);
-      setActivateForm(true); // Update the state to show ProfileForm
-    }, 1000);
-  };
+    const loadData = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchFolioService(folioId);
+        setFolioData(data);
+        setActivateForm(true);
+      } catch (error) {
+        console.error('Failed to fetch folio data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (folioId) {
+      loadData();
+    }
+  }, [folioId]); // Depend on folioId to re-fetch if it changes
 
   return (
     <div>
-      {!activateForm && ( // Show button only if activateForm is false
-      <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} spin />} />
+      {loading && <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} spin />} />}
+
+      {!loading && activateForm && folioData && folioType === FolioType.TIMELINE && (
+        <TimelineFormManagement folioData={folioData} />
       )}
-
-      {activateForm && folioType === "Timeline" && <TimelineFormManagement folioId={folioId} />} 
-      {activateForm && folioType === "Menu" && <MenuForm folioId={folioId} />} 
-      {activateForm && folioType === "Research" && <ResearchForm folioId={folioId} />} 
-
-    </div> 
+      {!loading && activateForm && folioData && folioType === FolioType.RESTAURANT && (
+        <MenuForm folioData={folioData} />
+      )}
+      {!loading && activateForm && folioData && folioType === FolioType.RESEARCH && (
+        <ResearchForm folioData={folioData} />
+      )}
+    </div>
   );
 };
 

@@ -3,12 +3,13 @@ import React from 'react';
 import {theme } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import Link from 'antd/es/typography/Link';
+import { GetFolioQuery } from 'API';
 
 
 interface MenuFormProps {
-    folioId: string;
+  folioData: GetFolioQuery;
 }
-const MenuForm: React.FC<MenuFormProps> = ({folioId}) => {
+const MenuForm: React.FC<MenuFormProps> = ({folioData}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();

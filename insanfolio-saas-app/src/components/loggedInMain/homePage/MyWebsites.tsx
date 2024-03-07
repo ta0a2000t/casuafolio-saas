@@ -1,153 +1,138 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { List, Popconfirm, Space, Tooltip } from 'antd';
 import { LikeOutlined, MessageOutlined, StarOutlined, EditOutlined, BarChartOutlined, CloudUploadOutlined, CloudDownloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import {useNavigate} from 'react-router-dom';
+import { deleteFolioService, fetchFoliosService, subscribeToFolioCreation, subscribeToFolioDeletion, subscribeToFolioUpdate, updateFolioService } from 'services/folioServices';
+import { CreatePublishedFolioDataInput, Folio, FolioType, ListFoliosQuery, UpdateFolioInput } from 'API';
+import FolioCard from '../editFolio/FolioCard';
+import { createPublishedFolioDataService, deletePublishedFolioDataService } from 'services/publishedFolioDataServices';
 
-// Assuming initial projects array contains the relevant data
-const initialProjects = [
-  // Example project data
-  {
-    id: 1,
-    name: 'Project Name',
-    type: 'Personal Portfolio',
-    lastEdited: '2023-03-03',
-    status: 'Online',
-    imageUrl: 'https://fastly.picsum.photos/id/281/200/300.jpg?hmac=KCN8F5QTgxHdeQxLpZ5BOuUEVQEp8jAedlLSRERW7CY',
-    description: 'A detailed description about the project here.',
-    content: 'Additional content about the project can be placed here.',
-  },
-  // Add more projects as needed
-];
-
-
-
-interface IconTextProps {
-  icon: React.ElementType;
-  text: string;
-  onClick?: () => void;
-  color?: string; // Optional color prop for dynamic styling
-  confirmMessage?: string; // Optional prop for delete confirmation
-}
-
-// Helper component for icons with conditional styling and animations
-const IconText: React.FC<IconTextProps> = ({ icon, text, onClick, color, confirmMessage }) => {
-  const IconComponent = React.createElement(icon, {
-    style: {
-      marginRight: 8, // Add some space between the icon and text
-    },
-  });
-
-  const content = (
-    <Space
-      style={{
-        cursor: onClick ? 'pointer' : 'default',
-        color: color || 'inherit', // Apply color if provided
-        transition: 'transform 0.2s', // Animation effect
-        
-      }}
-      className="icon-text"
-      onClick={(onClick)} 
-    >
-      {IconComponent}
-      {text}
-    </Space>
-  );
-
-  if (confirmMessage && onClick) {
-    // Wrap the content with Popconfirm only if confirmMessage is provided
-    return (
-      <Popconfirm title={confirmMessage} onConfirm={onClick}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }}>
-            {content}
-          </div>
-      </Popconfirm>
-    );
-  }
-
-  // If no confirmMessage is provided, just show the content with tooltip
-  return content;
-};
 
 const MyWebsites: React.FC = () => {
-  const [projects, setProjects] = useState(initialProjects); // Convert projects array into state variable
+  const [folios, setFolios] = useState<Folio[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  // Implement the functions for actions
-  const handleEdit = (projectId: number) => {/* Implementation */
-    navigate('/editFolio',{state:{id:1,type: 'Timeline', folioId: '09233-09r0jff-niweunew'}});
-    };
-  const handleDelete = (projectId: number) => {
-    setProjects(prevProjects => prevProjects.filter(project => project.id !== projectId));
-  };
-  const handleViewAnalytics = (projectId: number) => {/* Implementation */};
-  const togglePublishStatus = (projectId: number) => {
-    setProjects(prevProjects => prevProjects.map(project => {
-      if (project.id === projectId) {
-        return { ...project, status: project.status === 'Online' ? 'Offline' : 'Online' };
+  useEffect(() => {
+    const owner = "c78755bb-82a9-4cba-8888-b1cbaaf9df42"; // Owner/user identifier
+
+    const initFolios = async () => {
+      try {
+        setLoading(true);
+        // Fetch folios without filters for simplicity; adjust as needed
+        const response: ListFoliosQuery = await fetchFoliosService(); // Assuming fetchFoliosService correctly handles fetching
+        if (response.listFolios?.items) {
+          // Now we're properly filtering Folio items, not confusing it with FolioType
+          const fetchedFolios: Folio[] = response.listFolios.items.filter((item): item is Folio => item !== null);
+          setFolios(fetchedFolios);
+        }
+      } catch (error) {
+        console.error("Failed to fetch folios", error);
+      } finally {
+        setLoading(false);
       }
-      console.log(project);
-      return project;
-    }));
+    };
+
+    initFolios();
+
+  const createSub = subscribeToFolioCreation(owner, (newFolio) => {
+    setFolios(prevFolios => [...prevFolios, newFolio]);
+  });
+  
+  const updateSub = subscribeToFolioUpdate(owner, (updatedFolio) => {
+    setFolios(prevFolios => prevFolios.map(folio => folio.id === updatedFolio.id ? updatedFolio : folio));
+  });
+
+  const deleteSub = subscribeToFolioDeletion(owner, (deletedFolioId) => {
+    setFolios(prevFolios => prevFolios.filter(folio => folio.id !== deletedFolioId));
+  });
+
+
+    // Cleanup subscriptions when component unmounts
+    return () => {
+      createSub.unsubscribe();
+      updateSub.unsubscribe();
+      deleteSub.unsubscribe();
+    };
+  }, [navigate]);
+
+
+  
+  // Implement the functions for actions
+  const handleEdit = (folioId: string) => {/* Implementation */
+    navigate('/editFolio',{state:{id:1,type: 'Timeline', folioId: folioId}});
+    };
+  const handleDelete = (folioId: string) => {
+    deleteFolioService(folioId).then(() => {
+      setFolios(prevfolios => prevfolios.filter(folio => folio.id !== folioId));
+    })
   };
 
+  const handleViewAnalytics = (folioId: string) => {/* Implementation */};
+  const togglePublishStatus = async (folioId: string) => {
+    const folioToUpdate = folios.find(folio => folio.id === folioId);
+    if (!folioToUpdate) return; // Early exit if the folio is not found
+  
+    try {
+      setLoading(true);
+  
+      if (folioToUpdate.folioPublishedDataId) {
+        // The folio is currently published, prepare to unpublish it
+        await deletePublishedFolioDataService(folioToUpdate.folioPublishedDataId);
+        // Update the folio to remove the reference to the deleted published data ID
+        const updateInput = {
+          id: folioId,
+          folioPublishedDataId: null, // Clearing the publishedDataId to unpublish
+        };
+        await updateFolioService(updateInput);
+      } else {
+        // The folio is not currently published, prepare to publish it
+        // Create new published data from draft data (assuming backend handles actual data copy)
+        const publishedData = await createPublishedFolioDataService({
+          // Populate with necessary data from folioToUpdate.draftData
+          customData: folioToUpdate.draftData?.customData,
+          // Add other necessary fields
+        }as CreatePublishedFolioDataInput);
+        // Update the folio to reference the new published data ID
+        const updateInput = {
+          id: folioId,
+          folioPublishedDataId: publishedData.createPublishedFolioData.id, // Use the new published data ID
+        };
+        await updateFolioService(updateInput);
+      }
+  
+      // Refresh or update local folio data to reflect changes
+      // This may involve re-fetching folios or updating the state directly if possible
+    } catch (error) {
+      console.error("Failed to toggle folio publish status:", error);
+      // Handle error appropriately
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  
+
   return (
+
     <List
-      itemLayout="vertical"
-      size="large"
-      pagination={{
-        pageSize: 3,
-      }}
-      dataSource={projects}
-      renderItem={project => (
-        <List.Item
-          key={project.id}
-          actions={[
-            <IconText icon={EditOutlined} text="Edit" key="list-edit" onClick={() => handleEdit(project.id)} />,
-            <IconText icon={BarChartOutlined} text="Analytics" key="list-analytics" onClick={() => handleViewAnalytics(project.id)} />,
-            project.status === 'Online' ? (
-              <IconText
-                icon={CloudDownloadOutlined}
-                text="Unpublish"
-                key="list-unpublish"
-                onClick={() => togglePublishStatus(project.id)}
-                color="orange"
-              />
-            ) : (
-              <IconText
-                icon={CloudUploadOutlined}
-                text="Publish"
-                key="list-publish"
-                onClick={() => togglePublishStatus(project.id)}
-                color="blue"
-              />
-            ),
-            <IconText
-              icon={DeleteOutlined}
-              text="Delete"
-              key="list-delete"
-              onClick={() => handleDelete(project.id)}
-              color="red"
-              confirmMessage="Are you sure you want to delete this project?"
-            />,
-          ]}
-          extra={
-            <img
-              style={{ height: 140, width: 300, objectFit: 'cover' }}
-              alt={project.name}
-              src={project.imageUrl}
-            />
-          }
-        >
-          <List.Item.Meta
-            title={<a href="#">{project.name}</a>}
-            description={`Type: ${project.type} - Last Edited: ${project.lastEdited} - Status: ${project.status}`}
-          />
-          {project.description}
-          <br />
-          {project.content}
-        </List.Item>
-      )}
+    loading={loading}
+  itemLayout="vertical"
+  size="large"
+  pagination={{ pageSize: 3 }}
+  dataSource={folios}
+  renderItem={folio => (
+    <FolioCard
+      folio={folio}
+      handleEdit={handleEdit}
+      handleViewAnalytics={handleViewAnalytics}
+      togglePublishStatus={togglePublishStatus}
+      handleDelete={handleDelete}
     />
+  )}
+/>
+
+
   );
 };
 

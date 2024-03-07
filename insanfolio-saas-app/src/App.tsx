@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ValidateFolioSite from './templates/ValidateFolioSite';
 import HomePage from './components/loggedInMain/homePage/HomePage';
 
-
-// Main Pages //////////////////////////////////////////////////////////////////////////////////////////////////
+// Main Pages
 import MainAppPage from './components/MainAppPage';
 import LandingPage from 'components/landing/LandingPage';
 import NotFound404Page from 'components/landing/NotFound404Page';
 import EditFolio from 'components/loggedInMain/editFolio/EditFolio';
 import EditFolioLayout from 'components/loggedInMain/editFolio/EditFolioLayout';
 
-
-
-
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // Initialize dark mode from localStorage or default to false
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = localStorage.getItem('isDarkMode');
+    return saved === 'true' ? true : false;
+  });
+
+  // Use useEffect to update localStorage when isDarkMode changes
+  useEffect(() => {
+    localStorage.setItem('isDarkMode', isDarkMode.toString());
+  }, [isDarkMode]);
 
   return (
     
