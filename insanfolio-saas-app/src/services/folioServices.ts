@@ -117,6 +117,7 @@ export const subscribeToFolioDeletion = (owner: string, onFolioDeleted: (deleted
 
 
 export const createFolioService = async (FolioInput: CreateFolioInput) => {
+  console.log(FolioInput)
   try {
     const { data } = await client.graphql({
       query: createFolio,
