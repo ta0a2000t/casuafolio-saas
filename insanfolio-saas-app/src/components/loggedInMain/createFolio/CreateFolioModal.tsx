@@ -63,13 +63,6 @@ const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
 
   
   const handleBack = () => {
-    if (currentStep === 1) {
-      form.validateFields()
-        .then(() => {
-          setFolioDetailsFormValues({title: form.getFieldValue('title'), description: form.getFieldValue('description')} as FolioDetailsFormValues);
-      })    
-    }
-
     setCurrentStep(currentStep - 1);
   };
 
