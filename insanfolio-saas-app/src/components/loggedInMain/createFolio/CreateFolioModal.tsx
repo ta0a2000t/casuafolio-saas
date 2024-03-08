@@ -40,6 +40,14 @@ const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
     }
   }, [highlightedFolioType]);
 
+  const resetState = () => {
+    setCurrentStep(0);
+    setHighlightedFolioType(null);
+    setSelectTemplateTitle('Select Template');
+    setFolioDetailsFormValues(undefined);
+    form.resetFields(); // Reset form fields using Form instance
+    setLoading(false);
+  };
 
   const handleNext = () => {
 
@@ -83,6 +91,9 @@ const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
 
       // Close the modal
       setIsModalVisible(false);
+
+      resetState()
+
     } catch (error) {
       console.error('Failed to create folio:', error);
       messageApi.error('Failed to create Folio');
@@ -130,7 +141,7 @@ const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
           </Button>
         ),
         currentStep < steps.length - 1 && (
-          <Button key="next" onClick={handleNext}>
+          <Button key="next" onClick={handleNext} disabled={highlightedFolioType == null}>
             Next
           </Button>
         ),
