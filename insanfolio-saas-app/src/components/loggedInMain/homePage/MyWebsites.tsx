@@ -90,7 +90,6 @@ const MyWebsites: React.FC = () => {
         // Create new published data from draft data (assuming backend handles actual data copy)
         const publishedData = await createPublishedFolioDataService({
           // Populate with necessary data from folioToUpdate.draftData
-          customData: folioToUpdate.draftData?.customData,
           // Add other necessary fields
         }as CreatePublishedFolioDataInput);
         // Update the folio to reference the new published data ID

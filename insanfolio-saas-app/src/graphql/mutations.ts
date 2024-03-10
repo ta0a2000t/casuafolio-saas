@@ -100,7 +100,6 @@ export const createFolio = /* GraphQL */ `mutation CreateFolio(
     }
     publishedData {
       id
-      customData
       createdAt
       updatedAt
       owner
@@ -108,7 +107,6 @@ export const createFolio = /* GraphQL */ `mutation CreateFolio(
     }
     draftData {
       id
-      customData
       createdAt
       updatedAt
       owner
@@ -151,7 +149,6 @@ export const updateFolio = /* GraphQL */ `mutation UpdateFolio(
     }
     publishedData {
       id
-      customData
       createdAt
       updatedAt
       owner
@@ -159,7 +156,6 @@ export const updateFolio = /* GraphQL */ `mutation UpdateFolio(
     }
     draftData {
       id
-      customData
       createdAt
       updatedAt
       owner
@@ -202,7 +198,6 @@ export const deleteFolio = /* GraphQL */ `mutation DeleteFolio(
     }
     publishedData {
       id
-      customData
       createdAt
       updatedAt
       owner
@@ -210,7 +205,6 @@ export const deleteFolio = /* GraphQL */ `mutation DeleteFolio(
     }
     draftData {
       id
-      customData
       createdAt
       updatedAt
       owner
@@ -239,13 +233,18 @@ export const createDraftFolioData = /* GraphQL */ `mutation CreateDraftFolioData
 ) {
   createDraftFolioData(input: $input, condition: $condition) {
     id
-    SocialLinks {
+    tamplate {
       id
-      SocialPlatformType
-      urlPostfix
-      __typename
+
+      ... on T2 {
+        name
+        picture
+        mainIcon
+        tags
+        tagsTitle
+        resumeUrl
+      }
     }
-    customData
     createdAt
     updatedAt
     owner
@@ -262,13 +261,18 @@ export const updateDraftFolioData = /* GraphQL */ `mutation UpdateDraftFolioData
 ) {
   updateDraftFolioData(input: $input, condition: $condition) {
     id
-    SocialLinks {
+    tamplate {
       id
-      SocialPlatformType
-      urlPostfix
-      __typename
+
+      ... on T2 {
+        name
+        picture
+        mainIcon
+        tags
+        tagsTitle
+        resumeUrl
+      }
     }
-    customData
     createdAt
     updatedAt
     owner
@@ -285,13 +289,18 @@ export const deleteDraftFolioData = /* GraphQL */ `mutation DeleteDraftFolioData
 ) {
   deleteDraftFolioData(input: $input, condition: $condition) {
     id
-    SocialLinks {
+    tamplate {
       id
-      SocialPlatformType
-      urlPostfix
-      __typename
+
+      ... on T2 {
+        name
+        picture
+        mainIcon
+        tags
+        tagsTitle
+        resumeUrl
+      }
     }
-    customData
     createdAt
     updatedAt
     owner
@@ -308,13 +317,18 @@ export const createPublishedFolioData = /* GraphQL */ `mutation CreatePublishedF
 ) {
   createPublishedFolioData(input: $input, condition: $condition) {
     id
-    SocialLinks {
+    tamplate {
       id
-      SocialPlatformType
-      urlPostfix
-      __typename
+
+      ... on T2 {
+        name
+        picture
+        mainIcon
+        tags
+        tagsTitle
+        resumeUrl
+      }
     }
-    customData
     createdAt
     updatedAt
     owner
@@ -331,13 +345,18 @@ export const updatePublishedFolioData = /* GraphQL */ `mutation UpdatePublishedF
 ) {
   updatePublishedFolioData(input: $input, condition: $condition) {
     id
-    SocialLinks {
+    tamplate {
       id
-      SocialPlatformType
-      urlPostfix
-      __typename
+
+      ... on T2 {
+        name
+        picture
+        mainIcon
+        tags
+        tagsTitle
+        resumeUrl
+      }
     }
-    customData
     createdAt
     updatedAt
     owner
@@ -354,13 +373,18 @@ export const deletePublishedFolioData = /* GraphQL */ `mutation DeletePublishedF
 ) {
   deletePublishedFolioData(input: $input, condition: $condition) {
     id
-    SocialLinks {
+    tamplate {
       id
-      SocialPlatformType
-      urlPostfix
-      __typename
+
+      ... on T2 {
+        name
+        picture
+        mainIcon
+        tags
+        tagsTitle
+        resumeUrl
+      }
     }
-    customData
     createdAt
     updatedAt
     owner

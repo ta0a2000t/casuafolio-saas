@@ -61,7 +61,6 @@ export const getFolio = /* GraphQL */ `
       }
       publishedData {
         id
-        customData
         createdAt
         updatedAt
         owner
@@ -69,7 +68,6 @@ export const getFolio = /* GraphQL */ `
       }
       draftData {
         id
-        customData
         createdAt
         updatedAt
         owner
@@ -155,13 +153,18 @@ export const getDraftFolioData = /* GraphQL */ `
   query GetDraftFolioData($id: ID!) {
     getDraftFolioData(id: $id) {
       id
-      SocialLinks {
+      tamplate {
         id
-        SocialPlatformType
-        urlPostfix
-        __typename
+
+        ... on T2 {
+          name
+          picture
+          mainIcon
+          tags
+          tagsTitle
+          resumeUrl
+        }
       }
-      customData
       createdAt
       updatedAt
       owner
@@ -178,7 +181,6 @@ export const listDraftFolioData = /* GraphQL */ `
     listDraftFolioData(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        customData
         createdAt
         updatedAt
         owner
@@ -193,13 +195,18 @@ export const getPublishedFolioData = /* GraphQL */ `
   query GetPublishedFolioData($id: ID!) {
     getPublishedFolioData(id: $id) {
       id
-      SocialLinks {
+      tamplate {
         id
-        SocialPlatformType
-        urlPostfix
-        __typename
+
+        ... on T2 {
+          name
+          picture
+          mainIcon
+          tags
+          tagsTitle
+          resumeUrl
+        }
       }
-      customData
       createdAt
       updatedAt
       owner
@@ -220,7 +227,6 @@ export const listPublishedFolioData = /* GraphQL */ `
     ) {
       items {
         id
-        customData
         createdAt
         updatedAt
         owner

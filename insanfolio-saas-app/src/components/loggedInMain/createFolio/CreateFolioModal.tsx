@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Modal, Button, Steps, message, Form, Spin } from 'antd';
-import { FolioType , CreateFolioInput} from 'API'; // Assuming 'API' is a placeholder for actual imports
+import { FolioType , CreateFolioInput, FolioNumber} from 'API'; // Assuming 'API' is a placeholder for actual imports
 import TemplateSelection from './TemplateSelection';
 import FolioDetailsForm, { FolioDetailsFormValues } from './FolioDetailsForm';
 import { SmileFilled, LoadingOutlined } from '@ant-design/icons';
@@ -21,6 +21,8 @@ const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
 }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [highlightedFolioType, setHighlightedFolioType] = useState<FolioType | null>(null);
+  const [highlightedFolioNumber, setHighlightedFolioNumber] = useState<FolioNumber | null>(null);
+
   const [selectTemplateTitle, setSelectTemplateTitle] = useState('Select Template');
   const [folioDetailsFormValues, setFolioDetailsFormValues] = useState<FolioDetailsFormValues | undefined>(undefined);
   const [form] = Form.useForm();
@@ -84,6 +86,7 @@ const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
         title: folioDetailsFormValues?.title,
         description: folioDetailsFormValues?.description,
         folioType: highlightedFolioType,
+        folioNumber: highlightedFolioNumber,
         userID: userId
       } as CreateFolioInput);
   
@@ -112,7 +115,7 @@ const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
   const steps = [
     {
       title: selectTemplateTitle,
-      content: <TemplateSelection highlightedFolioType={highlightedFolioType} setHighlightedFolioType={setHighlightedFolioType} />,
+      content: <TemplateSelection highlightedFolioNumber={highlightedFolioNumber} setHighlightedFolioNumber={setHighlightedFolioNumber} highlightedFolioType={highlightedFolioType} setHighlightedFolioType={setHighlightedFolioType} />,
     },
     {
       title: 'Folio Details',

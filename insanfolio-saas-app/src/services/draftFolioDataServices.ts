@@ -1,9 +1,9 @@
 
 import { CreateDraftFolioDataInput, UpdateDraftFolioDataInput, GetDraftFolioDataQuery, DraftFolioData, UpdateDraftFolioDataMutation } from 'API';
 import { generateClient } from 'aws-amplify/api';
-import { createDraftFolioData, updateDraftFolioData, deleteDraftFolioData } from 'graphql/mutations';
-import { getDraftFolioData } from 'graphql/queries'; // Make sure the path matches where your queries file is located
-import { onCreateDraftFolioData, onDeleteDraftFolioData, onUpdateDraftFolioData } from 'graphql/subscriptions';
+import { createDraftFolioData, updateDraftFolioData, deleteDraftFolioData } from 'graphql/mutations.js';
+import { getDraftFolioData } from 'graphql/queries.js'; // Make sure the path matches where your queries file is located
+import { onCreateDraftFolioData, onDeleteDraftFolioData, onUpdateDraftFolioData } from 'graphql/subscriptions.js';
 
 const client = generateClient();
 
@@ -34,7 +34,7 @@ export const subscribeToDraftFolioDataCreation = (owner: string, onDraftFolioDat
     next: ({ data }) => {
       const newDraftFolioData = data.onCreateDraftFolioData; // Adjust based on your actual data structure
       if (newDraftFolioData) {
-        onDraftFolioDataCreated(newDraftFolioData);
+        onDraftFolioDataCreated(newDraftFolioData as DraftFolioData);
       }
     },
     error: (error) => console.error('Subscription error:', error),
@@ -52,7 +52,7 @@ export const subscribeToDraftFolioDataUpdate = (owner: string, onDraftFolioDataU
       console.log('DraftFolioData updated:', data);
       const updatedDraftFolioData = data.onUpdateDraftFolioData; // Adjust based on actual data structure
       if (updatedDraftFolioData) {
-        onDraftFolioDataUpdated(updatedDraftFolioData);
+        onDraftFolioDataUpdated(updatedDraftFolioData as DraftFolioData);
       }
     },
     error: (error) => console.error('Subscription error:', error),
