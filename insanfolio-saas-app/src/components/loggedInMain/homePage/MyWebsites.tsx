@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List, Popconfirm, Space, Tooltip } from 'antd';
+import { List, Popconfirm, Space, Tooltip, message } from 'antd';
 import { LikeOutlined, MessageOutlined, StarOutlined, EditOutlined, BarChartOutlined, CloudUploadOutlined, CloudDownloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import {useNavigate} from 'react-router-dom';
 import { deleteFolioService, fetchFoliosService, subscribeToFolioCreation, subscribeToFolioDeletion, subscribeToFolioUpdate, updateFolioService } from 'services/folioServices';
@@ -11,6 +11,7 @@ import { createPublishedFolioDataService, deletePublishedFolioDataService } from
 const MyWebsites: React.FC = () => {
   const [folios, setFolios] = useState<Folio[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -88,6 +89,12 @@ const MyWebsites: React.FC = () => {
       } else {
         // The folio is not currently published, prepare to publish it
         // Create new published data from draft data (assuming backend handles actual data copy)
+        if (folioToUpdate.draftData == null) {
+          messageApi.error("You have to start editing first!")
+          console.error('No draft data found for folio', folioToUpdate.id);
+
+          return;
+        }
         const publishedData = await createPublishedFolioDataService({
           // Populate with necessary data from folioToUpdate.draftData
           // Add other necessary fields
@@ -113,7 +120,8 @@ const MyWebsites: React.FC = () => {
   
 
   return (
-
+    <>
+    {contextHolder}
     <List
     loading={loading}
   itemLayout="vertical"
@@ -130,7 +138,7 @@ const MyWebsites: React.FC = () => {
     />
   )}
 />
-
+</>
 
   );
 };
