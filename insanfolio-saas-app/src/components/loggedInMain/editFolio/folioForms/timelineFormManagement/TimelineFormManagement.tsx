@@ -18,7 +18,7 @@ const TimelineFormManagement: React.FC<TimelineFormProps> = ({folioData}) => {
   } = theme.useToken();
 
   return (
-      <TimelineForm/>
+      <TimelineForm formData={folioData}/>
   );
 };
 

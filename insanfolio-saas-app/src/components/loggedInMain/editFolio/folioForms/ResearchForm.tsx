@@ -15,7 +15,7 @@ const ResearchForm: React.FC<ResearchFormProps> = ({folioData}) => {
   } = theme.useToken();
 
   return (
-    <></>
+    <>reserach form should be here</>
   );
 };
 

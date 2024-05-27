@@ -23,16 +23,18 @@ export default function DraftFolioDataCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    customData: "",
+    customTemplate: "",
   };
-  const [customData, setCustomData] = React.useState(initialValues.customData);
+  const [customTemplate, setCustomTemplate] = React.useState(
+    initialValues.customTemplate
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setCustomData(initialValues.customData);
+    setCustomTemplate(initialValues.customTemplate);
     setErrors({});
   };
   const validations = {
-    customData: [{ type: "Required" }, { type: "JSON" }],
+    customTemplate: [{ type: "JSON" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -60,7 +62,7 @@ export default function DraftFolioDataCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          customData,
+          customTemplate,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -115,27 +117,27 @@ export default function DraftFolioDataCreateForm(props) {
       {...rest}
     >
       <TextAreaField
-        label="Custom data"
-        isRequired={true}
+        label="Custom template"
+        isRequired={false}
         isReadOnly={false}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              customData: value,
+              customTemplate: value,
             };
             const result = onChange(modelFields);
-            value = result?.customData ?? value;
+            value = result?.customTemplate ?? value;
           }
-          if (errors.customData?.hasError) {
-            runValidationTasks("customData", value);
+          if (errors.customTemplate?.hasError) {
+            runValidationTasks("customTemplate", value);
           }
-          setCustomData(value);
+          setCustomTemplate(value);
         }}
-        onBlur={() => runValidationTasks("customData", customData)}
-        errorMessage={errors.customData?.errorMessage}
-        hasError={errors.customData?.hasError}
-        {...getOverrideProps(overrides, "customData")}
+        onBlur={() => runValidationTasks("customTemplate", customTemplate)}
+        errorMessage={errors.customTemplate?.errorMessage}
+        hasError={errors.customTemplate?.hasError}
+        {...getOverrideProps(overrides, "customTemplate")}
       ></TextAreaField>
       <Flex
         justifyContent="space-between"

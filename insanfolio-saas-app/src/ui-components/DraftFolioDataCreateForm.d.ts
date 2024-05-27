@@ -22,15 +22,15 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type DraftFolioDataCreateFormInputValues = {
-    customData?: string;
+    customTemplate?: string;
 };
 export declare type DraftFolioDataCreateFormValidationValues = {
-    customData?: ValidationFunction<string>;
+    customTemplate?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type DraftFolioDataCreateFormOverridesProps = {
     DraftFolioDataCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    customData?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    customTemplate?: PrimitiveOverrideProps<TextAreaFieldProps>;
 } & EscapeHatchProps;
 export declare type DraftFolioDataCreateFormProps = React.PropsWithChildren<{
     overrides?: DraftFolioDataCreateFormOverridesProps | undefined | null;

@@ -61,6 +61,7 @@ export const getFolio = /* GraphQL */ `
       }
       publishedData {
         id
+        customTemplate
         createdAt
         updatedAt
         owner
@@ -68,6 +69,7 @@ export const getFolio = /* GraphQL */ `
       }
       draftData {
         id
+        customTemplate
         createdAt
         updatedAt
         owner
@@ -153,18 +155,7 @@ export const getDraftFolioData = /* GraphQL */ `
   query GetDraftFolioData($id: ID!) {
     getDraftFolioData(id: $id) {
       id
-      tamplate {
-        id
-
-        ... on T2 {
-          name
-          picture
-          mainIcon
-          tags
-          tagsTitle
-          resumeUrl
-        }
-      }
+      customTemplate
       createdAt
       updatedAt
       owner
@@ -181,6 +172,7 @@ export const listDraftFolioData = /* GraphQL */ `
     listDraftFolioData(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        customTemplate
         createdAt
         updatedAt
         owner
@@ -195,18 +187,7 @@ export const getPublishedFolioData = /* GraphQL */ `
   query GetPublishedFolioData($id: ID!) {
     getPublishedFolioData(id: $id) {
       id
-      tamplate {
-        id
-
-        ... on T2 {
-          name
-          picture
-          mainIcon
-          tags
-          tagsTitle
-          resumeUrl
-        }
-      }
+      customTemplate
       createdAt
       updatedAt
       owner
@@ -227,6 +208,7 @@ export const listPublishedFolioData = /* GraphQL */ `
     ) {
       items {
         id
+        customTemplate
         createdAt
         updatedAt
         owner

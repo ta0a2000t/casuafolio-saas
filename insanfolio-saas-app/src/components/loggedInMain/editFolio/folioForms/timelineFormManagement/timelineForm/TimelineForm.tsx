@@ -6,6 +6,7 @@ import SocialLinksInput from './aboutSection/SocialLinksInput';
 import PersonalInfoInput from './aboutSection/PersonalInfoInput';
 import GalleryInput from './shared/GalleryInput';
 import EventsSections from './eventsSections/EventsSections';
+import { GetFolioQuery } from 'API';
 
 // Correct TypeScript interfaces
 interface ResumeItem {
@@ -143,14 +144,13 @@ const initialValuesWithMoment = {
 
 
 
-// Your component or application logic here
-
-
-
-
 type SizeType = Parameters<typeof Form>[0]['size'];
 
-const TimelineForm: React.FC = () => {
+interface TimelineFormProps {
+  formData: GetFolioQuery;
+}
+
+const TimelineForm: React.FC<TimelineFormProps> = (formData) => {
   const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
   const [form] = Form.useForm();
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
@@ -214,7 +214,6 @@ const TimelineForm: React.FC = () => {
     }
   };
     
-  
 
   return (
     <Form

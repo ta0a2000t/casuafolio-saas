@@ -25,19 +25,21 @@ export default function PublishedFolioDataUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    customData: "",
+    customTemplate: "",
   };
-  const [customData, setCustomData] = React.useState(initialValues.customData);
+  const [customTemplate, setCustomTemplate] = React.useState(
+    initialValues.customTemplate
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = publishedFolioDataRecord
       ? { ...initialValues, ...publishedFolioDataRecord }
       : initialValues;
-    setCustomData(
-      typeof cleanValues.customData === "string" ||
-        cleanValues.customData === null
-        ? cleanValues.customData
-        : JSON.stringify(cleanValues.customData)
+    setCustomTemplate(
+      typeof cleanValues.customTemplate === "string" ||
+        cleanValues.customTemplate === null
+        ? cleanValues.customTemplate
+        : JSON.stringify(cleanValues.customTemplate)
     );
     setErrors({});
   };
@@ -59,7 +61,7 @@ export default function PublishedFolioDataUpdateForm(props) {
   }, [idProp, publishedFolioDataModelProp]);
   React.useEffect(resetStateValues, [publishedFolioDataRecord]);
   const validations = {
-    customData: [{ type: "Required" }, { type: "JSON" }],
+    customTemplate: [{ type: "JSON" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -87,7 +89,7 @@ export default function PublishedFolioDataUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          customData,
+          customTemplate: customTemplate ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -140,28 +142,28 @@ export default function PublishedFolioDataUpdateForm(props) {
       {...rest}
     >
       <TextAreaField
-        label="Custom data"
-        isRequired={true}
+        label="Custom template"
+        isRequired={false}
         isReadOnly={false}
-        value={customData}
+        value={customTemplate}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              customData: value,
+              customTemplate: value,
             };
             const result = onChange(modelFields);
-            value = result?.customData ?? value;
+            value = result?.customTemplate ?? value;
           }
-          if (errors.customData?.hasError) {
-            runValidationTasks("customData", value);
+          if (errors.customTemplate?.hasError) {
+            runValidationTasks("customTemplate", value);
           }
-          setCustomData(value);
+          setCustomTemplate(value);
         }}
-        onBlur={() => runValidationTasks("customData", customData)}
-        errorMessage={errors.customData?.errorMessage}
-        hasError={errors.customData?.hasError}
-        {...getOverrideProps(overrides, "customData")}
+        onBlur={() => runValidationTasks("customTemplate", customTemplate)}
+        errorMessage={errors.customTemplate?.errorMessage}
+        hasError={errors.customTemplate?.hasError}
+        {...getOverrideProps(overrides, "customTemplate")}
       ></TextAreaField>
       <Flex
         justifyContent="space-between"

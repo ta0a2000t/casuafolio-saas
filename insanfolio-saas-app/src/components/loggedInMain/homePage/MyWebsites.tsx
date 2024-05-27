@@ -60,8 +60,8 @@ const MyWebsites: React.FC = () => {
 
   
   // Implement the functions for actions
-  const handleEdit = (folioId: string) => {/* Implementation */
-    navigate('/editFolio',{state:{id:1,type: 'Timeline', folioId: folioId}});
+  const handleEdit = (folioId: string, folioType: FolioType) => {/* Implementation */
+    navigate('/editFolio',{state:{id:1,type: folioType, folioId: folioId}});
     };
   const handleDelete = (folioId: string) => {
     deleteFolioService(folioId).then(() => {
@@ -131,7 +131,7 @@ const MyWebsites: React.FC = () => {
   renderItem={folio => (
     <FolioCard
       folio={folio}
-      handleEdit={handleEdit}
+      handleEdit={(theIdOfFolio) => handleEdit(theIdOfFolio, folio.folioType)}
       handleViewAnalytics={handleViewAnalytics}
       togglePublishStatus={togglePublishStatus}
       handleDelete={handleDelete}

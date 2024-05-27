@@ -23,15 +23,15 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type PublishedFolioDataUpdateFormInputValues = {
-    customData?: string;
+    customTemplate?: string;
 };
 export declare type PublishedFolioDataUpdateFormValidationValues = {
-    customData?: ValidationFunction<string>;
+    customTemplate?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PublishedFolioDataUpdateFormOverridesProps = {
     PublishedFolioDataUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    customData?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    customTemplate?: PrimitiveOverrideProps<TextAreaFieldProps>;
 } & EscapeHatchProps;
 export declare type PublishedFolioDataUpdateFormProps = React.PropsWithChildren<{
     overrides?: PublishedFolioDataUpdateFormOverridesProps | undefined | null;

@@ -25,6 +25,8 @@ function App() {
   return (
     
     <Routes>
+      <Route path='/404' element={<NotFound404Page/>} />
+
       <Route path='/folioDraft/:folioId' element={<ValidateFolioSite isPublished={false}/>}></Route>
       <Route path='/folio/:folioId' element={<ValidateFolioSite isPublished={true}/>}></Route>  
 

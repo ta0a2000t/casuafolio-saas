@@ -23,83 +23,12 @@ type Folio @model @auth(rules: [{allow: public, operations: [read], provider: ia
 
 type DraftFolioData @model @auth(rules: [{allow: owner, operations: [read, create, update, delete], provider: userPools}]) {
   id: ID!
-  tamplate: Template
+  customTemplate: AWSJSON
 }
 
 type PublishedFolioData @model @auth(rules: [{allow: public, operations: [read], provider: iam}, {allow: owner, operations: [read, create, update, delete], provider: userPools}]) {
   id: ID!
-  tamplate: Template
-}
-
-interface Template {
-  id: ID!
-  SocialLinks: [SocialLink]
-}
-
-type T2 implements Template {
-  id: ID!
-  SocialLinks: [SocialLink]
-  name: String!
-  picture: AWSURL
-  mainIcon: String
-  tags: [String]
-  tagsTitle: String
-  resumeUrl: AWSURL
-
-
-  englishData: T2En
-  arabicData: T2Ar
-}
-
-type T2En {
-  timeline: [T2TItem]
-  gallery1: T2gallery
-  gallery2: T2gallery
-  aboutGreeting: String
-  aboutDescription: String
-}
-
-type T2Ar {
-  timeline: [T2TItem]
-  gallery1: T2gallery
-  gallery2: T2gallery
-  aboutGreeting: String
-  aboutDescription: String
-}
-
-type T2gallery{
-  id: ID!
-  title: String
-  pictures: [String]
-  description: String
-  tags: [String]
-  url: AWSURL
-  startDate: AWSDate
-}
-
-type T2TItem {
-  id: ID!
-  title: String!
-  description: String!
-  startDate: AWSDate!
-  pictures: [String]
-  url: String
-  tags: [String]
-  importantTags: [String]
-  place: String
-  endDate: AWSDate
-}
-
-
-
-
-
-
-
-type SocialLink {
-  id: ID!
-  SocialPlatformType: SocialPlatformType!
-  urlPostfix: String!
+  customTemplate: AWSJSON
 }
 
 enum FolioType {
@@ -115,29 +44,9 @@ enum FolioNumber {
   TWO
 }
 
-enum SocialPlatformType {
-  YOUTUBE
-  INSTAGRAM
-  TWITTER
-  LINKEDIN
-  GITHUB
-  FACEBOOK
-  TIKTOK
-}
- 
 
 
 
 
 
 
-input TemplateInput {
-  id: ID
-  SocialLinks: [SocialLinkInput]
-}
-
- input SocialLinkInput {
-  id: ID
-  SocialPlatformType: SocialPlatformType
-  urlPostfix: String
-}

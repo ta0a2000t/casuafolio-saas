@@ -15,7 +15,7 @@ const MenuForm: React.FC<MenuFormProps> = ({folioData}) => {
   } = theme.useToken();
 
   return (
-    <></>
+    <>menu form should be here</>
   );
 };
 

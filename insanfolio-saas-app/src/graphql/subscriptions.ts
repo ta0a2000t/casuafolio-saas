@@ -100,6 +100,7 @@ export const onCreateFolio = /* GraphQL */ `subscription OnCreateFolio(
     }
     publishedData {
       id
+      customTemplate
       createdAt
       updatedAt
       owner
@@ -107,6 +108,7 @@ export const onCreateFolio = /* GraphQL */ `subscription OnCreateFolio(
     }
     draftData {
       id
+      customTemplate
       createdAt
       updatedAt
       owner
@@ -149,6 +151,7 @@ export const onUpdateFolio = /* GraphQL */ `subscription OnUpdateFolio(
     }
     publishedData {
       id
+      customTemplate
       createdAt
       updatedAt
       owner
@@ -156,6 +159,7 @@ export const onUpdateFolio = /* GraphQL */ `subscription OnUpdateFolio(
     }
     draftData {
       id
+      customTemplate
       createdAt
       updatedAt
       owner
@@ -198,6 +202,7 @@ export const onDeleteFolio = /* GraphQL */ `subscription OnDeleteFolio(
     }
     publishedData {
       id
+      customTemplate
       createdAt
       updatedAt
       owner
@@ -205,6 +210,7 @@ export const onDeleteFolio = /* GraphQL */ `subscription OnDeleteFolio(
     }
     draftData {
       id
+      customTemplate
       createdAt
       updatedAt
       owner
@@ -233,18 +239,7 @@ export const onCreateDraftFolioData = /* GraphQL */ `subscription OnCreateDraftF
 ) {
   onCreateDraftFolioData(filter: $filter, owner: $owner) {
     id
-    tamplate {
-      id
-
-      ... on T2 {
-        name
-        picture
-        mainIcon
-        tags
-        tagsTitle
-        resumeUrl
-      }
-    }
+    customTemplate
     createdAt
     updatedAt
     owner
@@ -261,18 +256,7 @@ export const onUpdateDraftFolioData = /* GraphQL */ `subscription OnUpdateDraftF
 ) {
   onUpdateDraftFolioData(filter: $filter, owner: $owner) {
     id
-    tamplate {
-      id
-
-      ... on T2 {
-        name
-        picture
-        mainIcon
-        tags
-        tagsTitle
-        resumeUrl
-      }
-    }
+    customTemplate
     createdAt
     updatedAt
     owner
@@ -289,18 +273,7 @@ export const onDeleteDraftFolioData = /* GraphQL */ `subscription OnDeleteDraftF
 ) {
   onDeleteDraftFolioData(filter: $filter, owner: $owner) {
     id
-    tamplate {
-      id
-
-      ... on T2 {
-        name
-        picture
-        mainIcon
-        tags
-        tagsTitle
-        resumeUrl
-      }
-    }
+    customTemplate
     createdAt
     updatedAt
     owner
@@ -317,18 +290,7 @@ export const onCreatePublishedFolioData = /* GraphQL */ `subscription OnCreatePu
 ) {
   onCreatePublishedFolioData(filter: $filter, owner: $owner) {
     id
-    tamplate {
-      id
-
-      ... on T2 {
-        name
-        picture
-        mainIcon
-        tags
-        tagsTitle
-        resumeUrl
-      }
-    }
+    customTemplate
     createdAt
     updatedAt
     owner
@@ -345,18 +307,7 @@ export const onUpdatePublishedFolioData = /* GraphQL */ `subscription OnUpdatePu
 ) {
   onUpdatePublishedFolioData(filter: $filter, owner: $owner) {
     id
-    tamplate {
-      id
-
-      ... on T2 {
-        name
-        picture
-        mainIcon
-        tags
-        tagsTitle
-        resumeUrl
-      }
-    }
+    customTemplate
     createdAt
     updatedAt
     owner
@@ -373,18 +324,7 @@ export const onDeletePublishedFolioData = /* GraphQL */ `subscription OnDeletePu
 ) {
   onDeletePublishedFolioData(filter: $filter, owner: $owner) {
     id
-    tamplate {
-      id
-
-      ... on T2 {
-        name
-        picture
-        mainIcon
-        tags
-        tagsTitle
-        resumeUrl
-      }
-    }
+    customTemplate
     createdAt
     updatedAt
     owner

@@ -36,6 +36,7 @@ export const fetchFolioService = async (FolioId: string): Promise<GetFolioQuery>
         id: FolioId
       }
     }) as { data: GetFolioQuery }; // Cast the response to match your expected type
+    console.trace()
     console.log('Folio fetched:', data);
     return data; // Adjust according to your actual data structure
   } catch (error) {
