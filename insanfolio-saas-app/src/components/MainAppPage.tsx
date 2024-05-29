@@ -279,7 +279,7 @@ type MainAppPageProps = {
 // for sign out, refer to Login.tsx file for how to do this
 const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content , isDarkMode, setIsDarkMode}) => {
     const { defaultAlgorithm, darkAlgorithm } = theme;
-    
+    console.log("Main App Page")
     return (
       <div id="MainAppPage"> 
       

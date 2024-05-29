@@ -20,13 +20,14 @@ const LoggedInMain: React.FC<LoggedInMainProps> = ({ isDarkMode, children }) => 
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  console.log("LoggedInMain page");
 
 
   return (
       <Layout hasSider className="layout" style={{ minHeight: '100vh' }}>
         <Sidebar />
         <Layout style={{ marginLeft: 80 + 20, minHeight: '100vh', marginRight:20}}>
-        <MyHeader isDarkMode={isDarkMode} userName={'ta0a2000t'}  />
+        <MyHeader isDarkMode={isDarkMode} />
         <Content style={{ padding: 12, marginTop: 12 }}>
             <Layout
               style={{

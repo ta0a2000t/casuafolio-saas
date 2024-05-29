@@ -10,6 +10,7 @@ const { Option } = Select;
 const Home: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  console.log("Home page ")
 
   const showProjectModal = () => {
     setIsModalVisible(true);

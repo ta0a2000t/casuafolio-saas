@@ -1,38 +1,56 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Layout, Avatar, Typography, Menu, message } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import MyLogo from './MyLogo';
 import EditAccountModal from './EditAccountModal';
+import {getSession} from '../../../services/MainService';
+import { fetchUserService } from 'services/userServices';
 
 const { Header } = Layout;
 const { Text } = Typography;
 
+
 interface MyHeaderProps {
   isDarkMode: boolean;
-  userName: string;
   avatarUrl?: string;
 
 }
 
 const MyHeader: React.FC<MyHeaderProps> = ({
   isDarkMode,
-  userName,
   avatarUrl,
 }) => {
 
 
 
-
   const [openModal, setOpenModal] = useState(false);
+  const [userId, setUserId] = useState<string | undefined>(undefined);
+  const [userName, setUserName] = useState<string | undefined>(undefined);
+  const [firstName, setFirstName] = useState<string | undefined>(undefined);
+  const EMPTYSTRING = "EMPTYSTRING";
   const showModal = () => {
     setOpenModal(true);
   };
+
+  useEffect(() => {
+    getSession().then((session) => {
+      setUserId(session.userSub);
+    });
+  }, []);
+  
+  useEffect(() => {
+    fetchUserService(userId || EMPTYSTRING).then((session) => {
+      setUserName(session?.username);
+      setFirstName(session?.firstName);
+      //session?.picture  TODO: add picture of user in the header
+    });
+  }, []);
 
   return (
     <div style={{paddingTop: 50,}}>
       <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',  background: 'none' }}>
         <div style={{ width: '33.333%' }}>
-        <EditAccountModal userName={userName} avatarUrl={avatarUrl} isDarkMode={false} />
+        <EditAccountModal firstName={firstName || EMPTYSTRING} avatarUrl={avatarUrl} isDarkMode={false} userId={userId || EMPTYSTRING} />
 
         </div>
         

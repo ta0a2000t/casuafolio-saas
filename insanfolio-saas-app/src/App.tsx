@@ -11,6 +11,8 @@ import EditFolio from 'components/loggedInMain/editFolio/EditFolio';
 import EditFolioLayout from 'components/loggedInMain/editFolio/EditFolioLayout';
 
 function App() {
+  console.log("App Page")
+
   // Initialize dark mode from localStorage or default to false
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const saved = localStorage.getItem('isDarkMode');

@@ -17,12 +17,13 @@ interface FormValues {
 
 interface MyEditAccountModalProps {
   isDarkMode: boolean;
-  userName: string;
+  firstName: string;
   avatarUrl?: string;
+  userId: string;
 }
-const userId = 'c78755bb-82a9-4cba-8888-b1cbaaf9df42'; // Use the actual user ID
+//const userId = 'c78755bb-82a9-4cba-8888-b1cbaaf9df42'; // Use the actual user ID
 
-const EditAccountModal: React.FC<MyEditAccountModalProps> = ({ isDarkMode, userName, avatarUrl }) => {
+const EditAccountModal: React.FC<MyEditAccountModalProps> = ({ isDarkMode,firstName, avatarUrl, userId }) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(true);
   const [messageApi, contextHolder] = message.useMessage();
@@ -98,7 +99,7 @@ const EditAccountModal: React.FC<MyEditAccountModalProps> = ({ isDarkMode, userN
       {contextHolder}
       <>
         <Avatar src={avatarUrl} icon={!avatarUrl ? <UserOutlined /> : undefined} onClick={showModal} style={{ cursor: 'pointer' }} />
-        <Text strong style={{ marginLeft: 12, cursor: 'pointer' }} onClick={showModal}>{userName}</Text>
+        <Text strong style={{ marginLeft: 12, cursor: 'pointer' }} onClick={showModal}>{firstName}</Text>
       </>
 
       <Modal
