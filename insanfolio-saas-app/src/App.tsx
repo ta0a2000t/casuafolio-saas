@@ -9,6 +9,9 @@ import LandingPage from 'components/landing/LandingPage';
 import NotFound404Page from 'components/landing/NotFound404Page';
 import EditFolio from 'components/loggedInMain/editFolio/EditFolio';
 import EditFolioLayout from 'components/loggedInMain/editFolio/EditFolioLayout';
+//<Route path='/editFolio' element={
+  //<EditFolioLayout mainContent={<MainAppPage content={EditFolio} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />} />
+//}></Route>
 
 function App() {
   console.log("App Page")
@@ -32,13 +35,13 @@ function App() {
       <Route path='/folioDraft/:folioId' element={<ValidateFolioSite isPublished={false}/>}></Route>
       <Route path='/folio/:folioId' element={<ValidateFolioSite isPublished={true}/>}></Route>  
 
-      <Route path='/editFolio' element={
-        <EditFolioLayout mainContent={<MainAppPage content={EditFolio} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />} />
-      }></Route>
-      
-      <Route path='/homePage' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>     
-      <Route path='' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>
-      <Route path='/:something' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>
+
+
+      <Route path='/editFolio' element={ <MainAppPage content={EditFolio} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} isSplitScreen={true} /> }></Route>     
+
+      <Route path='/homePage' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} isSplitScreen={false}/> }></Route>     
+      <Route path='' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} isSplitScreen={false}/> }></Route>
+      <Route path='/:something' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} isSplitScreen={false}/> }></Route>
 
 
       <Route index element={<LandingPage/>}/>

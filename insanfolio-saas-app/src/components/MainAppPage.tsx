@@ -1,7 +1,7 @@
-import { ConfigProvider, FloatButton, theme } from "antd";
+import { ConfigProvider, FloatButton, Layout, Spin, theme } from "antd";
 import LoggedInMain from "./loggedInMain/LoggedInMain";
 import { SunOutlined, MoonOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 
 import './MainAppPage.css';
 
@@ -16,7 +16,8 @@ import { type UseAuthenticator } from "@aws-amplify/ui-react-core";
 ///// dynamodb //////////////////////////////////////////////////////////////////////////////////////////////////
 import { generateClient } from "aws-amplify/api";
 import LandingPage from "components/landing/LandingPage";
-
+import {getSession} from '../services/MainService';
+import EditFolioLayout from "./loggedInMain/editFolio/EditFolioLayout";
 const client = generateClient()
 
 
@@ -269,6 +270,7 @@ type MainAppPageProps = {
   content: React.FC<{ userId: string }>;
   isDarkMode: boolean;
   setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  isSplitScreen: boolean;
 };
 
 
@@ -277,28 +279,53 @@ type MainAppPageProps = {
 
 
 // for sign out, refer to Login.tsx file for how to do this
-const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content , isDarkMode, setIsDarkMode}) => {
+const MainAppPage: React.FC<MainAppPageProps> = ({ signOut, user, content , isDarkMode, setIsDarkMode, isSplitScreen}) => {
     const { defaultAlgorithm, darkAlgorithm } = theme;
+    const [loading, setLoading] = useState<boolean>(true);
+
     console.log("Main App Page")
-    return (
-      <div id="MainAppPage"> 
+    const [userId, setUserId] = useState<string | undefined>(undefined);
+
+    useEffect(() => {
+      getSession().then((session) => {
+        setUserId(session.userSub);
+        setLoading(false);
+      }).catch(() => {
+        setLoading(false);
+      });
+    }, []);
+
+
       
-      
-      
-      
+    if (loading) {
+      return (
         <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
-        (<LoggedInMain isDarkMode={isDarkMode}>{content}</LoggedInMain>)
 
-          <FloatButton
-            icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            tooltip={isDarkMode ? 'Switch to Light' : 'Switch to Dark'} />
-
+        <Layout style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Spin size="large" />
+        </Layout>
         </ConfigProvider>
-      
-      
-      
-      </div>
-    );
+
+      );
+    } else if (userId){
+      return (
+        <div id="MainAppPage"> 
+        
+          <ConfigProvider theme={{ token: { colorPrimary: '#00f96b' }, algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm }}>
+          
+          {!isSplitScreen && (<LoggedInMain userId={userId} isDarkMode={isDarkMode}>{content}</LoggedInMain>)}
+          {isSplitScreen && (<EditFolioLayout userId={userId} isDarkMode={isDarkMode}>{content}</EditFolioLayout>)}
+
+            <FloatButton
+              icon={isDarkMode ? <SunOutlined /> : <MoonOutlined />}
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              tooltip={isDarkMode ? 'Switch to Light' : 'Switch to Dark'} />
+
+          </ConfigProvider>
+        </div>
+      );
+    } else {
+      return (<>AN ERROR HAS HAPPENED</>)
+    }
   }
 export default withAuthenticator(MainAppPage);

@@ -15,4 +15,18 @@ export const getSession = async () => {
       };
   }
 
+/* USAGE:
+
+  const [userId, setUserId] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    getSession().then((session) => {
+      setUserId(session.userSub);
+      setLoading(false);
+    }).catch(() => {
+      setLoading(false);
+    });
+  }, []);
+*/
+
 

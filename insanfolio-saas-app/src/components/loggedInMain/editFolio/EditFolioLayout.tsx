@@ -1,15 +1,19 @@
-import React, { ReactNode } from 'react';
-import { Row, Col } from 'antd'; // Assuming you're using Ant Design for layout
+import React from 'react';
+import { Row, Col } from 'antd';
+import EditFolio from './EditFolio';
+import LoggedInMain from '../LoggedInMain';
 
 interface EditFolioLayoutProps {
-  mainContent: ReactNode;
+  userId: string;
+  isDarkMode: boolean;
+  children: React.FC<{ userId: string }>; // Define children as a ReactElement with userId prop
 }
-// TODO: pass url argument to folioDraft page, probably folio id
-const EditFolioLayout: React.FC<EditFolioLayoutProps> = ({ mainContent }) => {
+
+const EditFolioLayout: React.FC<EditFolioLayoutProps> = ({ userId, isDarkMode, children: Children }) => {
   return (
     <Row style={{ minHeight: '100vh' }}>
-      <Col xs={24} md={12} style={{ }}>
-        {mainContent}
+      <Col xs={24} md={12}>
+        <LoggedInMain userId={userId} isDarkMode={isDarkMode} children={Children}/>
       </Col>
       <Col xs={0} md={12} style={{ position: 'fixed', right: 0, top: 0, width: '50%', height: '100vh' }}>
         <iframe 
