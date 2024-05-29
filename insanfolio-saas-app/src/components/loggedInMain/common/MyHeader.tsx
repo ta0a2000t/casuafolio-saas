@@ -1,22 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import { Layout, Avatar, Typography, Menu, message } from 'antd';
+import { Layout,Spin, Avatar, Typography, Menu, message } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import MyLogo from './MyLogo';
 import EditAccountModal from './EditAccountModal';
-import {getSession} from '../../../services/MainService';
-import { fetchUserService } from 'services/userServices';
+import { fetchUserService, subscribeToUserUpdate } from 'services/userServices';
+import {useNavigate} from 'react-router-dom';
 
 const { Header } = Layout;
 const { Text } = Typography;
 
 
 interface MyHeaderProps {
+  userId: string;
   isDarkMode: boolean;
   avatarUrl?: string;
 
 }
 
 const MyHeader: React.FC<MyHeaderProps> = ({
+  userId,
   isDarkMode,
   avatarUrl,
 }) => {
@@ -24,34 +26,45 @@ const MyHeader: React.FC<MyHeaderProps> = ({
 
 
   const [openModal, setOpenModal] = useState(false);
-  const [userId, setUserId] = useState<string | undefined>(undefined);
   const [userName, setUserName] = useState<string | undefined>(undefined);
   const [firstName, setFirstName] = useState<string | undefined>(undefined);
-  const EMPTYSTRING = "EMPTYSTRING";
   const showModal = () => {
     setOpenModal(true);
   };
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    getSession().then((session) => {
-      setUserId(session.userSub);
-    });
-  }, []);
+
+
   
   useEffect(() => {
-    fetchUserService(userId || EMPTYSTRING).then((session) => {
+    fetchUserService(userId).then((session) => {
       setUserName(session?.username);
       setFirstName(session?.firstName);
       //session?.picture  TODO: add picture of user in the header
     });
-  }, []);
+  }, [userId]);
+
+
+
+  useEffect(() => {
+    const updateSub = subscribeToUserUpdate(userId, (updatedUser) => {
+      setUserName(updatedUser.username);
+      setFirstName(updatedUser.firstName);
+    });
+
+    return () => {
+      updateSub.unsubscribe();
+    };
+  }, [navigate, userId]);
+  
+
 
   return (
     <div style={{paddingTop: 50,}}>
       <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',  background: 'none' }}>
         <div style={{ width: '33.333%' }}>
-        <EditAccountModal firstName={firstName || EMPTYSTRING} avatarUrl={avatarUrl} isDarkMode={false} userId={userId || EMPTYSTRING} />
-
+          {!firstName && (<Spin />)}
+          {firstName && (<EditAccountModal firstName={firstName} avatarUrl={avatarUrl} isDarkMode={false} userId={userId} />)}
         </div>
         
         <div style={{ textAlign: 'center', width: '33.333%' }}>

@@ -9,7 +9,8 @@ import { fetchFolioService } from 'services/folioServices';
 import { FolioType, GetFolioQuery } from 'API';
 import { useNavigate } from 'react-router-dom';
 
-const EditFolio: React.FC = () => {
+const EditFolio: React.FC<{userId: string;}> = ({userId}) => {
+
   const [loading, setLoading] = useState<boolean>(false);
   const [activateForm, setActivateForm] = useState<boolean>(false);
   const [folioData, setFolioData] = useState<GetFolioQuery | null>(null);

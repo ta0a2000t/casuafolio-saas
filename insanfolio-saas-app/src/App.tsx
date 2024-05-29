@@ -33,12 +33,12 @@ function App() {
       <Route path='/folio/:folioId' element={<ValidateFolioSite isPublished={true}/>}></Route>  
 
       <Route path='/editFolio' element={
-        <EditFolioLayout mainContent={<MainAppPage content={<EditFolio />} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />} />
+        <EditFolioLayout mainContent={<MainAppPage content={EditFolio} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />} />
       }></Route>
       
-      <Route path='/homePage' element={ <MainAppPage content={<HomePage />} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>     
-      <Route path='' element={ <MainAppPage content={<HomePage />} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>
-      <Route path='/:something' element={ <MainAppPage content={<HomePage />} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>
+      <Route path='/homePage' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>     
+      <Route path='' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>
+      <Route path='/:something' element={ <MainAppPage content={HomePage} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> }></Route>
 
 
       <Route index element={<LandingPage/>}/>

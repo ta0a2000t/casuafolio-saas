@@ -266,7 +266,7 @@ const components = {
 type MainAppPageProps = {
   signOut?: UseAuthenticator["signOut"]; //() => void;
   user?: AuthUser;
-  content:  React.ReactNode
+  content: React.FC<{ userId: string }>;
   isDarkMode: boolean;
   setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };

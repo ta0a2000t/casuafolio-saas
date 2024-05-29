@@ -1,9 +1,10 @@
 // userService.ts
 
-import { CreateUserInput, UpdateUserInput, GetUserQuery } from 'API';
+import { CreateUserInput, UpdateUserInput, GetUserQuery, User } from 'API';
 import { generateClient } from 'aws-amplify/api';
 import { createUser, updateUser, deleteUser } from 'graphql/mutations';
 import { getUser } from 'graphql/queries'; // Make sure the path matches where your queries file is located
+import { onUpdateUser } from 'graphql/subscriptions';
 
 const client = generateClient();
 
@@ -84,3 +85,21 @@ export const deleteUserService = async (userId: string) => {
   }
 };
 
+export const subscribeToUserUpdate = (owner: string, onUserUpdated: (updatedUser: User) => void) => {
+  const subscription = client.graphql({
+    query: onUpdateUser,
+    variables: { owner: owner },
+  }).subscribe({
+    next: ({ data }) => {
+      console.log('User updated:', data);
+      const updatedUser = data.onUpdateUser as User; // Adjust based on actual data structure
+      if (updatedUser) {
+        onUserUpdated(updatedUser);
+      }
+    },
+    error: (error) => console.error('Subscription error:', error),
+  });
+
+  // Return the subscription to allow for unsubscribing outside this function
+  return subscription;
+};

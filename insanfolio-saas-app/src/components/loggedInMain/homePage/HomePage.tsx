@@ -7,7 +7,13 @@ import CreateFolioModal from '../createFolio/CreateFolioModal';
 
 const { Option } = Select;
 
-const Home: React.FC = () => {
+
+
+
+
+// for sign out, refer to Login.tsx file for how to do this
+   
+const Home: React.FC<{userId: string;}> = ({userId}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   console.log("Home page ")
@@ -34,11 +40,11 @@ const Home: React.FC = () => {
         </Button>
       </div>
 
-      <CreateFolioModal isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />
+      <CreateFolioModal userId={userId} isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />
 
       </Space>
 
-      <MyWebsites/>
+      <MyWebsites userId={userId}/>
 
 
     </div>

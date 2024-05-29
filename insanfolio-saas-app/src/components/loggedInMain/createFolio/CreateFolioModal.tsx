@@ -9,16 +9,18 @@ import { createFolioService } from 'services/folioServices';
 const { Step } = Steps;
 
 interface CreateFolioModalProps {
+  userId: string;
   isModalVisible: boolean;
   setIsModalVisible: (isVisible: boolean) => void;
 }
-const userId = 'c78755bb-82a9-4cba-8888-b1cbaaf9df42'; // Use the actual user ID
 
 
 const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
+  userId,
   isModalVisible,
   setIsModalVisible,
 }) => {
+
   const [currentStep, setCurrentStep] = useState(0);
   const [highlightedFolioType, setHighlightedFolioType] = useState<FolioType | null>(null);
   const [highlightedFolioNumber, setHighlightedFolioNumber] = useState<FolioNumber | null>(null);
@@ -28,6 +30,7 @@ const CreateFolioModal: React.FC<CreateFolioModalProps> = ({
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+
 
   useEffect(() => {
     switch (highlightedFolioType) {

@@ -8,27 +8,26 @@ import FolioCard from '../editFolio/FolioCard';
 import { createPublishedFolioDataService, deletePublishedFolioDataService } from 'services/publishedFolioDataServices';
 
 
-const MyWebsites: React.FC = () => {
+const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
+
   const [folios, setFolios] = useState<Folio[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
+  
+
 
   useEffect(() => {
-    const owner = "c78755bb-82a9-4cba-8888-b1cbaaf9df42"; // Owner/user identifier
-
     const initFolios = async () => {
       try {
         setLoading(true);
-        // Fetch folios without filters for simplicity; adjust as needed
-        const response: ListFoliosQuery = await fetchFoliosService(); // Assuming fetchFoliosService correctly handles fetching
+        const response: ListFoliosQuery = await fetchFoliosService();
         if (response.listFolios?.items) {
-          // Now we're properly filtering Folio items, not confusing it with FolioType
           const fetchedFolios: Folio[] = response.listFolios.items.filter((item): item is Folio => item !== null);
           setFolios(fetchedFolios);
         }
       } catch (error) {
-        console.error("Failed to fetch folios", error);
+        console.error('Failed to fetch folios', error);
       } finally {
         setLoading(false);
       }
@@ -36,15 +35,15 @@ const MyWebsites: React.FC = () => {
 
     initFolios();
 
-  const createSub = subscribeToFolioCreation(owner, (newFolio) => {
+  const createSub = subscribeToFolioCreation(userId, (newFolio) => {
     setFolios(prevFolios => [...prevFolios, newFolio]);
   });
   
-  const updateSub = subscribeToFolioUpdate(owner, (updatedFolio) => {
+  const updateSub = subscribeToFolioUpdate(userId, (updatedFolio) => {
     setFolios(prevFolios => prevFolios.map(folio => folio.id === updatedFolio.id ? updatedFolio : folio));
   });
 
-  const deleteSub = subscribeToFolioDeletion(owner, (deletedFolioId) => {
+  const deleteSub = subscribeToFolioDeletion(userId, (deletedFolioId) => {
     setFolios(prevFolios => prevFolios.filter(folio => folio.id !== deletedFolioId));
   });
 
