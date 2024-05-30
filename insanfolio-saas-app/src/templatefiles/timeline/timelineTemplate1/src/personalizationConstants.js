@@ -49,7 +49,7 @@ export const ABOUT_TAB_NAME = info.ABOUT_TAB_NAME;
 // tab button names:
 export const VOLUNTEER_TAB_NAME = info.VOLUNTEER_TAB_NAME;
 export const EXPERIENCE_TAB_NAME = info.EXPERIENCE_TAB_NAME;
-export const PROJECTS_TAB_NAME = info.PROJECTS_TAB_NAME;
+export const SECTION2_TAB_NAME = info.SECTION2_TAB_NAME;
 
 
 
@@ -59,12 +59,12 @@ export const PROJECTS_TAB_NAME = info.PROJECTS_TAB_NAME;
  *           SECTION 2: EVENTS
  * 
  *  Purpose: To outline all professional, volunteer
- *  and project-based events (experiences).
+ *  and SECTION2-based events (experiences).
  ******************************************/
 
 // headlines:
 export const EXPERIENCE_PAGE_HEADLINE = info.EXPERIENCE_PAGE_HEADLINE;
-export const PROJECTS_PAGE_HEADLINE = info.PROJECTS_PAGE_HEADLINE;
+export const SECTION2_PAGE_HEADLINE = info.SECTION2_PAGE_HEADLINE;
 export const VOLUNTEER_PAGE_HEADLINE = info.VOLUNTEER_PAGE_HEADLINE;
 
 
@@ -93,4 +93,4 @@ export const VOLUNTEER_EVENTS = info.VOLUNTEER_EVENTS;
 
 // ---- Sub-Section: Project Events ----
 // make sure to sort them; topmost is your most recent
-export const PROJECT_EVENTS = info.PROJECT_EVENTS;
+export const SECTION2_EVENTS = info.SECTION2_EVENTS;

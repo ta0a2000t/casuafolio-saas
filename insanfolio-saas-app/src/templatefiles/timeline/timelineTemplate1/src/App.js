@@ -7,8 +7,8 @@ import './font-awesome/css/font-awesome.min.css';
 import About from './components/About'
 import SocialIcons from './components/SocialIcons'; // adjust the import path as needed
 
-import {FULL_NAME , EXPERIENCE_EVENTS, PROJECT_EVENTS, VOLUNTEER_EVENTS} from './personalizationConstants';
-import {ABOUT_TAB_NAME, VOLUNTEER_TAB_NAME, EXPERIENCE_TAB_NAME, PROJECTS_TAB_NAME, EXPERIENCE_PAGE_HEADLINE, PROJECTS_PAGE_HEADLINE, VOLUNTEER_PAGE_HEADLINE} from './personalizationConstants';
+import {FULL_NAME , EXPERIENCE_EVENTS, SECTION2_EVENTS, VOLUNTEER_EVENTS} from './personalizationConstants';
+import {ABOUT_TAB_NAME, VOLUNTEER_TAB_NAME, EXPERIENCE_TAB_NAME, SECTION2_TAB_NAME, EXPERIENCE_PAGE_HEADLINE, SECTION2_PAGE_HEADLINE, VOLUNTEER_PAGE_HEADLINE} from './personalizationConstants';
 import {HEADER_COLOR} from './stylingConstants';
 import { getColor } from './helpers/utils';
 
@@ -17,7 +17,7 @@ function App(values) {
   const bgColor = 'rgba(0, 0, 0, 1)';
   const theme = '';
   const [timelineEvents, setTimelineEvents] = useState([]);
-  const [activeTimeline, setActiveTimeline] = useState('experiences'); // 'projects', 'volunteer', or 'experiences'
+  const [activeTimeline, setActiveTimeline] = useState('experiences'); // 'SECTION2', 'volunteer', or 'experiences'
   const aboutRef = useRef(null); // to scroll to about section
   const [sectionToScroll, setSectionToScroll] = useState(null);
   const headerColor = getColor(HEADER_COLOR, 7);
@@ -40,13 +40,13 @@ function App(values) {
 
   useEffect(() => {
     // Define timeline events
-    const projectEvents = PROJECT_EVENTS;
+    const SECTION2Events = SECTION2_EVENTS;
     const volunteerEvents = VOLUNTEER_EVENTS;
     const experienceEvents = EXPERIENCE_EVENTS;
     
     // Set timelineEvents based on activeTimeline
-    if (activeTimeline === 'projects') {
-      setTimelineEvents(projectEvents);
+    if (activeTimeline === 'SECTION2') {
+      setTimelineEvents(SECTION2Events);
     } else if (activeTimeline === 'volunteer') {
       setTimelineEvents(volunteerEvents);
     } else if (activeTimeline === 'experiences') {
@@ -86,15 +86,15 @@ function App(values) {
         </button>
         
 
-        {PROJECTS_TAB_NAME && (
+        {SECTION2_TAB_NAME && (
           <button 
-        className={`${activeTimeline === 'projects' ? 'active' : ''}`} 
+        className={`${activeTimeline === 'SECTION2' ? 'active' : ''}`} 
             onClick={() => {
-              setActiveTimeline('projects');
+              setActiveTimeline('SECTION2');
               setSectionToScroll('timeline');
             }}
           >
-            {PROJECTS_TAB_NAME}
+            {SECTION2_TAB_NAME}
           </button>
         )}
 
@@ -125,7 +125,7 @@ function App(values) {
 
     </header>
       <section className="Timeline">
-        <h2>{activeTimeline === 'projects' ? PROJECTS_PAGE_HEADLINE : activeTimeline === 'volunteer' ? VOLUNTEER_PAGE_HEADLINE : EXPERIENCE_PAGE_HEADLINE}</h2>
+        <h2>{activeTimeline === 'SECTION2' ? SECTION2_PAGE_HEADLINE : activeTimeline === 'volunteer' ? VOLUNTEER_PAGE_HEADLINE : EXPERIENCE_PAGE_HEADLINE}</h2>
         {timelineEvents.map((event, index) => (
           <TimelineEvent key={index} event={event} />
         ))}

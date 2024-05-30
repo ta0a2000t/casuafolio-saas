@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Project = ({ project }) => {
+const Project = ({ SECTION2 }) => {
   return (
     <div>
-      <h3>{project.name}</h3>
-      <p>{project.description}</p>
+      <h3>{SECTION2.name}</h3>
+      <p>{SECTION2.description}</p>
     </div>
   );
 };
