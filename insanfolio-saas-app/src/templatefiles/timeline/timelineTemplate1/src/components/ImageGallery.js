@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ImageGallery.css';
 
-const ImageGallery = ({ folder_name, gallery }) => {
+const ImageGallery = ({ gallery }) => {
+    console.log(`Image Gallery`, gallery);
 
     // Render empty div if gallery size is 0
     if (gallery.length === 0) {
@@ -25,7 +26,6 @@ const ImageGallery = ({ folder_name, gallery }) => {
     };
 
     ImageGallery.propTypes = {
-    folder_name: PropTypes.string.isRequired,
     gallery: PropTypes.array.isRequired, 
     };
 

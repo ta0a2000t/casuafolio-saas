@@ -6,6 +6,7 @@ import GalleryInput from '../../shared/GalleryInput';
 import moment from 'moment';
 import { DatePicker } from 'antd';
 import DynamicBulletsInput from './DynamicBulletsInput';
+import dayjs from 'dayjs';
 
 const { RangePicker } = DatePicker;
 
@@ -19,6 +20,7 @@ const EventInput: React.FC<{ name: number, sectionIndex: number, eventIndex: num
         marginBottom: 20, // Adds space between each EventInput if you have multiple
         // For more styling, you can add additional properties here
     };
+    const dateFormat = 'YYYY/MM/DD';
 
 
     return (
@@ -37,7 +39,9 @@ const EventInput: React.FC<{ name: number, sectionIndex: number, eventIndex: num
             </Form.Item>
 
             <Form.Item label="Dates" name={[name, 'eventDates']} rules={[{ required: true }]} >
-            <RangePicker/>
+            <RangePicker
+                  format={dateFormat}
+            />
             </Form.Item>
 
             <Form.Item tooltip={'Your Skills/Tags/Topics/Tasks'} label="Your Skills" name={[name, 'eventSkills']} rules={[{ required: false }]} >

@@ -58,7 +58,8 @@ const TimelineEvent = ({ event }) => {
         <span className="event-date">{event.date}</span>
         <div className="timeline-top"> 
           <div className="timeline-image">
-              <img src={`./events_images/${event.folder_name}/${event.logo}`} alt={event.title} loading="lazy" />
+              {/*<img src={`./events_images/${event.folder_name}/${event.logo}`} alt={event.title} loading="lazy" /> */}
+              <>Image should be here</>
           </div>
           <div className="timeline-content">
             <h3>{event.title}</h3>
@@ -69,12 +70,12 @@ const TimelineEvent = ({ event }) => {
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ marginBottom: '0em' }}>{event.event_name}</h2>
-          <ArrowIcon link={event.link} />
+          <ArrowIcon link={event.eventLink} />
         </div>
 
-        <EventDescription description={event.description} style={{ marginTop: '0em' }}/>
-        <SkillList skills={event.skills} />
-        <ImageGallery folder_name={event.folder_name} gallery={event.gallery} />
+        <EventDescription description={[]} style={{ marginTop: '0em' }}/>
+        <SkillList skills={event.eventSkills} />
+        <ImageGallery gallery={event.photos} />
       </div>
     </div>
   );

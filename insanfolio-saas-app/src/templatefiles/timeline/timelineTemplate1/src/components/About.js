@@ -28,7 +28,7 @@ const About = () => {
                 </div>
             </div>
             <div className="image-gallery-padding"></div>
-            <ImageGallery folder_name="about_images" gallery={withoutFirstImg} />
+            <ImageGallery gallery={withoutFirstImg} />
         </section>
     );
 }

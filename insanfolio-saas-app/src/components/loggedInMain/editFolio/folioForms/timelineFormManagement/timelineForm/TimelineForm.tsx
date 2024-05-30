@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Cascader, DatePicker, Form, Input, InputNumber, Radio, Select, Space, Switch, TreeSelect, message } from 'antd';
-import moment from 'moment'; // Correctly imported
+import dayjs from 'dayjs';
 import AboutSection from './aboutSection/AboutSection';
 import SocialLinksInput from './aboutSection/SocialLinksInput';
 import PersonalInfoInput from './aboutSection/PersonalInfoInput';
@@ -9,6 +9,7 @@ import EventsSections from './eventsSections/EventsSections';
 import { DraftFolioData, GetDraftFolioDataQuery, GetFolioQuery, UpdateDraftFolioDataInput } from 'API';
 import { updateDraftFolioData } from 'graphql/mutations';
 import { fetchDraftFolioDataService, updateDraftFolioDataService } from 'services/draftFolioDataServices';
+const dateFormat = 'YYYY/MM/DD';
 
 interface ResumeItem {
   uid: string;
@@ -47,7 +48,7 @@ interface Event {
 }
 
 interface EventsSection {
-  events?: Event[];
+  events: Event[];
   sectionName: string;
   sectionTitle: string;
 }
@@ -69,7 +70,7 @@ interface InitialValues {
 }
 
 
-const initialValues: InitialValues = {
+let initialValues: InitialValues = {
   size: "default",
   firstName: "first name",
   lastName: "last name",
@@ -126,7 +127,8 @@ const initialValues: InitialValues = {
     },
     {
       "sectionName": "Section1 name",
-      "sectionTitle": "Section1 title"
+      "sectionTitle": "Section1 title",
+      "events": []
     }
   ],
   'twitter-url': '',
@@ -139,20 +141,11 @@ const initialValues: InitialValues = {
 };
 
 // Properly handle moment conversion with optional chaining
-let initialValuesWithMoment = {
-  ...initialValues,
-  eventsSections: initialValues.eventsSections?.map(section => ({
-    ...section,
-    events: section.events?.map(event => ({
-      ...event,
-      eventDates: event.eventDates ? [moment(event.eventDates[0]), moment(event.eventDates[1])] : [undefined, undefined],
-    })) ?? [],
-  })),
-};
+
 
 //console.log(99999 ,initialValuesWithMoment)
 
-console.log(JSON.stringify(initialValuesWithMoment))
+//console.log(JSON.stringify(initialValuesWithMoment))
 //console.log(JSON.stringify(JSON.parse(JSON.stringify(initialValuesWithMoment))))
 // TypeScript types for your initial values structure
 
@@ -179,24 +172,56 @@ const validateAbout = (about: any): about is About => {
 };
 
 const validateEvent = (event: any): event is Event => {
+  if (!event.bullets) {
+    event['bullets'] = [];
+  }
+  if (!event.eventLink) {
+    event['eventLink'] = '';
+  } 
+  if (!event.photos) {
+    event['photos'] = [];
+  }
+  if (!event.eventLogo) {
+    event['eventLogo'] = [];
+  }
+  if (!event.eventSkills) {
+    event['eventSkills'] = [];
+  }
+
   const secondCond =     (typeof event.eventLink === 'string' &&
+  Array.isArray(event.eventSkills) && event.eventSkills.every((eventSkill: any) => typeof eventSkill === 'string') &&
   Array.isArray(event.bullets) && event.bullets.every((bullet: any) => typeof bullet === 'string') &&
   Array.isArray(event.photos) && event.photos.every((photo: any) => typeof photo === 'string') &&
   Array.isArray(event.eventLogo) && event.eventLogo.every((logo: any) => typeof logo === 'string'));
+
   const firstCond = (Array.isArray(event.eventSkills) && event.eventSkills.every((skill: any) => typeof skill === 'string') &&
   typeof event.role === 'string' &&
   typeof event.eventName === 'string' &&
   Array.isArray(event.eventDates) && event.eventDates.length === 2);
+  console.log(firstCond, secondCond)
   return (firstCond === secondCond) && firstCond; // for some reason, i have to do this
 };
 
 const validateEventsSection = (section: any): section is EventsSection => {
+  if (!section.events) {
+    section['events'] = [];
+  }
+
+
   return typeof section.sectionName === 'string' &&
     typeof section.sectionTitle === 'string' &&
-    (!section.events || (Array.isArray(section.events) && section.events.every(validateEvent)));
+    (section.events && (Array.isArray(section.events) && section.events.every(validateEvent)));
 };
 
-const isInitialValues = (data: any): data is InitialValues => {
+const isInitialValues = (data: any) => {
+  const urls = ['github-url', 'linkedin-url', 'twitter-url', 'instagram-url', 'youtube-url', 'tiktok-url', 'facebook-url'];
+  for (const url of urls) {
+    if (!data[url]) {
+      data[url] = '';
+    }
+  }
+
+
   return typeof data.size === 'string' &&
     typeof data.firstName === 'string' &&
     typeof data.lastName === 'string' &&
@@ -213,8 +238,8 @@ const isInitialValues = (data: any): data is InitialValues => {
 };
 
 // Example usage:
-const isValid = isInitialValues(initialValues);
-console.log(isValid); // true or false
+//const isValid = isInitialValues(initialValues);
+//console.log(isValid); // true or false
 
     /* usage:
     if (isInitialValues(initialValues)) {
@@ -243,16 +268,24 @@ const TimelineForm: React.FC<TimelineFormProps> = ({draftFolioData}) => {
   };
 
   if (draftFolioData.customTemplate) {
-    initialValuesWithMoment = JSON.parse(draftFolioData.customTemplate)
+    initialValues = JSON.parse(draftFolioData.customTemplate)
+
   }
+  let initialValuesWithMoment = {
+    ...initialValues,
+    eventsSections: initialValues.eventsSections?.map(section => ({
+      ...section,
+      events: section.events?.map(event => ({
+        ...event,
+        eventDates: [dayjs(event.eventDates[0], dateFormat), dayjs(event.eventDates[1], dateFormat)],
+      })),
+    })),
+  };
+
+
 
   const onFinish = (values: any) => {
-    const urls = ['github-url', 'linkedin-url', 'twitter-url', 'instagram-url', 'youtube-url', 'tiktok-url', 'facebook-url'];
-    for (const url of urls) {
-      if (!values[url]) {
-        values[url] = '';
-      }
-    }
+
     try {
     console.log("submitted values: " , JSON.stringify(values));
     if (isInitialValues(values)) {
