@@ -6,7 +6,7 @@ import SocialLinksInput from './aboutSection/SocialLinksInput';
 import PersonalInfoInput from './aboutSection/PersonalInfoInput';
 import GalleryInput from './shared/GalleryInput';
 import EventsSections from './eventsSections/EventsSections';
-import { GetFolioQuery } from 'API';
+import { DraftFolioData, GetDraftFolioDataQuery, GetFolioQuery } from 'API';
 
 // Correct TypeScript interfaces
 interface ResumeItem {
@@ -147,7 +147,7 @@ const initialValuesWithMoment = {
 type SizeType = Parameters<typeof Form>[0]['size'];
 
 interface TimelineFormProps {
-  formData: GetFolioQuery;
+  formData: DraftFolioData;
 }
 
 const TimelineForm: React.FC<TimelineFormProps> = (formData) => {

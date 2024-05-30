@@ -60,7 +60,7 @@ const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
   
   // Implement the functions for actions
   const handleEdit = (folioId: string, folioType: FolioType) => {/* Implementation */
-    navigate('/editFolio',{state:{id:1,type: folioType, folioId: folioId}});
+    navigate('/editFolio',{state:{id:folioId, folioType: folioType, folioId: folioId}});
     };
   const handleDelete = (folioId: string) => {
     deleteFolioService(folioId).then(() => {

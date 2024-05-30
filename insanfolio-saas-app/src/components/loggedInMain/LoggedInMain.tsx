@@ -3,16 +3,19 @@ import { Layout, Spin, theme } from 'antd';
 import Sidebar from './common/Sidebar';
 import MyFooter from './common/MyFooter';
 import MyHeader from './common/MyHeader';
+import { DraftFolioData, FolioType } from 'API';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 interface LoggedInMainProps {
   userId: string;
   isDarkMode: boolean;
-  children: React.FC<{ userId: string }>; // Define children as a ReactElement with userId prop
+  children: React.FC<{ userId: string }> | any; // Define children as a ReactElement with userId prop
+  draftFolioData?: DraftFolioData ;
+  folioType?: FolioType;
 }
 
-const LoggedInMain: React.FC<LoggedInMainProps> = ({ userId, isDarkMode, children: Children }) => {
+const LoggedInMain: React.FC<LoggedInMainProps> = ({ userId, isDarkMode, children: Children, draftFolioData , folioType}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -33,7 +36,9 @@ const LoggedInMain: React.FC<LoggedInMainProps> = ({ userId, isDarkMode, childre
                 borderRadius: borderRadiusLG,
               }}
             >
-              <Children userId={userId} /> {/* Pass userId to children */}
+              {draftFolioData && <Children userId={userId} draftFolioData={draftFolioData} folioType={folioType}/>}
+              {!draftFolioData && <Children userId={userId} />}
+
             </Layout>
           </Content>
           <MyFooter />

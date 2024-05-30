@@ -3,13 +3,13 @@ import React from 'react';
 import {theme } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import Link from 'antd/es/typography/Link';
-import { GetFolioQuery } from 'API';
+import { DraftFolioData } from 'API';
 
 interface ResearchFormProps {
-    folioData: GetFolioQuery;
+  draftFolioData: DraftFolioData;
 }
 
-const ResearchForm: React.FC<ResearchFormProps> = ({folioData}) => {
+const ResearchForm: React.FC<ResearchFormProps> = ({draftFolioData}) => {
     const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();

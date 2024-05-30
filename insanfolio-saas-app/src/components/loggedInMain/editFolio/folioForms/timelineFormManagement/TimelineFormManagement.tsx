@@ -5,20 +5,20 @@ import { Footer } from 'antd/es/layout/layout';
 import Link from 'antd/es/typography/Link';
 import TimelineForm from './timelineForm/TimelineForm';
 import App from 'templates/timeline/timelineTemplate1/src/App'
-import { GetFolioQuery } from 'API';
+import { DraftFolioData, GetFolioQuery } from 'API';
 
 interface TimelineFormProps {
-    folioData: GetFolioQuery;
+  draftFolioData: DraftFolioData;
 }
 
 
-const TimelineFormManagement: React.FC<TimelineFormProps> = ({folioData}) => {
+const TimelineFormManagement: React.FC<TimelineFormProps> = ({draftFolioData}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   return (
-      <TimelineForm formData={folioData}/>
+      <TimelineForm formData={draftFolioData}/>
   );
 };
 

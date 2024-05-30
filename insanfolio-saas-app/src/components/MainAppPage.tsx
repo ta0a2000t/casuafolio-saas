@@ -18,6 +18,7 @@ import { generateClient } from "aws-amplify/api";
 import LandingPage from "components/landing/LandingPage";
 import {getSession} from '../services/MainService';
 import EditFolioLayout from "./loggedInMain/editFolio/EditFolioLayout";
+import { FolioType } from "API";
 const client = generateClient()
 
 
@@ -267,7 +268,7 @@ const components = {
 type MainAppPageProps = {
   signOut?: UseAuthenticator["signOut"]; //() => void;
   user?: AuthUser;
-  content: React.FC<{ userId: string }>;
+  content: React.FC<{ userId: string }> | any;
   isDarkMode: boolean;
   setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
   isSplitScreen: boolean;
