@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import App from './timeline/timelineTemplate1/src/App';
+import { FolioType } from 'API';
 // add other templates types
 
 // TODO: make sure the values conform to the predefined interface of the corresponding template type
 
 interface FolioSiteProps {
-  values: any; // Consider using a more specific type instead of any
-  type: any; // Consider using a more specific type instead of any
-  number: any; // Consider using a more specific type instead of any
+  values: any; 
+  type: FolioType; 
+  number: any; 
 }
 
 const FolioSite: React.FC<FolioSiteProps> = ({ values, type, number }) => {
@@ -15,7 +16,7 @@ const FolioSite: React.FC<FolioSiteProps> = ({ values, type, number }) => {
   let TemplateComponent;
 
   switch (type) {
-    case 1:
+    case FolioType.TIMELINE:
       TemplateComponent = <App values={values} />;
       break;
     // case 2:

@@ -4,8 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Row, Col, Spin, Layout } from 'antd';
 import EditFolio from './EditFolio';
 import LoggedInMain from '../LoggedInMain';
-import App from "../../../../src/templates/timeline/timelineTemplate1/src/App.js";
-import { FolioType, GetFolioQuery, GetDraftFolioDataQuery, DraftFolioData, CreateDraftFolioDataInput, UpdateFolioInput } from 'API';
+import { FolioType, GetFolioQuery, GetDraftFolioDataQuery, DraftFolioData, CreateDraftFolioDataInput, UpdateFolioInput, FolioNumber } from 'API';
 import { fetchFolioService, updateFolioService } from 'services/folioServices';
 import { LoadingOutlined } from '@ant-design/icons';
 import { createDraftFolioDataService } from 'services/draftFolioDataServices';
@@ -39,15 +38,15 @@ const EditFolioLayout: React.FC<EditFolioLayoutProps> = ({ userId, isDarkMode, c
   // Extract folioType and folioId from the location state
   const folioType = location.state?.folioType as FolioType;
   const folioId = location.state?.folioId as string;
-
+  const folioNumber = location.state?.folioNumber as FolioNumber;
 
     // Check for undefined folioType or folioId and navigate if necessary
     useEffect(() => {
-      if (folioType === undefined || folioId === undefined) {
+      if (folioType === undefined || folioId === undefined || folioNumber === undefined) {
         console.error('Invalid folioType or folioId:', folioType, folioId);
         navigate("/404");
       }
-    }, [folioType, folioId, navigate]); // Depend only on folioType and folioId to control navigation
+    }, [folioType, folioId, folioNumber]); // Depend only on folioType and folioId to control navigation
   
     
     useEffect(() => {
@@ -107,6 +106,14 @@ const EditFolioLayout: React.FC<EditFolioLayoutProps> = ({ userId, isDarkMode, c
 
     )
   } if (draftFolioData){
+    let url = new URL("http://localhost:3000/draftFolio/")
+    url.searchParams.append("folioDataId", draftFolioData.id)
+    url.searchParams.append("folioType", folioType)
+    url.searchParams.append("folioNumber", folioNumber)
+    url.searchParams.append("isDraft", "true");
+    
+    console.log(url.toString())
+
     return (
       <Row style={{ minHeight: '100vh' }}>
         <Col xs={24} md={12}>
@@ -114,7 +121,7 @@ const EditFolioLayout: React.FC<EditFolioLayoutProps> = ({ userId, isDarkMode, c
         </Col>
         <Col xs={0} md={12} style={{ position: 'fixed', right: 0, top: 0, width: '50%', height: '100vh' }}>
           <iframe 
-              src={`http://localhost:3000/folioDraft/${draftFolioDataId}`}
+              src={url.toString()}
               title="Folio Draft"
             style={{ width: '100%', height: '100vh', border: 'none' }}
           ></iframe>

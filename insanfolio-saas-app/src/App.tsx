@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ValidateFolioSite from './templates/ValidateFolioSite';
+import ValidateFolioSite from './templatefiles/ValidateFolioSite';
 import HomePage from './components/loggedInMain/homePage/HomePage';
 
 // Main Pages
@@ -32,7 +32,7 @@ function App() {
     <Routes>
       <Route path='/404' element={<NotFound404Page/>} />
 
-      <Route path='/folioDraft/:folioId' element={<ValidateFolioSite isPublished={false}/>}></Route>
+      <Route path='/draftFolio' element={<ValidateFolioSite isPublished={false}/>}></Route>
       <Route path='/folio/:folioId' element={<ValidateFolioSite isPublished={true}/>}></Route>  
 
 

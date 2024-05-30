@@ -4,7 +4,7 @@ import {Layout, theme } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import Link from 'antd/es/typography/Link';
 import TimelineForm from './timelineForm/TimelineForm';
-import App from 'templates/timeline/timelineTemplate1/src/App'
+import App from 'templatefiles/timeline/timelineTemplate1/src/App'
 import { DraftFolioData, GetFolioQuery } from 'API';
 
 interface TimelineFormManagementProps {

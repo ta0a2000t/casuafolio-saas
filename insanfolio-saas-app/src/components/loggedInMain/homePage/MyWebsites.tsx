@@ -3,7 +3,7 @@ import { List, Popconfirm, Space, Tooltip, message } from 'antd';
 import { LikeOutlined, MessageOutlined, StarOutlined, EditOutlined, BarChartOutlined, CloudUploadOutlined, CloudDownloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import {useNavigate} from 'react-router-dom';
 import { deleteFolioService, fetchFoliosService, subscribeToFolioCreation, subscribeToFolioDeletion, subscribeToFolioUpdate, updateFolioService } from 'services/folioServices';
-import { CreatePublishedFolioDataInput, Folio, FolioType, ListFoliosQuery, UpdateFolioInput } from 'API';
+import { CreatePublishedFolioDataInput, Folio, FolioNumber, FolioType, ListFoliosQuery, UpdateFolioInput } from 'API';
 import FolioCard from '../editFolio/FolioCard';
 import { createPublishedFolioDataService, deletePublishedFolioDataService } from 'services/publishedFolioDataServices';
 
@@ -59,8 +59,8 @@ const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
 
   
   // Implement the functions for actions
-  const handleEdit = (folioId: string, folioType: FolioType) => {/* Implementation */
-    navigate('/editFolio',{state:{id:folioId, folioType: folioType, folioId: folioId}});
+  const handleEdit = (folioId: string, folioType: FolioType, folioNumber: FolioNumber) => {/* Implementation */
+    navigate('/editFolio',{state:{id:folioId, folioType: folioType, folioId: folioId, folioNumber: folioNumber}});
     };
   const handleDelete = (folioId: string) => {
     deleteFolioService(folioId).then(() => {
@@ -130,7 +130,7 @@ const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
   renderItem={folio => (
     <FolioCard
       folio={folio}
-      handleEdit={(theIdOfFolio) => handleEdit(theIdOfFolio, folio.folioType)}
+      handleEdit={(theIdOfFolio) => handleEdit(theIdOfFolio, folio.folioType, folio.folioNumber)}
       handleViewAnalytics={handleViewAnalytics}
       togglePublishStatus={togglePublishStatus}
       handleDelete={handleDelete}
