@@ -47,8 +47,8 @@ export const RESUME_LOCATION = info.RESUME_LOCATION;
 export const ABOUT_TAB_NAME = info.ABOUT_TAB_NAME;
 
 // tab button names:
-export const VOLUNTEER_TAB_NAME = info.VOLUNTEER_TAB_NAME;
-export const EXPERIENCE_TAB_NAME = info.EXPERIENCE_TAB_NAME;
+export const SECTION3_TAB_NAME = info.SECTION3_TAB_NAME;
+export const SECTION1_TAB_NAME = info.SECTION1_TAB_NAME;
 export const SECTION2_TAB_NAME = info.SECTION2_TAB_NAME;
 
 
@@ -58,38 +58,25 @@ export const SECTION2_TAB_NAME = info.SECTION2_TAB_NAME;
  * 
  *           SECTION 2: EVENTS
  * 
- *  Purpose: To outline all professional, volunteer
- *  and SECTION2-based events (experiences).
+ *  Purpose: To outline all professional, SECTION3
+ *  and SECTION2-based events (SECTION1).
  ******************************************/
 
 // headlines:
-export const EXPERIENCE_PAGE_HEADLINE = info.EXPERIENCE_PAGE_HEADLINE;
+export const SECTION1_PAGE_HEADLINE = info.SECTION1_PAGE_HEADLINE;
 export const SECTION2_PAGE_HEADLINE = info.SECTION2_PAGE_HEADLINE;
-export const VOLUNTEER_PAGE_HEADLINE = info.VOLUNTEER_PAGE_HEADLINE;
+export const SECTION3_PAGE_HEADLINE = info.SECTION3_PAGE_HEADLINE;
 
 
-/*
-What an event looks like:
-{
-  title: string; // The title of the group or company where the experience occurred
-  event_name: string; // The specific role or position held during the experience
-  date: string; // Time period during which the experience took place, e.g., 'Sep 2023 - Present'
-  description: string[]; // An array of strings describing various aspects or responsibilities of the role
-  skills: string[]; // An array of skills acquired or used during the experience
-  directory: string; // Directory path where related images are stored
-  gallery_size: number; // Number indicating the total count of images in the scrollable gallery. do not count logo.png
-  link: string; // A URL linking to documentation for this particular experience
-}
-*/
 
 
 // ---- Sub-Section: Experience Events ----
 // make sure to sort them; topmost is your most recent
-export const EXPERIENCE_EVENTS = info.EXPERIENCE_EVENTS;
+export const SECTION1_EVENTS = info.SECTION1_EVENTS;
 
 // ---- Sub-Section: Volunteer Events ----
 // make sure to sort them; topmost is your most recent
-export const VOLUNTEER_EVENTS = info.VOLUNTEER_EVENTS;
+export const SECTION3_EVENTS = info.SECTION3_EVENTS;
 
 // ---- Sub-Section: Project Events ----
 // make sure to sort them; topmost is your most recent

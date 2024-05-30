@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Experience = ({ experience }) => {
+const Experience = ({ SECTION1 }) => {
   return (
     <div>
-      <h3>{experience.role}</h3>
-      <p>{experience.company}, {experience.year}</p>
+      <h3>{SECTION1.role}</h3>
+      <p>{SECTION1.company}, {SECTION1.year}</p>
     </div>
   );
 };
