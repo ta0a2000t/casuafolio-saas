@@ -6,9 +6,10 @@ import SocialLinksInput from './aboutSection/SocialLinksInput';
 import PersonalInfoInput from './aboutSection/PersonalInfoInput';
 import GalleryInput from './shared/GalleryInput';
 import EventsSections from './eventsSections/EventsSections';
-import { DraftFolioData, GetDraftFolioDataQuery, GetFolioQuery } from 'API';
+import { DraftFolioData, GetDraftFolioDataQuery, GetFolioQuery, UpdateDraftFolioDataInput } from 'API';
+import { updateDraftFolioData } from 'graphql/mutations';
+import { fetchDraftFolioDataService, updateDraftFolioDataService } from 'services/draftFolioDataServices';
 
-// Correct TypeScript interfaces
 interface ResumeItem {
   uid: string;
   lastModified: number;
@@ -40,11 +41,13 @@ interface Event {
   eventName: string;
   eventDates: [string, string];
   eventLink: string;
-  bullets?: string[]; // Corrected type for bullets
+  bullets: string[];
+  photos: string[];
+  eventLogo: string[];
 }
 
 interface EventsSection {
-  events?: Event[]; // Correct optional notation
+  events?: Event[];
   sectionName: string;
   sectionTitle: string;
 }
@@ -53,18 +56,24 @@ interface InitialValues {
   size: string;
   firstName: string;
   lastName: string;
-  resume?: ResumeItem[];
+  resume: ResumeItem[];
   about: About;
   'linkedin-url': string;
   'youtube-url': string;
-  eventsSections?: EventsSection[];
+  'twitter-url': string;
+  'instagram-url': string;
+  'tiktok-url': string;
+  'facebook-url': string;
+  'github-url': string;
+  eventsSections: EventsSection[];
 }
+
 
 const initialValues: InitialValues = {
   size: "default",
   firstName: "first name",
   lastName: "last name",
-  resume: [     {
+  resume: [{
     "uid": "rc-upload-1708986902924-17",
     "lastModified": 1708631779551,
     "lastModifiedDate": "2024-02-22T19:56:19.551Z",
@@ -82,13 +91,12 @@ const initialValues: InitialValues = {
     },
     "response": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot POST /upload.do</pre>\n</body>\n</html>\n",
     "status": "error"
-  } ],
+  }],
   about: {
     intro: "this is an intro",
     yourPhotos: ["https://picsum.photos/200", "https://picsum.photos/200"]
   },
-  'linkedin-url': "taha-al-nufaili/",
-  'youtube-url': "channel/UCcp-0yclr1Zlf1-G_vAoQEA",
+
   eventsSections: [
     {
       "events": [
@@ -98,7 +106,9 @@ const initialValues: InitialValues = {
           "eventName": "event0 name",
           "eventDates": ["2024-02-13T05:00:00.000Z", "2024-03-20T04:00:00.000Z"],
           "eventLink": "https://www.youtube.com/event2",
-          "bullets": ["bullet1 here", "bullet2 here", "bullet3 here"]
+          "bullets": ["bullet1 here", "bullet2 here", "bullet3 here"],
+          "photos": ["photos1", "photos2", "photos3"],
+          "eventLogo": [""]
         },
         {
           "eventSkills": ["communication", "strategy"],
@@ -106,7 +116,9 @@ const initialValues: InitialValues = {
           "eventDates": ["2024-02-21T05:00:00.000Z", "2024-03-21T04:00:00.000Z"],
           "eventName": "event1 name",
           "eventLink": "https://www.youtube.com/event1",
-          "bullets": undefined
+          "bullets": [],
+          "photos": [],
+          "eventLogo": []
         }
       ],
       "sectionName": "sec0 name",
@@ -116,11 +128,18 @@ const initialValues: InitialValues = {
       "sectionName": "Section1 name",
       "sectionTitle": "Section1 title"
     }
-  ]
+  ],
+  'twitter-url': '',
+  'instagram-url': '',
+  'tiktok-url': '',
+  'facebook-url': '',
+  'linkedin-url': "taha-al-nufaili/",
+  'youtube-url': "channel/UCcp-0yclr1Zlf1-G_vAoQEA",
+  'github-url' : ''
 };
 
 // Properly handle moment conversion with optional chaining
-const initialValuesWithMoment = {
+let initialValuesWithMoment = {
   ...initialValues,
   eventsSections: initialValues.eventsSections?.map(section => ({
     ...section,
@@ -131,26 +150,88 @@ const initialValuesWithMoment = {
   })),
 };
 
+//console.log(99999 ,initialValuesWithMoment)
 
-
-
+console.log(JSON.stringify(initialValuesWithMoment))
+//console.log(JSON.stringify(JSON.parse(JSON.stringify(initialValuesWithMoment))))
 // TypeScript types for your initial values structure
 
 
 
+const validateResumeItem = (item: any): item is ResumeItem => {
+  return (typeof item.uid === 'string' &&
+    typeof item.lastModified === 'number' &&
+    typeof item.lastModifiedDate === 'string' &&
+    typeof item.name === 'string' &&
+    typeof item.size === 'number' &&
+    typeof item.type === 'string' &&
+    typeof item.percent === 'number' &&
+    typeof item.originFileObj === 'object' &&
+    typeof item.originFileObj.uid === 'string' &&
+    (!item.error || (typeof item.error === 'object' && typeof item.error.status === 'number' && typeof item.error.method === 'string' && typeof item.error.url === 'string')) &&
+    (!item.response || typeof item.response === 'string') &&
+    typeof item.status === 'string');
+};
 
+const validateAbout = (about: any): about is About => {
+  return typeof about.intro === 'string' &&
+    Array.isArray(about.yourPhotos) && about.yourPhotos.every((photo: any) => typeof photo === 'string');
+};
 
+const validateEvent = (event: any): event is Event => {
+  const secondCond =     (typeof event.eventLink === 'string' &&
+  Array.isArray(event.bullets) && event.bullets.every((bullet: any) => typeof bullet === 'string') &&
+  Array.isArray(event.photos) && event.photos.every((photo: any) => typeof photo === 'string') &&
+  Array.isArray(event.eventLogo) && event.eventLogo.every((logo: any) => typeof logo === 'string'));
+  const firstCond = (Array.isArray(event.eventSkills) && event.eventSkills.every((skill: any) => typeof skill === 'string') &&
+  typeof event.role === 'string' &&
+  typeof event.eventName === 'string' &&
+  Array.isArray(event.eventDates) && event.eventDates.length === 2);
+  return (firstCond === secondCond) && firstCond; // for some reason, i have to do this
+};
 
+const validateEventsSection = (section: any): section is EventsSection => {
+  return typeof section.sectionName === 'string' &&
+    typeof section.sectionTitle === 'string' &&
+    (!section.events || (Array.isArray(section.events) && section.events.every(validateEvent)));
+};
+
+const isInitialValues = (data: any): data is InitialValues => {
+  return typeof data.size === 'string' &&
+    typeof data.firstName === 'string' &&
+    typeof data.lastName === 'string' &&
+    Array.isArray(data.resume) && data.resume.every(validateResumeItem) &&
+    validateAbout(data.about) &&
+    typeof data['linkedin-url'] === 'string' &&
+    typeof data['youtube-url'] === 'string' &&
+    typeof data['twitter-url'] === 'string' &&
+    typeof data['instagram-url'] === 'string' &&
+    typeof data['tiktok-url'] === 'string' &&
+    typeof data['facebook-url'] === 'string' &&
+    typeof data['github-url'] === 'string' &&
+    Array.isArray(data.eventsSections) && data.eventsSections.every(validateEventsSection);
+};
+
+// Example usage:
+const isValid = isInitialValues(initialValues);
+console.log(isValid); // true or false
+
+    /* usage:
+    if (isInitialValues(initialValues)) {
+      console.log('Valid InitialValues:', initialValues);
+    } else {
+      console.error('Invalid InitialValues');
+    } */
 
 
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 
 interface TimelineFormProps {
-  formData: DraftFolioData;
+  draftFolioData: DraftFolioData;
 }
 
-const TimelineForm: React.FC<TimelineFormProps> = (formData) => {
+const TimelineForm: React.FC<TimelineFormProps> = ({draftFolioData}) => {
   const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
   const [form] = Form.useForm();
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
@@ -161,13 +242,46 @@ const TimelineForm: React.FC<TimelineFormProps> = (formData) => {
     message.error('Submit failed!');
   };
 
+  if (draftFolioData.customTemplate) {
+    initialValuesWithMoment = JSON.parse(draftFolioData.customTemplate)
+  }
 
   const onFinish = (values: any) => {
-  console.log('Success:', values);
+    const urls = ['github-url', 'linkedin-url', 'twitter-url', 'instagram-url', 'youtube-url', 'tiktok-url', 'facebook-url'];
+    for (const url of urls) {
+      if (!values[url]) {
+        values[url] = '';
+      }
+    }
     try {
+    console.log("submitted values: " , JSON.stringify(values));
+    if (isInitialValues(values)) {
+      console.log('Valid values:', values);
+      console.log('Valid values:', JSON.stringify(values));
 
+      const draftFolioDataInput: UpdateDraftFolioDataInput = {
+        id: draftFolioData.id,
+        customTemplate: JSON.stringify(values)
+      }
+
+      updateDraftFolioDataService(draftFolioDataInput).then(() => {
+        console.log("Updated draftFolioData successfully!");
+        console.log('Success:', values);
+        message.success('Submit success!');
+
+      });
+
+    } else {
+      console.error('Invalid values');
+      message.error('Submit Failed >..<');
+
+    }
+
+
+
+
+      //draftFolioData.customTemplate
       
-      console.log(values);
       /*
       const input = {
         // Extract values and remove prefixes as needed
@@ -206,8 +320,6 @@ const TimelineForm: React.FC<TimelineFormProps> = (formData) => {
 
       */
 
-      // Handle success
-      message.success('Submit success!');
     } catch (error) {
       console.error('Error updating social links:', error);
       // Handle error

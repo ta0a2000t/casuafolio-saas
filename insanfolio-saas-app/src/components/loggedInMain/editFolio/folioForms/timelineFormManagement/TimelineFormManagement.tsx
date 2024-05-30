@@ -7,18 +7,18 @@ import TimelineForm from './timelineForm/TimelineForm';
 import App from 'templates/timeline/timelineTemplate1/src/App'
 import { DraftFolioData, GetFolioQuery } from 'API';
 
-interface TimelineFormProps {
+interface TimelineFormManagementProps {
   draftFolioData: DraftFolioData;
 }
 
 
-const TimelineFormManagement: React.FC<TimelineFormProps> = ({draftFolioData}) => {
+const TimelineFormManagement: React.FC<TimelineFormManagementProps> = ({draftFolioData}) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
   return (
-      <TimelineForm formData={draftFolioData}/>
+      <TimelineForm draftFolioData={draftFolioData}/>
   );
 };
 
