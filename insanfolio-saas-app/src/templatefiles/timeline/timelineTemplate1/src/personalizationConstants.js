@@ -53,7 +53,7 @@ export const SECTION3_TAB_NAME = info.eventsSections[2].sectionName;
 
 console.log(SECTION1_TAB_NAME, SECTION2_TAB_NAME, SECTION3_TAB_NAME)
 
-
+ 
 /******************************************
  * 
  *           SECTION 2: EVENTS
