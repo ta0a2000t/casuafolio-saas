@@ -32,8 +32,8 @@ function App() {
     <Routes>
       <Route path='/404' element={<NotFound404Page/>} />
 
-      <Route path='/draftFolio' element={<ValidateFolioSite isPublished={false}/>}></Route>
-      <Route path='/folio/:folioId' element={<ValidateFolioSite isPublished={true}/>}></Route>  
+      <Route path='/draftFolio' element={<ValidateFolioSite isPublished={false} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>}></Route>
+      <Route path='/folio/:folioId' element={<ValidateFolioSite isPublished={true} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>}></Route>  
 
 
 
