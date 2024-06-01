@@ -5,6 +5,7 @@ import { FolioNumber, FolioType } from 'API';
 import { fetchDraftFolioDataService } from 'services/draftFolioDataServices';
 import { fetchPublishedFolioDataService } from 'services/publishedFolioDataServices';
 import { ConfigProvider, Layout, Spin, theme } from 'antd';
+import {Helmet} from "react-helmet";
 
 interface ValidateFolioSiteProps {
   isPublished: boolean;
@@ -17,7 +18,7 @@ const ValidateFolioSite: React.FC<ValidateFolioSiteProps> = ({ isPublished, isDa
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  
   const searchParams = new URLSearchParams(location.search);
   const folioDataId = searchParams.get('folioDataId') as string;
   const folioType = searchParams.get('folioType') as FolioType;
@@ -67,9 +68,37 @@ const ValidateFolioSite: React.FC<ValidateFolioSiteProps> = ({ isPublished, isDa
 
 
   if (typeof customTemplate === 'string') {
-    return (
 
-      <FolioSite values={JSON.parse(customTemplate)} folioType={folioType} folioNumber={folioNumber} />
+
+
+    const values = JSON.parse(customTemplate);
+    const SITE_TITLE = values.firstName;
+    const META_DESCRIPTION = values.firstName + " " + values.lastName + " personal online portfolio, made with InsanFolio."; 
+
+
+
+    const meta = {
+      title: SITE_TITLE,
+      description: META_DESCRIPTION,
+    }
+
+    const currentURL = "https://insanfolio/" + location.pathname + location.search
+
+    return (
+      <>
+          <Helmet>
+              <meta charSet="utf-8" />
+              <title>{meta.title}</title>
+              <link rel="canonical" href={currentURL} />
+              <meta name="description" content={meta.description} />
+
+          </Helmet>
+
+
+      <FolioSite values={values} folioType={folioType} folioNumber={folioNumber} />
+      </>
+      
+      
     );
   } else {
     return (        

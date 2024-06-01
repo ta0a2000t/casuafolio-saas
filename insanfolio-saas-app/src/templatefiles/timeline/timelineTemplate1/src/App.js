@@ -24,6 +24,7 @@ function App({values}) {
   const META_DESCRIPTION = info.META_DESCRIPTION
 
 
+
   const ABOUT_TAB_NAME = info.ABOUT_TAB_NAME
   const SECTION1_TAB_NAME = info.SECTION1_TAB_NAME
   const SECTION2_TAB_NAME = info.SECTION2_TAB_NAME

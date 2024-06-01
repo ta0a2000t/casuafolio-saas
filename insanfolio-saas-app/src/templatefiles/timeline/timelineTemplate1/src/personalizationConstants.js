@@ -93,7 +93,7 @@ export function getConsts(info) {
               date
             };
           })
-          .sort((a, b) => a.eventDates[0].isBefore(b.eventDates[0]) ? -1 : 1);
+          .sort((a, b) => a.eventDates[0].isBefore(b.eventDates[0]) ? 1 : -1);
       };
       
 

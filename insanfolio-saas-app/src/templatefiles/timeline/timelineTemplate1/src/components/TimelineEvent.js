@@ -69,7 +69,7 @@ const TimelineEvent = ({ event }) => {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 style={{ marginBottom: '0em' }}>{event.event_name}</h2>
+          <h2 style={{ marginBottom: '0em' }}>{event.role}</h2>
           <ArrowIcon link={event.eventLink} />
         </div>
 

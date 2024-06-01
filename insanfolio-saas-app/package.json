@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "0": "@babel/plugin-proposal-private-property-in-object",
+    "@types/react-document-meta": "^3.0.5",
     "@types/react-helmet": "^6.1.11",
     "@types/uuid": "^9.0.8"
   }
