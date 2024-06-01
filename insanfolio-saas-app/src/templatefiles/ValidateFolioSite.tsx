@@ -68,7 +68,8 @@ const ValidateFolioSite: React.FC<ValidateFolioSiteProps> = ({ isPublished, isDa
 
   if (typeof customTemplate === 'string') {
     return (
-      <FolioSite values={customTemplate} folioType={folioType} folioNumber={folioNumber} />
+
+      <FolioSite values={JSON.parse(customTemplate)} folioType={folioType} folioNumber={folioNumber} />
     );
   } else {
     return (        

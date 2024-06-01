@@ -7,13 +7,38 @@ import './font-awesome/css/font-awesome.min.css';
 import About from './components/About'
 import SocialIcons from './components/SocialIcons'; // adjust the import path as needed
 
-import {FULL_NAME , SECTION1_EVENTS, SECTION2_EVENTS, SECTION3_EVENTS} from './personalizationConstants';
-import {ABOUT_TAB_NAME, SECTION3_TAB_NAME, SECTION1_TAB_NAME, SECTION2_TAB_NAME, SECTION1_PAGE_HEADLINE, SECTION2_PAGE_HEADLINE, SECTION3_PAGE_HEADLINE} from './personalizationConstants';
+//import {FULL_NAME , SECTION1_EVENTS, SECTION2_EVENTS, SECTION3_EVENTS} from './personalizationConstants';
+//import {ABOUT_TAB_NAME, SECTION3_TAB_NAME, SECTION1_TAB_NAME, SECTION2_TAB_NAME, SECTION1_PAGE_HEADLINE, SECTION2_PAGE_HEADLINE, SECTION3_PAGE_HEADLINE} from './personalizationConstants';
 import {HEADER_COLOR} from './stylingConstants';
 import { getColor } from './helpers/utils';
 
 
-function App(values) {
+
+import {getConsts} from './personalizationConstants';
+
+function App({values}) {
+  const info = getConsts(values);
+  console.log(info);
+  const FULL_NAME = info.FULL_NAME
+  const SITE_TITLE = info.SITE_TITLE
+  const META_DESCRIPTION = info.META_DESCRIPTION
+
+
+  const ABOUT_TAB_NAME = info.ABOUT_TAB_NAME
+  const SECTION1_TAB_NAME = info.SECTION1_TAB_NAME
+  const SECTION2_TAB_NAME = info.SECTION2_TAB_NAME
+  const SECTION3_TAB_NAME = info.SECTION3_TAB_NAME
+  const SECTION1_PAGE_HEADLINE = info.SECTION1_PAGE_HEADLINE
+  const SECTION2_PAGE_HEADLINE = info.SECTION2_PAGE_HEADLINE
+  const SECTION3_PAGE_HEADLINE =info.SECTION3_PAGE_HEADLINE
+  const SECTION1_EVENTS = info.SECTION1_EVENTS
+  const SECTION2_EVENTS = info.SECTION2_EVENTS
+  const SECTION3_EVENTS = info.SECTION3_EVENTS
+
+
+
+
+
   const bgColor = 'rgba(0, 0, 0, 1)';
   const theme = '';
   const [timelineEvents, setTimelineEvents] = useState([]);
@@ -120,7 +145,7 @@ function App(values) {
 
 
       <div className="top-right">
-      <SocialIcons />
+      <SocialIcons info={info}/>
       </div>
 
     </header>
@@ -132,7 +157,7 @@ function App(values) {
       </section>
 
       <section id="about" ref={aboutRef}>
-        <About/>
+        <About info={info}/>
       </section>
     </div>
 

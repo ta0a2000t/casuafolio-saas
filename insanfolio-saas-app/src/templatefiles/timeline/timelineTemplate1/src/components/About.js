@@ -3,9 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import './About.css';
 import ImageGallery from './ImageGallery';  // Import the ImageGallery component
-import {ABOUT_SECTION_TEXT, ABOUT_SECTION_GREETING, ABOUT_SECTION_GALLERY} from '../personalizationConstants';
+//import {ABOUT_SECTION_TEXT, ABOUT_SECTION_GREETING, ABOUT_SECTION_GALLERY} from '../personalizationConstants';
 
-const About = () => {
+const About = ({info}) => {
+
+    const ABOUT_SECTION_GREETING = info.ABOUT_SECTION_GREETING
+    const ABOUT_SECTION_TEXT = info.ABOUT_SECTION_TEXT
+    const ABOUT_SECTION_GALLERY = info.ABOUT_SECTION_GALLERY
 
     // Check if ABOUT_SECTION_GALLERY is empty and adjust its value accordingly
     const gallery = ABOUT_SECTION_GALLERY.length === 0 

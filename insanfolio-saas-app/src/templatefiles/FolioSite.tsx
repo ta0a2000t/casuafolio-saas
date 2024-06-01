@@ -14,8 +14,6 @@ interface FolioSiteProps {
 const FolioSite: React.FC<FolioSiteProps> = ({ values, folioType, folioNumber }) => {
   // use type and number to determine the template
   let TemplateComponent;
-  console.log(values);
-  console.log("//////////////////////////////////////////////")
   switch (folioType) {
     case FolioType.TIMELINE:
       TemplateComponent = <App values={values} />;

@@ -11,6 +11,22 @@ import { updateDraftFolioData } from 'graphql/mutations';
 import { fetchDraftFolioDataService, updateDraftFolioDataService } from 'services/draftFolioDataServices';
 const dateFormat = 'YYYY/MM/DD';
 
+const urls = ['github-url', 'linkedin-url', 'twitter-url', 'instagram-url', 'youtube-url', 'tiktok-url', 'facebook-url'];
+type UrlKey = typeof urls[number];
+
+type PrefixKey = 'github-url' | 'linkedin-url' | 'twitter-url' | 'instagram-url' | 'youtube-url' | 'tiktok-url' | 'facebook-url';
+let prefixes: Record<PrefixKey, string> = {
+  'github-url': 'https://github.com/',
+  'linkedin-url': 'https://www.linkedin.com/in/',
+  'twitter-url': 'https://twitter.com/',
+  'instagram-url': 'https://www.instagram.com/',
+  'youtube-url': 'https://www.youtube.com/',
+  'tiktok-url': 'https://www.tiktok.com/@',
+  'facebook-url': 'https://www.facebook.com/',
+
+};
+
+
 interface ResumeItem {
   uid: string;
   lastModified: number;
@@ -213,13 +229,19 @@ const validateEventsSection = (section: any): section is EventsSection => {
     (section.events && (Array.isArray(section.events) && section.events.every(validateEvent)));
 };
 
+
+
 const isInitialValues = (data: any) => {
-  const urls = ['github-url', 'linkedin-url', 'twitter-url', 'instagram-url', 'youtube-url', 'tiktok-url', 'facebook-url'];
+
   for (const url of urls) {
     if (!data[url]) {
       data[url] = '';
+    } else {
+      data[url] = prefixes[url as PrefixKey] + data[url];
     }
   }
+
+
 
 
   return typeof data.size === 'string' &&
@@ -271,6 +293,7 @@ const TimelineForm: React.FC<TimelineFormProps> = ({draftFolioData}) => {
     initialValues = JSON.parse(draftFolioData.customTemplate)
 
   }
+
   let initialValuesWithMoment = {
     ...initialValues,
     eventsSections: initialValues.eventsSections?.map(section => ({
@@ -282,6 +305,12 @@ const TimelineForm: React.FC<TimelineFormProps> = ({draftFolioData}) => {
     })),
   };
 
+  for (const url of urls) {
+    const prefix = prefixes[url as PrefixKey];
+    if ((initialValuesWithMoment as any)[url].startsWith(prefix)) {
+      (initialValuesWithMoment as any)[url] = (initialValuesWithMoment as any)[url].substring(prefix.length);
+    }
+  }
 
 
   const onFinish = (values: any) => {

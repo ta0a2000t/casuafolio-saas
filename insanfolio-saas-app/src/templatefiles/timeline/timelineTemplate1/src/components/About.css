@@ -17,11 +17,14 @@
 }
 
 .about-image img {
-  max-width: 100%;
+  min-width: 350px;
+  max-width: 700px;
+
   border-radius: 1em;
   box-shadow: 0 0 15px 10px black;
   display: block; /* Set to block */
   margin: 0 auto; /* Center the image */
+  padding-right: 10px;
 }
 
 .about-text {
@@ -39,7 +42,7 @@
   .about-image,
   .about-text {
     flex: none;
-    width: 100%;
+    min-width: 200px;
   }
 
   .about-image {

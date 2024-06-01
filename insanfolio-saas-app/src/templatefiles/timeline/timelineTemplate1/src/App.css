@@ -127,6 +127,7 @@ p {
   padding: 1.25em;
   margin: 2.5em;
   margin-top: 10em;
+  margin-right: 1em;
 }
 
 .Timeline::before, .Timeline::after {
@@ -163,6 +164,8 @@ p {
     padding: 0.625em;
     margin: 0.9375em;
     margin-top: 10.9375em;
+    margin-right: 0.5em;
+
   }
 
   .Timeline::before {
@@ -170,5 +173,26 @@ p {
     bottom: 0.625em;
     left: calc(15% - 0.27em);
     width: 0.125em;
+  }
+}
+
+
+
+
+@media (max-width: 363px) {
+
+  .Timeline {
+
+    margin-right: -4%;
+
+  }
+}
+
+@media (max-width: 343px) {
+
+  .Timeline {
+
+    margin-right: -15%;
+
   }
 }

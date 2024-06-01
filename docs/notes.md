@@ -11,3 +11,4 @@ not work. so they will only be able to read the public file after doing `npm run
 
 --------------------------------
 
+UseEffect() runs twice in develeopment mode. so I should ignore that it makes two draftDataTables whenever i try to only make one.

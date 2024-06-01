@@ -62,7 +62,7 @@ const EditFolioLayout: React.FC<EditFolioLayoutProps> = ({ userId, isDarkMode, c
               setDraftFolioData(data.getFolio.draftData)
               console.log("did not need to create a new DraftFolioData table")
             } else {
-              console.log("created a new DraftFolioData table")
+              console.log(" ")
 
               // create a draftData table
               const draftFolioDataInput: CreateDraftFolioDataInput = {
@@ -93,7 +93,7 @@ const EditFolioLayout: React.FC<EditFolioLayoutProps> = ({ userId, isDarkMode, c
       if (folioId) {
         loadData();
       }
-    }, [folioId]); // Remove navigate from the dependencies to prevent re-triggering due to navigation
+    }, []);
   
 
 

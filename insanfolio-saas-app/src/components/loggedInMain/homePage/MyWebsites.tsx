@@ -6,6 +6,7 @@ import { deleteFolioService, fetchFoliosService, subscribeToFolioCreation, subsc
 import { CreatePublishedFolioDataInput, Folio, FolioNumber, FolioType, ListFoliosQuery, UpdateFolioInput } from 'API';
 import FolioCard from '../editFolio/FolioCard';
 import { createPublishedFolioDataService, deletePublishedFolioDataService } from 'services/publishedFolioDataServices';
+import { deleteDraftFolioDataService } from 'services/draftFolioDataServices';
 
 
 const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
@@ -63,7 +64,15 @@ const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
     navigate('/editFolio',{state:{id:folioId, folioType: folioType, folioId: folioId, folioNumber: folioNumber}});
     };
   const handleDelete = (folioId: string) => {
-    deleteFolioService(folioId).then(() => {
+    deleteFolioService(folioId).then((folio) => {
+      if (folio.deleteFolio.folioDraftDataId) {
+        deleteDraftFolioDataService(folio.deleteFolio.folioDraftDataId);
+      }
+
+      if (folio.deleteFolio.folioPublishedDataId) {
+        deletePublishedFolioDataService(folio.deleteFolio.folioPublishedDataId);
+      }
+
       setFolios(prevfolios => prevfolios.filter(folio => folio.id !== folioId));
     })
   };

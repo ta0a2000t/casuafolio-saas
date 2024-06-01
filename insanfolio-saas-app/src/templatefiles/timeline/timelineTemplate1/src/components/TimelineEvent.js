@@ -73,7 +73,7 @@ const TimelineEvent = ({ event }) => {
           <ArrowIcon link={event.eventLink} />
         </div>
 
-        <EventDescription description={[]} style={{ marginTop: '0em' }}/>
+        <EventDescription description={event.bullets} style={{ marginTop: '0em' }}/>
         <SkillList skills={event.eventSkills} />
         <ImageGallery gallery={event.photos} />
       </div>
