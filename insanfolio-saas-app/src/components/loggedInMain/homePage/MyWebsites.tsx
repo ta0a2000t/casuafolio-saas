@@ -6,7 +6,7 @@ import { deleteFolioService, fetchFoliosService, subscribeToFolioCreation, subsc
 import { CreatePublishedFolioDataInput, Folio, FolioNumber, FolioType, ListFoliosQuery, UpdateFolioInput } from 'API';
 import FolioCard from '../editFolio/FolioCard';
 import { createPublishedFolioDataService, deletePublishedFolioDataService } from 'services/publishedFolioDataServices';
-import { deleteDraftFolioDataService } from 'services/draftFolioDataServices';
+import { deleteDraftFolioDataService, fetchDraftFolioDataService } from 'services/draftFolioDataServices';
 
 
 const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
@@ -15,7 +15,6 @@ const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
-  
 
 
   useEffect(() => {
@@ -36,26 +35,7 @@ const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
 
     initFolios();
 
-  const createSub = subscribeToFolioCreation(userId, (newFolio) => {
-    setFolios(prevFolios => [...prevFolios, newFolio]);
-  });
-  
-  const updateSub = subscribeToFolioUpdate(userId, (updatedFolio) => {
-    setFolios(prevFolios => prevFolios.map(folio => folio.id === updatedFolio.id ? updatedFolio : folio));
-  });
-
-  const deleteSub = subscribeToFolioDeletion(userId, (deletedFolioId) => {
-    setFolios(prevFolios => prevFolios.filter(folio => folio.id !== deletedFolioId));
-  });
-
-
-    // Cleanup subscriptions when component unmounts
-    return () => {
-      createSub.unsubscribe();
-      updateSub.unsubscribe();
-      deleteSub.unsubscribe();
-    };
-  }, [navigate]);
+  }, [navigate, userId]);
 
 
   
@@ -78,52 +58,7 @@ const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
   };
 
   const handleViewAnalytics = (folioId: string) => {/* Implementation */};
-  const togglePublishStatus = async (folioId: string) => {
-    const folioToUpdate = folios.find(folio => folio.id === folioId);
-    if (!folioToUpdate) return; // Early exit if the folio is not found
-  
-    try {
-      setLoading(true);
-  
-      if (folioToUpdate.folioPublishedDataId) {
-        // The folio is currently published, prepare to unpublish it
-        await deletePublishedFolioDataService(folioToUpdate.folioPublishedDataId);
-        // Update the folio to remove the reference to the deleted published data ID
-        const updateInput = {
-          id: folioId,
-          folioPublishedDataId: null, // Clearing the publishedDataId to unpublish
-        };
-        await updateFolioService(updateInput);
-      } else {
-        // The folio is not currently published, prepare to publish it
-        // Create new published data from draft data (assuming backend handles actual data copy)
-        if (folioToUpdate.draftData == null) {
-          messageApi.error("You have to start editing first!")
-          console.error('No draft data found for folio', folioToUpdate.id);
 
-          return;
-        }
-        const publishedData = await createPublishedFolioDataService({
-          // Populate with necessary data from folioToUpdate.draftData
-          // Add other necessary fields
-        }as CreatePublishedFolioDataInput);
-        // Update the folio to reference the new published data ID
-        const updateInput = {
-          id: folioId,
-          folioPublishedDataId: publishedData.createPublishedFolioData.id, // Use the new published data ID
-        };
-        await updateFolioService(updateInput);
-      }
-  
-      // Refresh or update local folio data to reflect changes
-      // This may involve re-fetching folios or updating the state directly if possible
-    } catch (error) {
-      console.error("Failed to toggle folio publish status:", error);
-      // Handle error appropriately
-    } finally {
-      setLoading(false);
-    }
-  };
   
   
 
@@ -141,9 +76,7 @@ const MyWebsites: React.FC<{userId: string;}> = ({userId}) => {
       folio={folio}
       handleEdit={(theIdOfFolio) => handleEdit(theIdOfFolio, folio.folioType, folio.folioNumber)}
       handleViewAnalytics={handleViewAnalytics}
-      togglePublishStatus={togglePublishStatus}
-      handleDelete={handleDelete}
-    />
+      handleDelete={handleDelete} />
   )}
 />
 </>
